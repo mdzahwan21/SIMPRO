@@ -1,4 +1,4 @@
-@extends('mahasiswa.navbar')
+@extends('operator.navbar')
 
 @section('content')
         <div class="p-4 sm:ml-64">

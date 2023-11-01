@@ -15,8 +15,12 @@ class DashboardController extends Controller
         // Memeriksa peran pengguna
         if ($user->role === 'mahasiswa') {
             return view('mahasiswa.dashboard');
-        } if ($user->role === 'user') {
-            return view('mahasiswa.dashboard');
+        } if ($user->role === 'operator') {
+            return view('operator.dashboard');
+        } if ($user->role === 'dosenwali') {
+            return view('doswal.dashboard');
+        } if ($user->role === 'departemen') {
+            return view('departemen.dashboard');
         }
     }
 }

@@ -2,66 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\skripsi;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreskripsiRequest;
-use App\Http\Requests\UpdateskripsiRequest;
+use App\Models\Mahasiswa;
+use App\Models\Skripsi;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkripsiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function viewSkripsi()
     {
-        //
+        $user = Auth::user();
+        $mahasiswa = Mahasiswa::where('username', $user->username)->first();
+        $skripsiData = $mahasiswa->skripsi;
+
+        return view('mahasiswa.skripsi', ['skripsiData' => $skripsiData]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function verifikasi(int $id)
     {
-        //
+        try {
+            $skripsi = Skripsi::where('id_skripsi', $id)->first();
+
+            $skripsi->update([
+                "statusVerif" => 'Approved'
+            ]);
+
+            return redirect()->back()->with('success', 'Berhasil memverifikasi skripsi.');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Gagal memverifikasi skripsi.');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreskripsiRequest $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(skripsi $skripsi)
+    public function reject(int $id)
     {
-        //
-    }
+        try {
+            $skripsi = Skripsi::where('id_skripsi', $id)->first();
+            
+            $skripsi->update([
+                "statusVerif" => 'Rejected'
+            ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(skripsi $skripsi)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateskripsiRequest $request, skripsi $skripsi)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(skripsi $skripsi)
-    {
-        //
+            return redirect()->back()->with('success', 'Skripsi berhasil ditolak.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal menolak skripsi.');
+        }
     }
 }
