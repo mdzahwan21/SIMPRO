@@ -45,7 +45,8 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'name' => 'Default Name', // Ganti 'Default Name' dengan nilai default yang diinginkan
+        'name' => 'Default Name',
+        // Ganti 'Default Name' dengan nilai default yang diinginkan
         'role' => 'user',
     ];
     protected static function boot()
@@ -67,12 +68,12 @@ class User extends Authenticatable
                 case 'mahasiswa.com':
                     $user->role = 'mahasiswa';
                     break;
-                case 'dosenwali.com':
+                case 'dosen.com':
                     $user->role = 'dosenwali';
                     break;
                 case 'operator.com':
-                        $user->role = 'operator';
-                        break;
+                    $user->role = 'operator';
+                    break;
                 case 'departemen.com':
                     $user->role = 'departemen';
                     break;
@@ -82,5 +83,11 @@ class User extends Authenticatable
             }
         });
     }
-    
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'id_user', 'id');
+    }
+
+
 }

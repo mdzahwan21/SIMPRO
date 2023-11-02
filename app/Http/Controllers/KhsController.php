@@ -9,12 +9,9 @@ use App\Http\Requests\UpdatekhsRequest;
 
 class KhsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view("Mahasiswa.khs");
     }
 
     /**

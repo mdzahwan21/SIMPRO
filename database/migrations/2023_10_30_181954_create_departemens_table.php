@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('departemen', function (Blueprint $table) {
             $table->string('nip')->primary();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->string('foto');
+            $table->unsignedBigInteger('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

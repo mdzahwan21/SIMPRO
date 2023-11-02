@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('operator', function (Blueprint $table) {
             $table->string('nip')->primary();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->unsignedBigInteger('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 
