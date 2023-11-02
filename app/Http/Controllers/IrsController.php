@@ -2,66 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\irs;
+use App\Models\Irs;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreirsRequest;
-use App\Http\Requests\UpdateirsRequest;
+use Illuminate\Support\Facades\Storage;
 
 class IrsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view("Mahasiswa.irs");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'smt_aktif' => 'required|integer|min:1|max:14',
+            'sks' => 'required|integer|min:1|max:24',
+            'file_input' => 'required|mimes:pdf',
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreirsRequest $request)
-    {
-        //
-    }
+        $fileIrs = $request->file('file_input');
+        $filePath = $fileIrs->store('irs', 'public');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(irs $irs)
-    {
-        //
-    }
+        $nim = Auth::user()->mahasiswa->nim;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(irs $irs)
-    {
-        //
-    }
+        Irs::create([
+            'smt_aktif' => $request->input('smt_aktif'),
+            'jumlah_sks' => $request->input('sks'),
+            'file' => $filePath, 
+            //'nim' => $request->input('sks'),
+            'nim' => $nim,
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateirsRequest $request, irs $irs)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(irs $irs)
-    {
-        //
+        return redirect()->route('irs')->with('success', 'Data IRS berhasil disimpan.');
     }
 }

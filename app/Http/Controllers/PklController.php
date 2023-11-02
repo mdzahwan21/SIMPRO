@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\pkl;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorepklRequest;
 use App\Http\Requests\UpdatepklRequest;
+use Illuminate\Support\Facades\Storage;
+
 
 class PklController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return view("Mahasiswa.pkl");
     }
 
     /**
@@ -28,10 +29,36 @@ class PklController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorepklRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Validasi data jika diperlukan
+        $request->validate([
+            'smt_aktif' => 'required|numeric|min:1|max:14',
+            'status_PKL' => 'required',
+            'nilai' => 'numeric|between:1,4',
+            'file_input' => 'file|mimes:pdf,doc,docx',
+        ]);
+
+        if ($request->hasFile('file_input')) {
+            $filePkl = $request->file('file_input');
+            $filePath = $filePkl->store('pkl', 'public');
+        }
+
+        $nim = Auth::user()->mahasiswa->nim;
+
+        pkl::create([
+            'smt_aktif' => $request->input('smt_aktif'),
+            'status' => $request->input('status_PKL'),
+            'nilai' => $request->input('nilai'),
+            'file' => $filePath, 
+            //'nim' => $request->input('sks'),
+            'nim' => $nim,
+        ]);
+
+        // Redirect atau kembali ke halaman yang sesuai
+        return redirect()->route('pkl')->with('success', 'Data PKL berhasil disimpan.');
     }
+
 
     /**
      * Display the specified resource.

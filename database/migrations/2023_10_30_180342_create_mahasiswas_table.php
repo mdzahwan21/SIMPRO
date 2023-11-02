@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->string('nim')->primary();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->integer('angkatan');
             $table->integer('smt_aktif');
             $table->string('status');
@@ -24,7 +21,9 @@ return new class extends Migration
             $table->string('alamat_detail')->nullable();
             $table->string('nip_doswal');
             $table->string('foto')->nullable();
+            $table->unsignedBigInteger('id_user');
 
+            $table->foreign('id_user')->references('id')->on('users');
             $table->foreign('nip_doswal')->references('nip_doswal')->on('dosen_wali');
         });
     }

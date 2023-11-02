@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class pkl extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'smt_aktif',
+        'nilai',
+        'file',
+        'status',
+        'nim',
+    ];
+
+    public $timestamps = false;
+    protected $table = 'pkl';
 }

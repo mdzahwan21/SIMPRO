@@ -9,5 +9,4 @@ class mahasiswa extends Model
 {
     protected $table = 'mahasiswa';
     use HasFactory;
-    
 }

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('departemen', function (Blueprint $table) {
-            $table->string('nip')->primary();
-            $table->string('foto');
-            $table->unsignedBigInteger('id_user');
-
-            $table->foreign('id_user')->references('id')->on('users');
+        Schema::table('pkl', function (Blueprint $table) {
+            $table->integer('smt_aktif');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('departemen');
+        Schema::table('pkl', function (Blueprint $table) {
+            $table->dropColumn('smt_aktif');
+        });
     }
 };
