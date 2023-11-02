@@ -63,7 +63,7 @@
     <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
-                <li class="active">
+                <li>
                     <a href="{{route('dashboard')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                             <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -73,7 +73,7 @@
                     </a>
                 </li>
 
-                <li>
+                <li class="active">
                     <a href="{{route('generateAkun')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                             <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
@@ -95,15 +95,9 @@
 
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="mahasiswaForm" action="{{ route('skripsi') }}" enctype="multipart/form-data">
+                <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Akun Mahasiswa</h1>
 
-            <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" value="" class="sr-only peer">
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">MAHASISWA</span>
-            </label>
-
-            <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">FORM AKUN MAHASISWA</h1>
-            <form class="flex flex-col w-full" action="{{ route('skripsi') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
@@ -165,6 +159,47 @@
                     <button type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Generate</button>
                 </div>
             </form>
+
+            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg mt-5" id="dosenWaliForm" action="{{ route('skripsi') }}" enctype="multipart/form-data">
+                <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Akun Dosen Wali</h1>
+                @csrf
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="nip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            NIP:</label>
+                        <input type="text" id="nip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan NIP" required>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Nama:</label>
+                        <input type="text" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama" required>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Alamat:</label>
+                        <input type="text" id="alamat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Alamat" required>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="noTelepon" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            No Telepon:</label>
+                        <input type="tel" id="noTelepon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan No Telepon" required>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center mb-6">
+                    <button type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Generate</button>
+                </div>
+            </form>
+
         </div>
     </div>
 
