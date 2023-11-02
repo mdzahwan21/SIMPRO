@@ -18,35 +18,63 @@ class SkripsiController extends Controller
         return view('mahasiswa.skripsi');
     }
 
-    public function verifikasi(int $id)
+    public function store(Request $request)
     {
-        try {
-            $skripsi = Skripsi::where('id_skripsi', $id)->first();
+        $request->validate([
+            'smt_aktif' => 'required|numeric|min:1|max:14',
+            'status_Skripsi' => 'required',
+            'nilai' => 'numeric|between:1,4',
+            'file_input' => 'file|mimes:pdf,doc,docx',
+        ]);
 
-            $skripsi->update([
-                "statusVerif" => 'Approved'
-            ]);
-
-            return redirect()->back()->with('success', 'Berhasil memverifikasi skripsi.');
-        } catch (\Exception $e) {
-
-            return redirect()->back()->with('error', 'Gagal memverifikasi skripsi.');
+        if ($request->hasFile('file_input')) {
+            $fileSkripsi = $request->file('file_input');
+            $filePath = $fileSkripsi->store('skripsi', 'public');
         }
+
+        $nim = Auth::user()->mahasiswa->nim;
+
+        Skripsi::create([
+            'smt_aktif' => $request->input('smt_aktif'),
+            'status' => $request->input('status_Skripsi'),
+            'nilai' => $request->input('nilai'),
+            'file' => $filePath, 
+            //'nim' => $request->input('sks'),
+            'nim' => $nim,
+        ]);
+
+        return redirect()->route('skripsi')->with('success', 'Data Skripsi berhasil disimpan.');
     }
 
+    // public function verifikasi(int $id)
+    // {
+    //     try {
+    //         $skripsi = Skripsi::where('id_skripsi', $id)->first();
 
-    public function reject(int $id)
-    {
-        try {
-            $skripsi = Skripsi::where('id_skripsi', $id)->first();
+    //         $skripsi->update([
+    //             "statusVerif" => 'Approved'
+    //         ]);
+
+    //         return redirect()->back()->with('success', 'Berhasil memverifikasi skripsi.');
+    //     } catch (\Exception $e) {
+
+    //         return redirect()->back()->with('error', 'Gagal memverifikasi skripsi.');
+    //     }
+    // }
+
+
+    // public function reject(int $id)
+    // {
+    //     try {
+    //         $skripsi = Skripsi::where('id_skripsi', $id)->first();
             
-            $skripsi->update([
-                "statusVerif" => 'Rejected'
-            ]);
+    //         $skripsi->update([
+    //             "statusVerif" => 'Rejected'
+    //         ]);
 
-            return redirect()->back()->with('success', 'Skripsi berhasil ditolak.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menolak skripsi.');
-        }
-    }
+    //         return redirect()->back()->with('success', 'Skripsi berhasil ditolak.');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->with('error', 'Gagal menolak skripsi.');
+    //     }
+    // }
 }
