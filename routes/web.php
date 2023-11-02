@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 // use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\RegisterController;
  use App\Http\Controllers\SkripsiController;
+ use App\Http\Controllers\GenerateAkunController;
  use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store'])->name('registerStore');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
+
+Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');

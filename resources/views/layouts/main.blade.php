@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- @stack('scripts') --}}
-    <title>Simpro</title>
+    <title>SIMPRO</title>
 </head>
 
 <body>
     @yield('body')
 </body>
+
 </html>
