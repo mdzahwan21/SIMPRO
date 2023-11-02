@@ -4,10 +4,9 @@
 
 @layer components {
     .active {
-        background-color: #f2f2f2; 
-        color: #fff; 
-        font-weight: bold; 
+        @apply bg-blue-100 font-bold text-white 
     }
+
     .login-outer-container {
         @apply flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0;
     }
