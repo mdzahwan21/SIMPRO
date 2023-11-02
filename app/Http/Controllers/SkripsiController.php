@@ -11,11 +11,11 @@ class SkripsiController extends Controller
 {
     public function viewSkripsi()
     {
-        $user = Auth::user();
-        $mahasiswa = Mahasiswa::where('username', $user->username)->first();
-        $skripsiData = $mahasiswa->skripsi;
+        // $user = Auth::user();
+        // $mahasiswa = Mahasiswa::where('nama', $user->username)->first();
+        // $skripsiData = $mahasiswa->skripsi;
 
-        return view('mahasiswa.skripsi', ['skripsiData' => $skripsiData]);
+        return view('mahasiswa.skripsi');
     }
 
     public function verifikasi(int $id)

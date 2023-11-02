@@ -8,6 +8,7 @@ use App\Http\Controllers\IrsController;
 use App\Http\Controllers\PklController;
  use App\Http\Controllers\RegisterController;
  use App\Http\Controllers\SkripsiController;
+ use App\Http\Controllers\GenerateAkunController;
  use Illuminate\Support\Facades\Route;
  
 
@@ -31,7 +32,11 @@ Route::post('/irs/store', [IrsController::class, 'store'])->name('irs.store');
 // });
 
 Route::get('/khs', [KhsController::class, 'index'])->middleware('auth')->name('khs');
-Route::post('/khs/store', [IrsController::class, 'store'])->name('khs.store');
+Route::post('/khs/store', [KhsController::class, 'store'])->name('khs.store');
 
 Route::get('/pkl', [PklController::class, 'index'])->middleware('auth')->name('pkl');
-Route::post('/pkl/store', [IrsController::class, 'store'])->name('pkl.store');
+Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
+
+Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
+
+Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');

@@ -20,7 +20,7 @@ class IrsController extends Controller
     {
         $request->validate([
             'smt_aktif' => 'required|integer|min:1|max:14',
-            'sks' => 'required|integer|min:0|max:100',
+            'sks' => 'required|integer|min:1|max:24',
             'file_input' => 'required|mimes:pdf',
         ]);
 

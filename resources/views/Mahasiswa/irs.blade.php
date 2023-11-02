@@ -40,7 +40,7 @@
                             SKS:</label>
                         <input type="number" id="sks" name="sks"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                            placeholder="masukkan jumlah sks" min="0" max="100" required>
+                            placeholder="masukkan jumlah sks" min="1" max="24" required>
                     </div>
                 </div>
 
