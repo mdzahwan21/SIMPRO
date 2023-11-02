@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\Skripsi;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SkripsiController extends Controller
 {
@@ -15,16 +17,18 @@ class SkripsiController extends Controller
         // $mahasiswa = Mahasiswa::where('nama', $user->username)->first();
         // $skripsiData = $mahasiswa->skripsi;
 
-        return view('mahasiswa.skripsi');
+        return view('Mahasiswa.skripsi');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'smt_aktif' => 'required|numeric|min:1|max:14',
-            'status_Skripsi' => 'required',
+            'smt_lulus' => 'numeric|min:1|max:14',
+            'status_skripsi' => 'required',
             'nilai' => 'numeric|between:1,4',
-            'file_input' => 'file|mimes:pdf,doc,docx',
+            'tgl_lulus' => 'date|date_format:Y-m-d', 
+            'file_input' => 'file|mimes:pdf',
         ]);
 
         if ($request->hasFile('file_input')) {
@@ -36,15 +40,17 @@ class SkripsiController extends Controller
 
         Skripsi::create([
             'smt_aktif' => $request->input('smt_aktif'),
-            'status' => $request->input('status_Skripsi'),
+            'smt_lulus' => $request->input('smt_lulus'),
+            'status' => $request->input('status_skripsi'),
             'nilai' => $request->input('nilai'),
-            'file' => $filePath, 
-            //'nim' => $request->input('sks'),
+            'tgl_lulus' => $request->input('tgl_lulus'),
+            'file' => $filePath,
             'nim' => $nim,
         ]);
-
+        
         return redirect()->route('skripsi')->with('success', 'Data Skripsi berhasil disimpan.');
     }
+
 
     // public function verifikasi(int $id)
     // {
@@ -67,7 +73,7 @@ class SkripsiController extends Controller
     // {
     //     try {
     //         $skripsi = Skripsi::where('id_skripsi', $id)->first();
-            
+
     //         $skripsi->update([
     //             "statusVerif" => 'Rejected'
     //         ]);
