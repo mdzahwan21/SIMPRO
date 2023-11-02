@@ -38,8 +38,8 @@ class KhsController extends Controller
             'file_input' => 'required|mimes:pdf',
         ]);
 
-        $fileIrs = $request->file('file_input');
-        $filePath = $fileIrs->store('khs', 'public');
+        $fileKhs = $request->file('file_input');
+        $filePath = $fileKhs->store('khs', 'public');
 
         $nim = Auth::user()->mahasiswa->nim;
 
