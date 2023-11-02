@@ -95,7 +95,7 @@
 
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="mahasiswaForm" action="{{ route('skripsi') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="mahasiswaForm" action="{{ route('generateAkun') }}" enctype="multipart/form-data">
                 <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Akun Mahasiswa</h1>
 
                 @csrf
@@ -160,7 +160,7 @@
                 </div>
             </form>
 
-            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg mt-5" id="dosenWaliForm" action="{{ route('skripsi') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg mt-5" id="dosenWaliForm" action="{{ route('generateAkun') }}" enctype="multipart/form-data">
                 <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Akun Dosen Wali</h1>
                 @csrf
 
