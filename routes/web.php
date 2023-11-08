@@ -6,10 +6,15 @@ use App\Http\Controllers\IrsController;
  use App\Http\Controllers\LoginController;
 // use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PklController;
- use App\Http\Controllers\RegisterController;
- use App\Http\Controllers\SkripsiController;
- use App\Http\Controllers\GenerateAkunController;
- use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SkripsiController;
+use App\Http\Controllers\GenerateAkunController;
+use App\Http\Controllers\VerifProgressController;
+use App\Http\Controllers\VerifIRSController;
+use App\Http\Controllers\VerifKHSController;
+use App\Http\Controllers\EditIRSController;
+use App\Http\Controllers\EditKHSController;
+use Illuminate\Support\Facades\Route;
  
 
 Route::get('/', function () {
@@ -41,3 +46,11 @@ Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middlewar
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
+
+Route::get('/verifikasi-progress', [VerifProgressController::class, 'index'])->middleware('auth')->name('verifProgress');
+
+Route::get('/verifikasi-progress/verifyIRS', [VerifIRSController::class, 'index'])->middleware('auth')->name('verifyIRS');
+Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
+
+Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
+Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
