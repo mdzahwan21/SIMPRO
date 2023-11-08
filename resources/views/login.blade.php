@@ -82,7 +82,7 @@
             <div class="flex flex-col items-center'">
 
                 <p class="text-center font-medium text-black-600 dark:text-primary-500">
-                    Belum memiliki akun?, Hubungi Operator
+                    Belum memiliki akun? Hubungi Operator.
                 </p>
             </div>
         </form>
