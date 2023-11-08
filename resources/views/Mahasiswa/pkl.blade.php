@@ -9,7 +9,7 @@
         </div>
 
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <form class="flex flex-col w-full" method="POST" action="{{ route('pkl.store') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full" method="POST" action="{{ route('skripsi.store') }}" enctype="multipart/form-data">
                 @csrf
                 @if (session('success'))
                     <div class="p-4 bg-green-100 text-green-800 rounded-lg mb-4 text-center">

@@ -9,13 +9,25 @@
         </div>
 
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <form class="flex flex-col w-full" action="{{ route('skripsi') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full" method="POST" action="{{ route('skripsi.store') }}" enctype="multipart/form-data">
                 @csrf
+                @if (session('success'))
+                    <div class="p-4 bg-green-100 text-green-800 rounded-lg mb-4 text-center">
+                        {{ session('success') }} 
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="p-4 bg-red-100 text-red-800 rounded-lg mb-4 text-center">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="skripsi-smt-aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label for="irs-smt-aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Semester Aktif:</label>
-                        <input type="number" id="skripsi-smt-aktif"
+                        <input type="number" id="irs-smt-aktif"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan semester aktif" min="1" max="14" required>
                     </div>
@@ -24,8 +36,8 @@
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
 
-                        <label for="status_skripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Skripsi:</label>
-                        <select id="status_skripsi"
+                        <label for="status_PKL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Skripsi:</label>
+                        <select id="status_PKL"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled>Pilih status skripsi</option>
                             <option value="belum_skripsi">Belum Skripsi</option>
@@ -37,28 +49,8 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="skripsi-nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Nilai Skripsi:</label>
-                        <input type="number" id="skripsi-nilai"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Masukkan jumlah sks" step="0.01" min="1" max="4">
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-                        <label for="skripsi-smt-lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Semester Lulus:</label>
-                        <input type="number" id="skripsi-smt-lulus"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Masukkan semester lulus" min="1" max="14" required>
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-                        <label for="tanggal-lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Tanggal Lulus:</label>
-                        <input type="date" id="tanggal-lulus" name="tanggal-lulus"
+                        <label for="pkl-nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Nilai Skripsi:</label>
+                        <input type="number" id="pkl-nilai"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan tanggal lulus" required>
                     </div>
@@ -70,7 +62,7 @@
                             Berita Acara Sidang Skripsi:</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="file_input" type="file">
+                            id="file_input" name="file_input" type="file">
                     </div>
                 </div>
 
