@@ -41,3 +41,7 @@ Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
 Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
+Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
+
+Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
+Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');

@@ -25,9 +25,9 @@
                 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="irs-smt-aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Semester Aktif:</label>
-                        <input type="number" id="irs-smt-aktif"
+                        <input type="number" id="smt_aktif" name="smt_aktif"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan semester aktif" min="1" max="14" required>
                     </div>
@@ -36,8 +36,8 @@
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
 
-                        <label for="status_PKL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Skripsi:</label>
-                        <select id="status_PKL"
+                        <label for="status_skripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Skripsi:</label>
+                        <select id="status_skripsi" name="status_skripsi"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled>Pilih status skripsi</option>
                             <option value="belum_skripsi">Belum Skripsi</option>
@@ -49,8 +49,28 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="pkl-nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Nilai Skripsi:</label>
-                        <input type="number" id="pkl-nilai"
+                        <label for="nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Nilai Skripsi:</label>
+                        <input type="number" id="nilai" name="nilai"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Masukkan jumlah sks" step="0.01" min="1" max="4">
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="smt_lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Semester Lulus:</label>
+                        <input type="number" id="smt_lulus" name="smt_lulus"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Masukkan semester lulus" min="1" max="14" required>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mb-6">
+                    <div class="w-full max-w-md">
+                        <label for="tgl_lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Tanggal Lulus:</label>
+                        <input type="date" id="tgl_lulus" name="tgl_lulus"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan tanggal lulus" required>
                     </div>
