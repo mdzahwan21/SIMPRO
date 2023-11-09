@@ -13,6 +13,22 @@ class VerifProgressController extends Controller
         return view('Doswal.verifikasiProgress');
     }
 
+    public function viewListIRS() {
+        return view('doswal.listIRS');
+    }
+
+    public function viewListKHS() {
+        return view('doswal.listKHS');
+    }
+
+    public function viewListPKL() {
+        return view('doswal.listPKL');
+    }
+
+    public function viewListSkripsi() {
+        return view('doswal.listSkripsi');
+    }
+
     // public function verifyIrs(Request $request, $id)
     // {
     //     $irs = Irs::find($id);

@@ -10,6 +10,6 @@ class EditKHSController extends Controller
 {
     public function index()
     {
-        return view('Doswal.rejectKHS');
+        return view('Doswal.editKHS');
     }
 }

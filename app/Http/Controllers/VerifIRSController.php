@@ -12,4 +12,9 @@ class VerifIRSController extends Controller
     {
         return view('Doswal.verifikasiIRS');
     }
+
+    public function edit()
+    {
+        return redirect()->route('verify.IRS')->with('success', 'Data berhasil diupdate.');
+    }
 }
