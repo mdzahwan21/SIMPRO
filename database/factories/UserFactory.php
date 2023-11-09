@@ -17,16 +17,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $roles = ['dosen_wali', 'departemen', 'operator', 'mahasiswa'];
+        $roles = ['departemen', 'mahasiswa', 'dosen', 'operator'];
         $role = $this->faker->randomElement($roles);
 
         return [
             'name' => $this->faker->name(),
+            'role' => $role,
             'email' => strtolower($this->faker->firstName) . "@$role.com",
             'email_verified_at' => now(),
             'password' => '12345',
             'remember_token' => Str::random(10),
-            'role' => $role,
         ];
     }
 

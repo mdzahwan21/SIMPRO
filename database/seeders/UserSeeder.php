@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()
-            ->count(10) // You can adjust the number of users you want to create
+            ->count(20) // You can adjust the number of users you want to create
             ->create();
     }
 }
