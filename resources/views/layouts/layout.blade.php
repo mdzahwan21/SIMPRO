@@ -21,7 +21,11 @@
         </div>
     </aside>
 
-    <div class="flex p-4 sm:ml-64 mt-14">
+    {{-- <div class="flex p-4 sm:ml-64 mt-14">
+        @yield('content')
+    </div> --}}
+    <div class="flex sm:ml-64 mt-14">
         @yield('content')
     </div>
+
 @endsection

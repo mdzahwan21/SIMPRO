@@ -47,7 +47,6 @@ class User extends Authenticatable
     protected $attributes = [
         'name' => 'Default Name',
         // Ganti 'Default Name' dengan nilai default yang diinginkan
-        'role' => 'user',
     ];
     protected static function boot()
     {

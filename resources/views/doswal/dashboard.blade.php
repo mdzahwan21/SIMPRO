@@ -6,4 +6,5 @@
             Welcome, {{ auth()->user()->name }}!
         </p>
     </div>
+    
 @endsection
