@@ -25,25 +25,25 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Semester Aktif:</label>
-                        <input type="number" id="smt_aktif" name="smt_aktif"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="masukkan semester aktif" min="1" max="14" required>
-                    </div>
-                </div>
 
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-
-                        <label for="status_PKL" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-                            PKL:</label>
-                        <select id="status_PKL" name="status_PKL"
+                        <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester Aktif:</label>
+                        <select id="smt_aktif" name="smt_aktif"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected disabled>Pilih Status PKL</option>
-                            <option value="belum PKL">Belum PKL</option>
-                            <option value="sedang PKL">Sedang PKL</option>
-                            <option value="sudah PKL">Sudah PKL</option>
+                            <option selected disabled>Pilih semester aktif</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
                         </select>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload
-                            file PKL:</label>
+                            Berita Acara Seminar PKL:</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="file_input" name="file_input" type="file">

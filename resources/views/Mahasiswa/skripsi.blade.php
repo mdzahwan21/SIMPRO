@@ -25,24 +25,25 @@
                 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Semester Aktif:</label>
-                        <input type="number" id="smt_aktif" name="smt_aktif"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Masukkan semester aktif" min="1" max="14" required>
-                    </div>
-                </div>
 
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-
-                        <label for="status_skripsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status Skripsi:</label>
-                        <select id="status_skripsi" name="status_skripsi"
+                        <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester Aktif:</label>
+                        <select id="smt_aktif" name="smt_aktif"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected disabled>Pilih status skripsi</option>
-                            <option value="belum_skripsi">Belum Skripsi</option>
-                            <option value="sedang_skripsi">Sedang Skripsi</option>
-                            <option value="sudah_skripsi">Sudah Skripsi</option>
+                            <option selected disabled>Pilih semester aktif</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
                         </select>
                     </div>
                 </div>
@@ -58,11 +59,26 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="smt_lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Semester Lulus:</label>
-                        <input type="number" id="smt_lulus" name="smt_lulus"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Masukkan semester lulus" min="1" max="14" required>
+
+                        <label for="smt_lulus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Semester Lulus:</label>
+                        <select id="smt_lulus" name="smt_lulus"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled>Pilih semester lulus</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                        </select>
                     </div>
                 </div>
 
