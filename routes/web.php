@@ -1,16 +1,17 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImportData;
 use App\Http\Controllers\IrsController;
- use App\Http\Controllers\KhsController;
- use App\Http\Controllers\LoginController;
-// use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\KhsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PklController;
- use App\Http\Controllers\RegisterController;
- use App\Http\Controllers\SkripsiController;
- use App\Http\Controllers\GenerateAkunController;
- use App\Http\Controllers\UpdateProfileController;
- use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SkripsiController;
+use App\Http\Controllers\InputMahasiswaController;
+use App\Http\Controllers\InputDosenController;
+use App\Http\Controllers\UpdateProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerifProgressController;
 use App\Http\Controllers\VerifIRSController;
 use App\Http\Controllers\VerifKHSController;
@@ -43,7 +44,9 @@ Route::post('/khs/store', [KhsController::class, 'store'])->name('khs.store');
 Route::get('/pkl', [PklController::class, 'index'])->middleware('auth')->name('pkl');
 Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
 
-Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
+Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
+Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
+Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
