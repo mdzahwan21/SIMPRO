@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('operator.navbar')
 
-@section('body')
-    <section class="bg-gray-50 dark:bg-gray-900 h-screen flex items-center justify-center">
+@section('content')
+    <section class="bg-gray-50 dark:bg-gray-900 h-full w-full flex items-center justify-center">
         <div class="login-container p-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <div class="mb-8 text-center">
                 <img class="w-16 h-16 mx-auto mb-2" src="https://seeklogo.com/images/U/universitas-diponegoro-logo-6B2C58478B-seeklogo.com.png" alt="logo">

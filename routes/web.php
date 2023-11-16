@@ -27,7 +27,7 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->na
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->middleware('auth')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('registerStore');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');

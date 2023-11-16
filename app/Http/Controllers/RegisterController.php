@@ -10,7 +10,10 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view("register");
+        $user = Auth::user();
+            if ($user->role === 'operator') {
+            return view('operator.register');
+        }
     }
 
     public function store(Request $request)
@@ -19,16 +22,5 @@ class RegisterController extends Controller
             "email" => "required|email:dns|unique:users",
             "password" => "required|min:5|max:255",
         ]);
-
-        User::create($validatedData);
-        $request->session()->flash("success", "Registration Successfull");
-        return redirect('/login');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->regenerateToken();
-        return redirect('/login');
     }
 }
