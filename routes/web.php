@@ -7,6 +7,7 @@ use App\Http\Controllers\KhsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PklController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RekapProgressController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\InputMahasiswaController;
 use App\Http\Controllers\InputDosenController;
@@ -53,6 +54,7 @@ Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skrips
 
 Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
 Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
+
 Route::get('/verifikasi-progress', [VerifProgressController::class, 'index'])->middleware('auth')->name('verifProgress');
 Route::get('/verifikasi-progress/list-IRS', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('list.IRS');
 Route::get('/verifikasi-progress/list-KHS', [VerifProgressController::class, 'viewListKHS'])->middleware('auth')->name('list.KHS');
@@ -65,3 +67,10 @@ Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'
 
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
 Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
+
+Route::get('/rekap-progress', [RekapProgressController::class, 'index'])->middleware('auth')->name('rekap');
+Route::get('/rekap-progress/status', [RekapProgressController::class, 'viewRekapStatus'])->middleware('auth')->name('rekap.status');
+Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'viewListStatus'])->middleware('auth')->name('rekap.list.status');
+Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
+Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');
+

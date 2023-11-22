@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/modal.js'])
     {{-- @stack('scripts') --}}
-    <script ></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
     <title>SIMPRO</title>
 </head>
 
