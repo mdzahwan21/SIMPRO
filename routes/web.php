@@ -57,8 +57,11 @@ Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skrips
 
 Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
 Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
-Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
-Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
+Route::get('/updateProfile', [UpdateProfileController::class, 'showProfileDoswal'])->middleware('auth')->name('updateProfile');
+Route::post('/updateProfile', [UpdateProfileController::class, 'updateDoswal'])->name('updateProfile');
+
+// Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
+// Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
 
 Route::get('/verifikasi-progress', [VerifProgressController::class, 'index'])->middleware('auth')->name('verifProgress');
 Route::get('/verifikasi-progress/list-IRS', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('list.IRS');
