@@ -32,4 +32,9 @@ class mahasiswa extends Model
     {
         return $this->belongsTo(dosen_wali::class, 'nip_doswal', 'nip');
     }
+
+    public function irs()
+    {
+        return $this->hasMany(Irs::class, 'nim', 'nim');
+    }
 }

@@ -7,43 +7,61 @@ use App\Models\mahasiswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\TryCatch;
 
 class VerifIRSController extends Controller
 {
-    public function showDetailIRS($nim)
-    {   
-        // // Fetch mahasiswa data by ID
-        // $mhs = mahasiswa::find($nim);
+    public function approve(Request $request)
+    {
+        try {
+            // Find the IRS record by ID
+            $irs = IRS::find($request->id);
 
-        // // Fetch IRS data by ID
-        // $irs = Irs::find($irsId);
+            // Update IRS data with approval timestamp
+            $irs->update([
+                'tgl_persetujuan' => now(),
+            ]);
 
-        // // Pass $irs and $mhs data to the view
-        // return view('doswal.verifikasiIRS', ['irs' => $irs, 'mhs' => $mhs]);
+            // Redirect or return a response as needed
+            return redirect()->back()->with('success', 'IRS approved successfully!');
+            
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Error approving data: ' . $e->getMessage());
 
-        $mhs = Mahasiswa::with('irs')->where('nim', $nim)->first();
-        
-        if (!$mhs) {
-            abort(404, 'Mahasiswa not found');
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'Failed to approve IRS. Please try again.');
         }
-
-        return view('doswal.verifikasiIRS', ['mhs' => $mhs]);
     }
 
-    // public function approveIrs($irsId)
-    // {
-    //     // Update IRS data with approval timestamp
-    //     $irs = Irs::find($irsId);
-    //     $irs->tgl_persetujuan = now();
-    //     $irs->save();
 
-    //     // Redirect or return a response as needed
-    //     return redirect()->back()->with('success', 'IRS approved successfully!');
-    // }
+    public function update(Request $request)
+    {
+        try {
+            // Validate the incoming request data
+            $request->validate([
+                'smt_aktif' => 'required|numeric|min:1|max:14',
+                'jumlah_sks' => 'required|numeric|min:1|max:24',
+            ]);
 
-    // public function rejectIrs($irsId)
-    // {
-    //     // Redirect to editIRS view with $irsId
-    //     return view('doswal.editIRS', ['irsId' => $irsId]);
-    // }
+            // Find the IRS record by ID
+            $irs = IRS::findOrFail($request->id);
+
+            // Update the IRS data based on the submitted form data
+            $irs->update([
+                'smt_aktif' => $request->smt_aktif,
+                'jumlah_sks' => $request->jumlah_sks,
+            ]);
+
+            // Redirect back with a success message
+            return redirect()->back()->with('success', 'IRS data updated successfully.');
+
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Log::error('Error updating IRS data: ' . $e->getMessage());
+
+            // Redirect back with an error message
+            return redirect()->back()->with('error', 'Failed to update IRS data. Please try again.');
+        }
+    }
 }

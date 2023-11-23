@@ -19,6 +19,8 @@ class Irs extends Model
         'tgl_persetujuan',
     ];
 
+    public $timestamps = false;
+
     // foreign key nim
     public function mahasiswa()
     {

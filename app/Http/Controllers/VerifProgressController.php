@@ -10,21 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class VerifProgressController extends Controller
 {
-    public function index()
-    {
-        // Mendapatkan dosen wali yang sedang login
-        $user = Auth::user();
-
-        // Ambil semua IRS yang belum disetujui oleh dosen wali yang sedang login
-        $irsBelumDisetujui = Irs::whereNull('tgl_persetujuan')
-            ->whereHas('mahasiswa', function ($query) use ($user) {
-                $query->where('nip_doswal', $user->id);
-            })
-            ->get();
-
-        return view('doswal.verListIRS', ['irsBelumDisetujui' => $irsBelumDisetujui]);
-    }
-
     public function viewListIRS()
     {
         // Mendapatkan dosen wali yang sedang login
@@ -34,9 +19,8 @@ class VerifProgressController extends Controller
         $irsBelumDisetujui = Irs::whereNull('tgl_persetujuan')
             ->whereHas('mahasiswa', function ($query) use ($user) {
                 $query->where('nip_doswal', $user->id);
-            })
-            ->get();
-
+            })->get();
+        
         return view('doswal.verListIRS', ['irsBelumDisetujui' => $irsBelumDisetujui]);
     }
 
