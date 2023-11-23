@@ -3,20 +3,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User; // Sesuaikan dengan namespace model Anda
-use App\Models\mahasiswa; // Sesuaikan dengan namespace model Anda
+use App\Models\User;
+use App\Models\mahasiswa;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileController extends Controller
 {
-    public function index() {
-        return view('mahasiswa.updateProfile');
+    public function showProfile()
+    {
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+
+        // Menampilkan nilai variabel $user dan $mahasiswa
+        // dd($user, $mahasiswa, 'After getting user and mahasiswa');
+
+        if ($mahasiswa) {
+            return view('Mahasiswa.updateProfile', compact('user', 'mahasiswa'));
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
+        }
     }
 
-    public function showProfile() {
-        $user = User::find(auth()->id());
-        $mahasiswa = Mahasiswa::where('nim', $user->username)->first();
 
-        return view('profil', compact('user', 'mahasiswa'));
+    public function update(Request $request)
+    {
+        // Validasi data yang masuk dari formulir
+        $request->validate([
+            'jalur_masuk' => 'required',
+            'no_telp' => 'required|numeric',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'alamat_detail' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $foto = $request->file('foto');
+        $fotoPath = $foto->store('foto', 'public');
+
+        dd($fotoPath);
+
+        // Dapatkan mahasiswa yang sedang login
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+
+        // Simpan ke dalam tabel mahasiswa
+        // Simpan ke dalam tabel mahasiswa
+        $mahasiswa->update([
+            'jalur_masuk' => $request->jalur_masuk,
+            'no_telp' => $request->no_telp,
+            'provinsi' => $request->provinsi,
+            'kota_kab' => $request->kota_kab,
+            'alamat_detail' => $request->alamat_detail,
+            'foto' => $fotoPath
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
     }
 
 }

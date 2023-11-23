@@ -17,4 +17,12 @@ class GenerateAkunController extends Controller
             return view('operator.generateAkunMhs');
         }
     }
+
+    public function generateMhs() {
+        return view('operator.generateAkunMhs');
+    }
+
+    public function generateDosen() {
+        return view('operator.generateAkunDosen');
+    }
 }

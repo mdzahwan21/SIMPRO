@@ -1,9 +1,24 @@
 @extends('operator.navbar')
 
 @section('content')
+
+    <div class="w-full space-y-2">
+        <div class="position-fixed flex w-full p-3 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
+                <a href="generateMhs" 
+                    class="nav-link-generate">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Mahasiswa</button>
+                </a>
+                <a href="generateDosen" 
+                    class="nav-link-generate">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Dosen</button>
+                </a>
+            </div>
+        </div>
+
     <div class="w-full">
         <div class="flex flex-col gap-8 p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg mt-5" id="dosenWaliForm" action="{{ route('generateAkun') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="dosenWaliForm" action="{{ route('generateAkun') }}" enctype="multipart/form-data">
                 <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Akun Dosen Wali</h1>
                 @csrf
 

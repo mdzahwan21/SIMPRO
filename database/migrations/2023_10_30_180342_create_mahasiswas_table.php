@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->string('nim')->primary();
+            $table->string('nama');
             $table->integer('angkatan');
             $table->integer('smt_aktif');
             $table->string('status');
+            $table->string('jalur_masuk');
+            $table->string('no_telp');
             $table->string('provinsi')->nullable();
             $table->string('kota_kab')->nullable();
             $table->string('alamat_detail')->nullable();
