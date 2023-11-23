@@ -10,23 +10,23 @@ class VerifProgressController extends Controller
 {
     public function index()
     {
-        return view('Doswal.verifikasiProgress');
+        return view('doswal.verListIRS');
     }
 
     public function viewListIRS() {
-        return view('doswal.listIRS');
+        return view('doswal.verListIRS');
     }
 
     public function viewListKHS() {
-        return view('doswal.listKHS');
+        return view('doswal.verListKHS');
     }
 
     public function viewListPKL() {
-        return view('doswal.listPKL');
+        return view('doswal.verListPKL');
     }
 
     public function viewListSkripsi() {
-        return view('doswal.listSkripsi');
+        return view('doswal.verListSkripsi');
     }
 
     // public function verifyIrs(Request $request, $id)

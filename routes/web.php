@@ -1,16 +1,18 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImportData;
 use App\Http\Controllers\IrsController;
- use App\Http\Controllers\KhsController;
- use App\Http\Controllers\LoginController;
-// use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\KhsController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PklController;
- use App\Http\Controllers\RegisterController;
- use App\Http\Controllers\SkripsiController;
- use App\Http\Controllers\GenerateAkunController;
- use App\Http\Controllers\UpdateProfileController;
- use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RekapProgressController;
+use App\Http\Controllers\SkripsiController;
+use App\Http\Controllers\InputMahasiswaController;
+use App\Http\Controllers\InputDosenController;
+use App\Http\Controllers\UpdateProfileController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VerifProgressController;
 use App\Http\Controllers\VerifIRSController;
 use App\Http\Controllers\VerifKHSController;
@@ -26,7 +28,7 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->na
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->middleware('auth')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('registerStore');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -46,12 +48,17 @@ Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
 Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
 Route::get('generateMhs', [GenerateAkunController::class, 'generateMhs'])->middleware('auth')->name('generateMhs');
 Route::get('generateDosen', [GenerateAkunController::class, 'generateDosen'])->middleware('auth')->name('generateDosen');
+Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
+Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
+Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
 
 Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
 Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
+Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
+Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
 
 Route::get('/verifikasi-progress', [VerifProgressController::class, 'index'])->middleware('auth')->name('verifProgress');
 Route::get('/verifikasi-progress/list-IRS', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('list.IRS');
@@ -65,3 +72,10 @@ Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'
 
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
 Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
+
+Route::get('/rekap-progress', [RekapProgressController::class, 'index'])->middleware('auth')->name('rekap');
+Route::get('/rekap-progress/status', [RekapProgressController::class, 'viewRekapStatus'])->middleware('auth')->name('rekap.status');
+Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'viewListStatus'])->middleware('auth')->name('rekap.list.status');
+Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
+Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');
+

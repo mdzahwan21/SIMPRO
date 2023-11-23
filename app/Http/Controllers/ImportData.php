@@ -6,15 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class GenerateAkunController extends Controller
+class ImportData extends Controller
 {
     public function index(){
         $user = Auth::user();
-    
-        // Memeriksa peran pengguna
-        if ($user->role === 'operator') {
-            // Tambahkan pesan log
-            return view('operator.generateAkunMhs');
+            if ($user->role === 'operator') {
+            return view('operator.import');
         }
     }
 
