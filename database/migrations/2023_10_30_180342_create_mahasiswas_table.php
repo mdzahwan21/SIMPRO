@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('nama');
             $table->integer('angkatan');
             $table->integer('smt_aktif');
+            $table->string('nama');
             $table->string('status');
+            $table->string('jalur_masuk');
+            $table->string('no_telp');
             $table->string('provinsi')->nullable();
             $table->string('kota_kab')->nullable();
             $table->string('alamat_detail')->nullable();

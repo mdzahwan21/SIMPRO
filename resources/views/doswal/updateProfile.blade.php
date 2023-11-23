@@ -1,4 +1,4 @@
-@extends('Mahasiswa.navbar')
+@extends('Doswal.navbar')
 
 @section('content')
     <div class=" w-full p-4 space-y-2">
@@ -35,7 +35,7 @@
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
                         <label for="nim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            NIM:</label>
+                            NIP:</label>
                         <input type="text" id="nim" pattern="[0-9]+ value=" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan NIM" required readonly value="{{ $mahasiswa->nim }}">
                     </div>
                 </div>
@@ -45,38 +45,6 @@
                         <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Nama:</label>
                         <input type="text" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama" required readonly value="{{ $mahasiswa->nama }}">
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-                        <label for="angkatan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Angkatan:</label>
-                        <input type="number" id="angkatan" name="angkatan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Angkatan" min="2000" max="2030" required readonly value="{{ $mahasiswa->angkatan }}">
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-
-                        <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status:</label>
-                        <select id="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                            <option selected disabled>Pilih Status</option>
-                            <option value="{{ $mahasiswa->status }}" selected>{{ $mahasiswa->status }}</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-
-                        <label for="jalur_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalur Masuk:</label>
-                        <select id="jalur_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected disabled>Pilih Jalur Masuk</option>
-                            <option value="aktif">SNMPTN</option>
-                            <option value="aktif">SBMPTN</option>
-                            <option value="aktif">Mandiri</option>
-                        </select>
                     </div>
                 </div>
 
@@ -111,18 +79,6 @@
                         <textarea id="alamat" name="alamat"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-4 h-32 resize-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Masukkan Alamat Detail" required></textarea>
-                    </div>
-                </div>
-
-                <div class="flex justify-center items-center mb-6">
-                    <div class="w-full max-w-md">
-
-                        <label for="nama_doswal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Wali:</label>
-                        <select id="nama_doswal" name="nama_doswal"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                            <option selected disabled>Pilih Dosen wali</option>
-                            <option value="{{ $mahasiswa->nama_doswal }}" selected>{{ $mahasiswa->nama_doswal }}</option>
-                        </select>
                     </div>
                 </div>
 

@@ -45,6 +45,9 @@ Route::post('/khs/store', [KhsController::class, 'store'])->name('khs.store');
 Route::get('/pkl', [PklController::class, 'index'])->middleware('auth')->name('pkl');
 Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
 
+Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
+Route::get('generateMhs', [GenerateAkunController::class, 'generateMhs'])->middleware('auth')->name('generateMhs');
+Route::get('generateDosen', [GenerateAkunController::class, 'generateDosen'])->middleware('auth')->name('generateDosen');
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
@@ -52,8 +55,13 @@ Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('i
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
 
-Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
-Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
+Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
+Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
+Route::get('/updateProfile', [UpdateProfileController::class, 'showProfileDoswal'])->middleware('auth')->name('updateProfile');
+Route::post('/updateProfile', [UpdateProfileController::class, 'updateDoswal'])->name('updateProfile');
+
+// Route::get('/updateProfile', [UpdateProfileController::class, 'index'])->middleware('auth')->name('updateProfile');
+// Route::post('/updateProfile', [UpdateProfileController::class, 'updateProfile'])->middleware('auth')->name('updateProfile');
 
 Route::get('/verifikasi-progress', [VerifProgressController::class, 'index'])->middleware('auth')->name('verifProgress');
 Route::get('/verifikasi-progress/list-IRS', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('list.IRS');

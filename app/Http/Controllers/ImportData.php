@@ -14,4 +14,12 @@ class ImportData extends Controller
             return view('operator.import');
         }
     }
+
+    public function generateMhs() {
+        return view('operator.generateAkunMhs');
+    }
+
+    public function generateDosen() {
+        return view('operator.generateAkunDosen');
+    }
 }
