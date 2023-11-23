@@ -29,6 +29,11 @@ class UpdateProfileController extends Controller
     {
         // Validasi data yang masuk dari formulir
         $request->validate([
+            'nim' => 'required',
+            'nama' => 'required',
+            'angkatan' => 'required',
+            'status' => 'required',
+            'nim' => 'required',
             'jalur_masuk' => 'required',
             'no_telp' => 'required|numeric',
             'provinsi' => 'required',
@@ -36,6 +41,8 @@ class UpdateProfileController extends Controller
             'alamat_detail' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        dd($request);
+        
 
         $foto = $request->file('foto');
         $fotoPath = $foto->store('foto', 'public');

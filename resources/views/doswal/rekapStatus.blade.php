@@ -116,25 +116,25 @@
                     meninggal dunia
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    1
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    2
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    0
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    1
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    1
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    3
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    0
                 </td>
             </tr>
             <tr>
@@ -142,25 +142,25 @@
                     drop out
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    3
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    0
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    10
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    2
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    1
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    200
+                    5
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    2
                 </td>
             </tr>
             <tr>
@@ -194,7 +194,7 @@
                     undur diri
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-                    100
+                    10
                 </td>
                 <td class="px-2 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
                     200
