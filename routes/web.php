@@ -61,8 +61,12 @@ Route::get('/verifikasi-progress/list-KHS', [VerifProgressController::class, 'vi
 Route::get('/verifikasi-progress/list-PKL', [VerifProgressController::class, 'viewListPKL'])->middleware('auth')->name('list.PKL');
 Route::get('/verifikasi-progress/list-Skripsi', [VerifProgressController::class, 'viewListSkripsi'])->middleware('auth')->name('list.Skripsi');
 
-Route::get('/verifikasi-progress/verifyIRS', [VerifIRSController::class, 'index'])->middleware('auth')->name('verify.IRS');
-Route::get('/verifikasi-progress/verifyIRS', [VerifIRSController::class, 'edit'])->middleware('auth')->name('edit.IRS');
+Route::get('/verifikasi-progress/show-{nim}', [VerifIRSController::class, 'showDetailIRS'])->middleware('auth')->name('verifikasi.show.IRS');
+
+// Route::get('/verifikasi-progress/verifyIRS/{nim}', [VerifIRSController::class, 'index'])->middleware('auth')->name('verify.IRS');
+// Route::get('/verifikasi-progress/editIRS/{irsId}', [VerifIRSController::class, 'editIRS'])->middleware('auth')->name('edit.IRS');
+// Route::get('/verifikasi-progress/verifyIRS/{irsId}/{nim}', [VerifIRSController::class, 'approveIrs'])->middleware('auth')->name('approve.IRS');
+
 Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
 
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('ipk');
             $table->string('file');
             $table->string('nim');
+            $table->integer('smt_aktif');
 
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });

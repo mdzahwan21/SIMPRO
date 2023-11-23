@@ -1,0 +1,5 @@
+INSERT INTO `dosen_wali` (`nip`, `nama`, `foto`) VALUES ('110447284324039', 'presley', 'doswal1.png');
+
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `smt_aktif`, `status`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('112369998390942', 'joe', '2020', '7', 'aktif', 'jateng', 'semarang', 'jalan tua', '110447284324039', 'mhs1.jpg');
+
+INSERT INTO `irs` (`id`, `smt_aktif`, `jumlah_sks`, `file`, `nim`, `tgl_persetujuan`) VALUES (NULL, '3', '24', 'irs_smt3.pdf', '991445725189079', NULL);

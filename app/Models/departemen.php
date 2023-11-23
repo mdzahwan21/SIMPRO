@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class departemen extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nama',
+        'nip',
+        'foto',
+    ];
+    
+    public function users()
+    {
+        return $this->belongsTo(users::class, 'nip', 'id');
+    }
 }

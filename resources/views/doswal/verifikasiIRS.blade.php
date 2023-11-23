@@ -25,15 +25,15 @@
                           <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Foto Profil"
                               class="w-16 h-16 rounded-full mr-4 ml-2">
                           <div class="text-gray-900">
-                              <div class="font-normal">Nama: Mochammad Dzahwan Fadhloly</div>
-                              <div class="font-normal">NIM: 24060121140168</div>
-                              <div class="font-normal">Angkatan: 2021</div>
+                              {{-- <div class="font-normal">Nama: {{ $mhs->nama }}</div>
+                              <div class="font-normal">NIM: {{ $mhs->nim }}</div>
+                              <div class="font-normal">Angkatan: {{ $mhs->angkatan }}</div> --}}
                           </div>
                       </div>
                   </div>
-                  <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                      <form class="flex flex-col w-full" method="POST" action="{{ route('khs.store') }}"
-                          enctype="multipart/form-data">
+                  {{-- <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+                      <form class="flex flex-col w-full" method="POST"
+                          action="{{ route('approve.IRS', ['irsId' => $irs->id]) }}" enctype="multipart/form-data">
                           @csrf
 
                           @if (session('success'))
@@ -52,10 +52,7 @@
                               <div class="w-full max-w-md">
                                   <label for="smt_aktif"
                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                      Semester Aktif:</label>
-                                  {{-- <input type="number" id="smt_aktif" name="smt_aktif"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                                    placeholder="masukkan semester aktif" min="1" max="14" required> --}}
+                                      Semester Aktif: {{ $irs->smt_aktif }}</label>
                               </div>
                           </div>
 
@@ -63,36 +60,46 @@
                               <div class="w-full max-w-md">
                                   <label for="sks"
                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Jumlah
-                                      SKS:</label>
-                                  {{-- <input type="number" id="sks" name="sks"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                                    placeholder="masukkan jumlah sks" min="1" max="24" required> --}}
+                                      SKS: {{ $irs->jumlah_sks }}</label>
                               </div>
                           </div>
 
                           <div class="flex justify-center items-center mb-6">
                               <div class="w-full max-w-md">
                                   <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                      for="file_input">File IRS:</label>
-                                  <a href="#" target="_blank"
-                                      class="block w-full text-sm text-blue-500 hover:underline">KHS_Dzahwan</a>
-                                  {{-- <input
-                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="file_input" name="file_input" type="file" required> --}}
+                                      for="file_input">File IRS: {{ $irs->file }}</label>
                               </div>
                           </div>
 
                           <div class="flex justify-center items-center mb-6">
-                              <button data-modal-target="edit-IRS" data-modal-toggle="edit-IRS" 
-                              {{-- data-modal-hide="cek-IRS" --}}
-                                  class="text-white bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Reject
+                              <button data-modal-target="edit-IRS" data-modal-toggle="edit-IRS"
+                                  data-irs-id="{{ $irs->id }}"
+                                  class="text-white
+                                  bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4
+                                  focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
+                                  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700
+                                  dark:border-gray-700">Reject
                               </button>
                               @include('doswal.editIRS')
-                              <button type="submit"
-                                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Approve</button>
+                              <button
+                                  type="submit"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Approve</button>
                           </div>
                       </form>
-                  </div>
+                  </div> --}}
               </div>
           </div>
       </div>
+      {{-- <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              var rejectButtons = document.querySelectorAll('[data-modal-target="edit-IRS"]');
+              var approveButtons = document.querySelectorAll('[data-irs-id]');
+
+              rejectButtons.forEach(function(button) {
+                  button.addEventListener('click', function() {
+                      var irsId = this.getAttribute('data-irs-id');
+                      // Lakukan manipulasi data atau tampilkan modal sesuai kebutuhan
+                      console.log('Reject clicked for IRS ID:', irsId);
+                  });
+              });
+          });
+      </script> --}}

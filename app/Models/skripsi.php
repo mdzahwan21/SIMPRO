@@ -19,5 +19,13 @@ class skripsi extends Model
     ];
 
     public $timestamps = false;
+
+    // to make connected table pkl in database, default name table in laravel is plural form pkl -> pkls
     protected $table = 'skripsi';
+
+    // foreign key nim
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
+    }
 }

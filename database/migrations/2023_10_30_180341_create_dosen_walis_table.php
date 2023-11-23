@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosen_wali', function (Blueprint $table) {
-            $table->string('nip_doswal')->primary();
+            $table->string('nip')->primary();
+            $table->string('nama');
             $table->string('foto');
-            $table->unsignedBigInteger('id_user');
 
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('nip')->references('id')->on('users');
         });
     }
 
