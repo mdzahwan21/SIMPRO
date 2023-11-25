@@ -11,7 +11,6 @@ class skripsi extends Model
     protected $fillable = [
         'smt_aktif',
         'smt_lulus',
-        'status',
         'nilai',
         'tgl_lulus',
         'file',

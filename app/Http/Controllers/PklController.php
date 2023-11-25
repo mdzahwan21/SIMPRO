@@ -19,14 +19,6 @@ class PklController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -34,21 +26,17 @@ class PklController extends Controller
         // Validasi data jika diperlukan
         $request->validate([
             'smt_aktif' => 'required|numeric|min:1|max:14',
-            'status_PKL' => 'required',
             'nilai' => 'numeric|between:1,4',
             'file_input' => 'file|mimes:pdf,doc,docx',
         ]);
 
-        if ($request->hasFile('file_input')) {
-            $filePkl = $request->file('file_input');
-            $filePath = $filePkl->store('pkl', 'public');
-        }
+        $filePkl = $request->file('file_input');
+        $filePath = $filePkl->store('pkl', 'public');
 
         $nim = Auth::user()->mahasiswa->nim;
 
         pkl::create([
             'smt_aktif' => $request->input('smt_aktif'),
-            'status' => $request->input('status_PKL'),
             'nilai' => $request->input('nilai'),
             'file' => $filePath, 
             //'nim' => $request->input('sks'),

@@ -29,20 +29,54 @@ class UpdateProfileController extends Controller
     {
         // Validasi data yang masuk dari formulir
         $request->validate([
-            'nim' => 'required',
-            'nama' => 'required',
-            'angkatan' => 'required',
-            'status' => 'required',
-            'nim' => 'required',
             'jalur_masuk' => 'required',
+            'no_telp' => 'required|numeric',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'alamat_detail' => 'required'
+        ]);
+
+        // Dapatkan mahasiswa yang sedang login
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+
+        // Simpan ke dalam tabel mahasiswa
+        $mahasiswa->update([
+            'jalur_masuk' => $request->jalur_masuk,
+            'no_telp' => $request->no_telp,
+            'provinsi' => $request->provinsi,
+            'kota_kab' => $request->kota_kab,
+            'alamat_detail' => $request->alamat_detail,
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
+    }
+
+    public function showProfileDoswal()
+    {
+        $user = Auth::user();
+        $dosenwali = $user->dosen_wali;
+
+        // Menampilkan nilai variabel $user dan $mahasiswa
+        // dd($user, $mahasiswa, 'After getting user and mahasiswa');
+
+        if ($dosenwali) {
+            return view('Doswal.updateProfile', compact('user', 'dosenwali'));
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Data dosen wali tidak ditemukan.');
+        }
+    }
+
+    public function updateDoswal(Request $request)
+    {
+        // Validasi data yang masuk dari formulir
+        $request->validate([
             'no_telp' => 'required|numeric',
             'provinsi' => 'required',
             'kota_kab' => 'required',
             'alamat_detail' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        dd($request);
-        
 
         $foto = $request->file('foto');
         $fotoPath = $foto->store('foto', 'public');
@@ -51,12 +85,11 @@ class UpdateProfileController extends Controller
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $mahasiswa = $user->mahasiswa;
+        $dosenwali = $user->dosen_wali;
 
         // Simpan ke dalam tabel mahasiswa
         // Simpan ke dalam tabel mahasiswa
-        $mahasiswa->update([
-            'jalur_masuk' => $request->jalur_masuk,
+        $dosenwali->update([
             'no_telp' => $request->no_telp,
             'provinsi' => $request->provinsi,
             'kota_kab' => $request->kota_kab,
@@ -64,7 +97,6 @@ class UpdateProfileController extends Controller
             'foto' => $fotoPath
         ]);
 
-        return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
+        return redirect()->route('dashboard')->with('success', 'Profil dosen wali berhasil diperbarui.');
     }
-
 }

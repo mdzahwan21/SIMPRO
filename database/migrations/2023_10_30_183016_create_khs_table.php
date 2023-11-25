@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('khs', function (Blueprint $table) {
             $table->id();
+            $table->string('nim');
+            $table->integer('smt_aktif');
             $table->integer('sks');
             $table->integer('sks_kum');
             $table->float('ip');
             $table->float('ipk');
             $table->string('file');
-            $table->string('nim');
 
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });

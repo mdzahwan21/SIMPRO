@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('pkl', function (Blueprint $table) {
             $table->id();
-            $table->string('status');
+            $table->string('nim');
+            $table->integer('smt_aktif');
             $table->string('nilai')->nullable();
             $table->string('file')->nullable();
-            $table->string('nim');
 
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });

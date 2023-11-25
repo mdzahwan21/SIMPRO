@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('irs', function (Blueprint $table) {
             $table->id();
+            $table->string('nim');
             $table->integer('smt_aktif');
             $table->integer('jumlah_sks');
             $table->string('file');
-            $table->string('nim');
             
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });

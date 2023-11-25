@@ -13,10 +13,6 @@ class SkripsiController extends Controller
 {
     public function viewSkripsi()
     {
-        // $user = Auth::user();
-        // $mahasiswa = Mahasiswa::where('nama', $user->username)->first();
-        // $skripsiData = $mahasiswa->skripsi;
-
         return view('Mahasiswa.skripsi');
     }
 
@@ -25,26 +21,22 @@ class SkripsiController extends Controller
         $request->validate([
             'smt_aktif' => 'required|numeric|min:1|max:14',
             'smt_lulus' => 'numeric|min:1|max:14',
-            'status_skripsi' => 'required',
             'nilai' => 'numeric|between:1,4',
             'tgl_lulus' => 'date|date_format:Y-m-d', 
             'file_input' => 'file|mimes:pdf',
         ]);
 
-        if ($request->hasFile('file_input')) {
-            $fileSkripsi = $request->file('file_input');
-            $filePath = $fileSkripsi->store('skripsi', 'public');
-        }
+        $fileSkripsi = $request->file('file_input');
+        $filePath = $fileSkripsi->store('skripsi', 'public');
 
         $nim = Auth::user()->mahasiswa->nim;
 
         Skripsi::create([
             'smt_aktif' => $request->input('smt_aktif'),
             'smt_lulus' => $request->input('smt_lulus'),
-            'status' => $request->input('status_skripsi'),
             'nilai' => $request->input('nilai'),
             'tgl_lulus' => $request->input('tgl_lulus'),
-            'file' => $filePath,
+            'file' => $filePath, 
             'nim' => $nim,
         ]);
         

@@ -12,7 +12,6 @@ class pkl extends Model
         'smt_aktif',
         'nilai',
         'file',
-        'status',
         'nim',
     ];
 
