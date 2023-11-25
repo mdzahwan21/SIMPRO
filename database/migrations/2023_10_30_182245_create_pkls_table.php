@@ -17,6 +17,11 @@ return new class extends Migration
             $table->integer('smt_aktif');
             $table->string('nilai')->nullable();
             $table->string('file')->nullable();
+<<<<<<< HEAD
+=======
+            $table->string('nim');
+            $table->integer('smt_aktif');
+>>>>>>> 5b8ad135e49dcacc57292049f529d9d59e328434
 
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });

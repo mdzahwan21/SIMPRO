@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->string('nim')->primary();
+            $table->string('nama');
             $table->integer('angkatan');
             $table->string('nama');
             $table->string('status');
@@ -23,10 +24,9 @@ return new class extends Migration
             $table->string('alamat_detail')->nullable();
             $table->string('nip_doswal');
             $table->string('foto')->nullable();
-            $table->unsignedBigInteger('id_user');
-
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('nip_doswal')->references('nip_doswal')->on('dosen_wali');
+            
+            $table->foreign('nim')->references('id')->on('users');
+            $table->foreign('nip_doswal')->references('nip')->on('dosen_wali');
         });
     }
 

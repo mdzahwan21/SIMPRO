@@ -19,4 +19,10 @@ class khs extends Model
     ];
 
     public $timestamps = false;
+
+    // foreign key nim
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
+    }
 }

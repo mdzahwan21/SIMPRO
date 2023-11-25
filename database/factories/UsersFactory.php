@@ -16,8 +16,14 @@ class UsersFactory extends Factory
     {
         $roles = ['departemen', 'mahasiswa', 'dosen', 'operator'];
         $role = $this->faker->randomElement($roles);
+        $id_1 = $this->faker->randomNumber(5);
+        $id_2 = $this->faker->randomNumber(5);
+        $id_3 = $this->faker->randomNumber(5);
 
+        // Menggunakan sprintf untuk memastikan leading zeros tetap ada
+        $id = sprintf("%05d%05d%05d", $id_1, $id_2, $id_3);
         return [
+            'id' => $id,
             'name' => $this->faker->name(),
             'role' => $role,
             'email' => strtolower($this->faker->firstName) . "@$role.com",
@@ -25,6 +31,7 @@ class UsersFactory extends Factory
             'password' => '12345',
             'remember_token' => Str::random(10),
         ];
+
     }
 
     /**
@@ -32,7 +39,7 @@ class UsersFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

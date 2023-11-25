@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('operator', function (Blueprint $table) {
             $table->string('nip')->primary();
-            $table->unsignedBigInteger('id_user');
+            $table->string('nama');
+            $table->string('foto');
 
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('nip')->references('id')->on('users');
         });
     }
 

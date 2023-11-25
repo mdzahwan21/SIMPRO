@@ -34,7 +34,6 @@ class IrsController extends Controller
             'smt_aktif' => $request->input('smt_aktif'),
             'jumlah_sks' => $request->input('sks'),
             'file' => $filePath, 
-            //'nim' => $request->input('sks'),
             'nim' => $nim,
         ]);
 

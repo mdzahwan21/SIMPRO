@@ -7,29 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class mahasiswa extends Model
 {
-    use HasFactory;
-    protected $table = 'mahasiswa';
     protected $fillable = [
-        'nim',
         'nama',
+        'nim',
         'angkatan',
         'smt_aktif',
         'status',
-        'jalur_masuk',
-        'no_telp',
         'provinsi',
         'kota_kab',
         'alamat_detail',
         'nip_doswal',
         'foto',
-        'id_user'
     ];
-    
-    public function user() {
-        return $this->belongsTo(User::class, 'id_user');
+
+    protected $table = 'mahasiswa';
+    use HasFactory;
+
+    public function users()
+    {
+        return $this->belongsTo(users::class, 'nim', 'id');
     }
 
-    public function dosenWali() {
-        return $this->belongsTo(DosenWali::class, 'nip_doswal');
+    public function doswen_wali()
+    {
+        return $this->belongsTo(dosen_wali::class, 'nip_doswal', 'nip');
+    }
+
+    public function irs()
+    {
+        return $this->hasMany(Irs::class, 'nim', 'nim');
     }
 }

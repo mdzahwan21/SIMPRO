@@ -19,10 +19,14 @@ class users extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
     ];
+
+    
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -79,10 +83,10 @@ class users extends Authenticatable
         });
     }
 
-    public function mahasiswa()
-    {
-        return $this->hasOne(Mahasiswa::class, 'id_user', 'id');
-    }
+    // public function mahasiswa()
+    // {
+    //     return $this->hasOne(Mahasiswa::class, 'id_user', 'id');
+    // }
 
 
 }

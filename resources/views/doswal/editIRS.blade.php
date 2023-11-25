@@ -25,14 +25,14 @@
                         <img src="https://freesvg.org/img/abstract-user-flat-4.png" alt="Foto Profil"
                             class="w-16 h-16 rounded-full mr-4 ml-2">
                         <div class="text-gray-900">
-                            <div class="font-normal">Nama: Mochammad Dzahwan Fadhloly</div>
-                            <div class="font-normal">NIM: 24060121140168</div>
-                            <div class="font-normal">Angkatan: 2021</div>
+                            <p class="font-normal" id="verifikasi-nama">Nama: {{ $data->mahasiswa->nama }}</p>
+                            <p class="font-normal" id="verifikasi-nim">NIM: {{ $data->mahasiswa->nim }}</p>
+                            <p class="font-normal" id="verifikasi-angkatan">Angkatan: {{ $data->mahasiswa->angkatan }}
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-col p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                    <form class="flex flex-col w-full" method="POST" action="{{ route('edit.IRS') }}"
+                    <form class="flex flex-col w-full" method="POST" action="{{ route('update.IRS') }}"
                         enctype="multipart/form-data">
                         @csrf
 
@@ -50,38 +50,41 @@
 
                         <div class="flex justify-center items-center mb-6">
                             <div class="w-full max-w-md">
-                                <label for="smt_aktif" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <label for="smt_aktif"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                     Semester Aktif:</label>
                                 <input type="number" id="smt_aktif" name="smt_aktif"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                                    placeholder="masukkan semester aktif" min="1" max="14" required>
+                                    placeholder="{{ $data->smt_aktif }}" min="1" max="14" required
+                                    value="{{ old('smt_aktif', $data->smt_aktif) }}">
                             </div>
                         </div>
 
                         <div class="flex justify-center items-center mb-6">
                             <div class="w-full max-w-md">
-                                <label for="sks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                    Jumlah
-                                    SKS:</label>
-                                <input type="number" id="sks" name="sks"
+                                <label for="jumlah_sks"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Jumlah SKS:</label>
+                                <input type="number" id="jumlah_sks" name="jumlah_sks"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
-                                    placeholder="masukkan jumlah sks" min="1" max="24" required>
+                                    placeholder="{{ $data->jumlah_sks }}" min="1" max="24" required
+                                    value="{{ old('jumlah_sks', $data->jumlah_sks) }}">
                             </div>
                         </div>
 
                         <div class="flex justify-center items-center mb-6">
                             <div class="w-full max-w-md">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="file_input">File IRS:</label>
-                                {{-- @if ($uploadedFile) <!-- Jika file telah diunggah --> --}}
-                                {{-- <a href="{{ asset('path/to/your/uploaded/file/' . $uploadedFile->filename) }}" target="_blank" class="block w-full text-sm text-blue-500 hover:underline">{{ $uploadedFile->filename }}</a> --}}
-                                <a href="#" target="_blank"
-                                    class="block w-full text-sm text-blue-500 hover:underline">IRS_Dzahwan</a>
-                                {{-- @else <!-- Jika belum ada file diunggah -->
-                            <span class="block w-full text-sm text-gray-500">Tidak ada file yang diunggah</span>
-                        @endif --}}
+                                <label for="file"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    File IRS:</label>
+                                <input type="text" disabled id="file" name="file"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-800 dark:focus:border-blue-800"
+                                    placeholder="{{ $data->file }}" min="1" max="24" required
+                                    value="{{ old('file', $data->file) }}">
                             </div>
                         </div>
+
+                        <input type="hidden" name="id" value="{{ $data->id }}">
 
                         <div class="flex justify-center items-center mb-6">
                             <button type="submit"
