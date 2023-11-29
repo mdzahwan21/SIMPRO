@@ -62,7 +62,12 @@
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
                     <label for="provinsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
-                    <input type="provinsi" id="provinsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama Provinsi Asal" required>
+                    <select type="provinsi" id="provinsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama Provinsi Asal" required>
+                    <option selected disabled >Pilih Provinsi Asal</option>
+                    @foreach ($provinsi as $item)
+                    <option value="{{ $item->kode_provinsi }}">{{ $item->nama }}</option>
+                    @endforeach
+                </select>
                 </div>
             </div>
 
@@ -85,9 +90,9 @@
                     <label for="nama_doswal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Wali:</label>
                     <select id="nama_doswal" name="nama_doswal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected disabled>Pilih Dosen wali</option>
-                        <option value="Nana">Nana</option>
-                        <option value="Arya">Arya</option>
-                        <option value="Andrew">Andrew</option>
+                        @foreach ($dosenwali as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
