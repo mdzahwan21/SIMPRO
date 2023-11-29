@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('nim')->primary();
             $table->string('nama');
             $table->integer('angkatan');
-            $table->string('nama');
             $table->string('status');
             $table->string('jalur_masuk')->nullable();
             $table->string('no_telp')->nullable();

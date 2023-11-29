@@ -6,7 +6,6 @@ use App\Http\Controllers\IrsController;
 use App\Http\Controllers\KhsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PklController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekapProgressController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\InputMahasiswaController;
@@ -27,9 +26,6 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 Route::post('/logout', [LoginController::class, 'logout']);
-
-Route::get('/register', [RegisterController::class, 'index'])->middleware('auth')->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('registerStore');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
