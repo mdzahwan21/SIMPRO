@@ -1,5 +1,30 @@
 INSERT INTO `dosen_wali` (`nip`, `nama`, `foto`) VALUES ('110447284324039', 'presley', 'doswal1.png');
 
-INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `smt_aktif`, `status`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('112369998390942', 'joe', '2020', '7', 'aktif', 'jateng', 'semarang', 'jalan tua', '110447284324039', 'mhs1.jpg');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('248250266298613', 'jade', '2020', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '019781303146794', 'jade.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('345926187453344', 'marlon', '2021', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '019781303146794', 'marlon.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('366801626710621', 'rogelio', '2021', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '019781303146794', 'rogelio.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('571683129033264', 'grady', '2022', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '019781303146794', 'grady.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('682994983443410', 'adell', '2023', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '019781303146794', 'adell.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('754427729349859', 'katrine', '2020', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '451146381689355', 'katrine.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('725663907374462', 'keith', '2020', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '451146381689355', 'keith.png');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `angkatan`, `status`, `jalur_masuk`, `no_telp`, `provinsi`, `kota_kab`, `alamat_detail`, `nip_doswal`, `foto`) VALUES ('808848556549074', 'osborne', '2020', 'aktif', 'sbmptn', '085123456789', 'jateng', 'kota semarang', 'jl. jalan', '451146381689355', 'osborne.png');
 
-INSERT INTO `irs` (`id`, `smt_aktif`, `jumlah_sks`, `file`, `nim`, `tgl_persetujuan`) VALUES (NULL, '3', '24', 'irs_smt3.pdf', '991445725189079', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '022149478717256', '4', '23', 'irs_ervin4.pdf', '2023-11-01 08:11:52');
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '022149478717256', '3', '23', 'irs_ervin3.pdf', '2023-11-01 08:11:52');
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '022149478717256', '2', '23', 'irs_ervin2.pdf', '2023-11-01 08:11:52');
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '022149478717256', '1', '23', 'irs_ervin1.pdf', '2023-11-01 08:11:52');
+
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '345926187453344', '5', '23', 'irs_marlon5.pdf', '2023-11-01 08:11:52');
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '571683129033264', '3', '23', 'irs_grady3.pdf', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '682994983443410', '1', '23', 'irs_adel1.pdf', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '248250266298613', '7', '23', 'irs_jade7.pdf', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '725663907374462', '7', '18', 'irs_keith7.pdf', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '808848556549074', '5', '23', 'irs_osborne5.pdf', NULL);
+INSERT INTO `irs` (`id`, `nim`, `smt_aktif`, `jumlah_sks`, `file`, `tgl_persetujuan`) VALUES (NULL, '754427729349859', '7', '18', 'irs_katerine7.pdf', NULL);
+
+INSERT INTO `pkl` (`id`, `nim`, `smt_aktif`, `nilai`, `file`, `tgl_persetujuan`) VALUES (NULL, '022149478717256', '5', 'A', 'pkl_ervin.pdf', '2023-11-30');
+INSERT INTO `pkl` (`id`, `nim`, `smt_aktif`, `nilai`, `file`, `tgl_persetujuan`) VALUES (NULL, '345926187453344', '5', 'A', 'pkl_marlon.pdf', NULL);
+INSERT INTO `pkl` (`id`, `nim`, `smt_aktif`, `nilai`, `file`, `tgl_persetujuan`) VALUES (NULL, '366801626710621', '5', 'A', 'pkl_rogelic.pdf', NULL);
+
+
+

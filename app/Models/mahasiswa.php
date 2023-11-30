@@ -24,9 +24,9 @@ class mahasiswa extends Model
     protected $table = 'mahasiswa';
     use HasFactory;
 
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(users::class, 'nim', 'id');
+        return $this->belongsTo(user::class, 'nim', 'id');
     }
 
     // public function doswen_wali()

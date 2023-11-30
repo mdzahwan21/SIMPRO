@@ -38,8 +38,7 @@ class PklController extends Controller
         pkl::create([
             'smt_aktif' => $request->input('smt_aktif'),
             'nilai' => $request->input('nilai'),
-            'file' => $filePath, 
-            //'nim' => $request->input('sks'),
+            'file' => $filePath,
             'nim' => $nim,
         ]);
 

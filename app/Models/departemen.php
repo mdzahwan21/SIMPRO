@@ -15,8 +15,8 @@ class departemen extends Model
         'foto',
     ];
     
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(users::class, 'nip', 'id');
+        return $this->belongsTo(user::class, 'nip', 'id');
     }
 }

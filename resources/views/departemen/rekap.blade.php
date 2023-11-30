@@ -1,4 +1,4 @@
-@extends('doswal.navbar')
+@extends('departemen.navbar')
 
 @section('content')
     <div class="w-full p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
@@ -29,8 +29,8 @@
                     <section class="search-bar translate-y-1/4">
                         @include('components.searchBar')
                     </section>
-                    <section class="filter">
-                        @include('components.filter')
+                    <section class="statusfilter">
+                        @include('components.statusFilter')
                     </section>
                 </div>
                 <section class="rekap-list m-4">

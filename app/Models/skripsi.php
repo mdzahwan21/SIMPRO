@@ -15,6 +15,7 @@ class skripsi extends Model
         'tgl_lulus',
         'file',
         'nim',
+        'tgl_persetujuan',
     ];
 
     public $timestamps = false;

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('skripsi', function (Blueprint $table) {
             $table->id();
             $table->string('nim');
-            $table->integer('smt_aktif')->nullable();
-            $table->integer('nilai')->nullable();
-            $table->integer('smt_lulus')->nullable();
-            $table->date('tgl_lulus')->nullable();
-            $table->string('file')->nullable();
+            $table->integer('smt_aktif');
+            $table->integer('smt_lulus');
+            $table->string('nilai');
+            $table->string('file');
+            $table->date('tgl_lulus');
             $table->date('tgl_persetujuan')->nullable();
             
             $table->foreign('nim')->references('nim')->on('mahasiswa');
