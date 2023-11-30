@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\users;
+use App\Models\user;
 use App\Models\provinsi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class InputMahasiswaController extends Controller
 {
     $user = Auth::user();
     if ($user->role === 'operator') {
-        $dosenwali = users::all();
+        $dosenwali = user::all();
         $provinsi = provinsi::all();
         return view('operator.inputDataMahasiswa', compact('dosenwali', 'provinsi'));
     }
