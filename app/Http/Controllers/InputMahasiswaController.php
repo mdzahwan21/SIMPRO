@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\users;
 use App\Models\provinsi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\dosenwali;
 use Illuminate\Support\Facades\Auth;
 
 class InputMahasiswaController extends Controller

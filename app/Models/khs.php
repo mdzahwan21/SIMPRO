@@ -16,6 +16,7 @@ class khs extends Model
         'ipk',
         'file',
         'nim',
+        'tgl_persetujuan',
     ];
 
     public $timestamps = false;

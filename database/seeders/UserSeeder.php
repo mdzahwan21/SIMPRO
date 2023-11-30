@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\users;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -15,8 +14,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        users::factory()
-            ->count(20) // You can adjust the number of users you want to create
+        user::factory()
+            ->count(20) // You can adjust the number of user you want to create
             ->create();
     }
 }

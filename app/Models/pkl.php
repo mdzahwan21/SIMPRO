@@ -12,7 +12,8 @@ class pkl extends Model
         'smt_aktif',
         'nilai',
         'file',
-        'nim',
+        'nim',        
+        'tgl_persetujuan',
     ];
 
     public $timestamps = false;

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nim');
             $table->integer('smt_aktif');
-            $table->string('nilai')->nullable();
-            $table->string('file')->nullable();
+            $table->string('nilai');
+            $table->string('file');
             $table->date('tgl_persetujuan')->nullable();
 
             $table->foreign('nim')->references('nim')->on('mahasiswa');
