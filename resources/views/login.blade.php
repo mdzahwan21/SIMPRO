@@ -4,7 +4,7 @@
 <section class="bg-gray-50 dark:bg-gray-900 h-screen flex items-center justify-center">
     <div class="login-container p-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div class="mb-8 text-center">
-            <img class="w-16 h-16 mx-auto mb-2" src="https://seeklogo.com/images/U/universitas-diponegoro-logo-6B2C58478B-seeklogo.com.png" alt="logo">
+            <img class="w-16 h-16 mx-auto mb-2" src="https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1706745600&v=beta&t=Sn1AgJeNu4VNnIuVXriQWV3TfdALmUJSCNKls1-zDWo" alt="logo">
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">SIMPRO UNDIP</h1>
             <p class="text-gray-600 dark:text-gray-300">Sistem Monitoring Progress Studi Informatika</p>
         </div>

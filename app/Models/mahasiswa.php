@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class mahasiswa extends Model
 {
     protected $fillable = [
-        'nama',
         'nim',
+        'nama',
         'angkatan',
-        'smt_aktif',
         'status',
+        'jalur_masuk',
+        'no_telp',
         'provinsi',
         'kota_kab',
         'alamat_detail',
@@ -28,10 +29,10 @@ class mahasiswa extends Model
         return $this->belongsTo(users::class, 'nim', 'id');
     }
 
-    public function doswen_wali()
-    {
-        return $this->belongsTo(dosen_wali::class, 'nip_doswal', 'nip');
-    }
+    // public function doswen_wali()
+    // {
+    //     return $this->belongsTo(dosenwali::class, 'nip_doswal', 'nip');
+    // }
 
     public function irs()
     {

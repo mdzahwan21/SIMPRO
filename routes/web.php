@@ -53,8 +53,15 @@ Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skrips
 Route::get('/skripsi/rekapSkripsi', [SkripsiController::class, 'rekap'])->name('skripsi.rekap');
 
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
+Route::post('/inputmahasiswa', [InputMahasiswaController::class, 'store'])->middleware('auth');
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
+Route::post('/inputdosen/store', [InputDosenController::class, 'store'])
+    ->middleware('auth')
+    ->name('inputdosen.store');
 Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
+Route::post('import/store', [ImportData::class, 'store'])
+    ->middleware('auth')
+    ->name('import.store');
 
 Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
 Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
