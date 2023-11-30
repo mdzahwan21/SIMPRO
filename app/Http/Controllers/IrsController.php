@@ -39,4 +39,23 @@ class IrsController extends Controller
 
         return redirect()->route('irs')->with('success', 'Data IRS berhasil disimpan.');
     }
+
+    public function rekap()
+    {
+        $dataIrs = Irs::all();
+
+        return view('Mahasiswa.rekapIrs', compact('dataIrs'));
+    }
+
+    public function hapus($id)
+    {
+        // Irs::destroy($id);
+        // return redirect()->route('Mahasiswa.rekapIrs')->with('success', 'Data IRS berhasil dihapus.');
+    }
+
+    public function update($id)
+    {
+        // Logika untuk memperbarui data IRS
+        // Anda dapat mengarahkan ke formulir pembaruan atau melakukan pembaruan di sini
+    }
 }

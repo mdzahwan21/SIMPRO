@@ -31,22 +31,27 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 Route::get('/irs', [IrsController::class, 'index'])->middleware('auth')->name('irs');
 Route::post('/irs/store', [IrsController::class, 'store'])->name('irs.store');
+Route::get('/irs/rekapIrs', [IrsController::class, 'rekap'])->name('irs.rekap');
+// Route::delete('/irs/{id}', [IrsController::class, 'hapus'])->name('irs.hapus');
+// Route::get('/irs/{id}/perbarui', [IrsController::class, 'update'])->name('irs.perbarui'); // Tambahkan ini jika Anda membutuhkan formulir pembaruan
+
+
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/irs', 'IrsController@index')->name('irs.index');
 // });
 
 Route::get('/khs', [KhsController::class, 'index'])->middleware('auth')->name('khs');
 Route::post('/khs/store', [KhsController::class, 'store'])->name('khs.store');
+Route::get('/khs/rekapKhs', [KhsController::class, 'rekap'])->name('khs.rekap');
 
 Route::get('/pkl', [PklController::class, 'index'])->middleware('auth')->name('pkl');
 Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
+Route::get('/pkl/rekapPkl', [PklController::class, 'rekap'])->name('pkl.rekap');
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
+Route::get('/skripsi/rekapSkripsi', [SkripsiController::class, 'rekap'])->name('skripsi.rekap');
 
-Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
-Route::get('generateMhs', [GenerateAkunController::class, 'generateMhs'])->middleware('auth')->name('generateMhs');
-Route::get('generateDosen', [GenerateAkunController::class, 'generateDosen'])->middleware('auth')->name('generateDosen');
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
@@ -65,15 +70,22 @@ Route::post('/verifikasi-progress/update-IRS', [VerifIRSController::class, 'upda
 Route::get('/verifikasi-progress', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('verifProgress');
 Route::get('/verifikasi-progress/list-IRS', [VerifProgressController::class, 'viewListIRS'])->middleware('auth')->name('list.IRS');
 
+Route::get('/rekap-progress', [RekapProgressController::class, 'rekapStatus'])->middleware('auth')->name('rekap');
+Route::get('/rekap-progress/status', [RekapProgressController::class, 'rekapStatus'])->middleware('auth')->name('rekap.status');
+
+
+
+Route::get('/mahasiswa/list', [RekapProgressController::class, 'mahasiswaList'])->name('mahasiswa.list');
+Route::get('/mahasiswa/progres/{nim}', [RekapProgressController::class, 'mahasiswaProgres'])->name('mahasiswa.progres');
+Route::get('/mahasiswa/progres/{nim}/semester/{smt}', [RekapProgressController::class, 'showSemester'])->name('mahasiswa.semester');
 // Route::get('/verifikasi-progress/verifyIRS/{nim}', [VerifIRSController::class, 'index'])->middleware('auth')->name('verify.IRS');
 
-Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
 
+
+Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
 Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
 
-Route::get('/rekap-progress', [RekapProgressController::class, 'index'])->middleware('auth')->name('rekap');
-Route::get('/rekap-progress/status', [RekapProgressController::class, 'viewRekapStatus'])->middleware('auth')->name('rekap.status');
 Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'viewListStatus'])->middleware('auth')->name('rekap.list.status');
 Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
 Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');

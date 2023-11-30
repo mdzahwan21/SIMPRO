@@ -15,13 +15,26 @@ class VerifProgressController extends Controller
         // Mendapatkan dosen wali yang sedang login
         $user = Auth::user();
 
-        // Ambil semua IRS yang belum disetujui oleh dosen wali yang sedang login
-        $irsBelumDisetujui = Irs::whereNull('tgl_persetujuan')
-            ->whereHas('mahasiswa', function ($query) use ($user) {
-                $query->where('nip_doswal', $user->id);
-            })->get();
+        // Ambil semua IRS yang terkait dengan dosen wali yang sedang login
+        $irsSemua = Irs::whereHas('mahasiswa', function ($query) use ($user) {
+            $query->where('nip_doswal', $user->id);
+        })->get();
+
+        return view('doswal.verListIRS', ['irsSemua' => $irsSemua]);
         
-        return view('doswal.verListIRS', ['irsBelumDisetujui' => $irsBelumDisetujui]);
+        // Ambil semua IRS yang belum disetujui oleh dosen wali yang sedang login
+        // $irsBelumDisetujui = $irsSemua->whereNull('tgl_persetujuan');
+
+        // return view('doswal.verListIRS', ['irsBelumDisetujui' => $irsBelumDisetujui, 'irsSemua' => $irsSemua]);
+
+
+        // Ambil semua IRS yang belum disetujui oleh dosen wali yang sedang login
+        // $irsBelumDisetujui = Irs::whereNull('tgl_persetujuan')
+        //     ->whereHas('mahasiswa', function ($query) use ($user) {
+        //         $query->where('nip_doswal', $user->id);
+        //     })->get();
+
+        // return view('doswal.verListIRS', ['irsBelumDisetujui' => $irsBelumDisetujui]);
     }
 
     public function viewListKHS()

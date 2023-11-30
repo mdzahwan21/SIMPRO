@@ -29,8 +29,9 @@
                     <section class="search-bar translate-y-1/4">
                         @include('components.searchBar')
                     </section>
-                    <section class="filter">
-                        @include('components.filter')
+                    <section x-show="filterOpen" class="filter flex space-x-4">
+                        @include('components.statusFilter')
+                        @include('components.dateFilter')
                     </section>
                 </div>
                 <section class="rekap-list m-4">
