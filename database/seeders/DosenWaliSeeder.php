@@ -4,17 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\provinsi;
+use App\Models\dosenwali;
 
-class ProvinsiSeeder extends Seeder
+class DosenWaliSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $count = 10;
-
-        provinsi::factory()->count($count)->create();
+        //
+        dosenwali::factory()
+        ->count(20) // You can adjust the number of users you want to create
+        ->create();
     }
 }

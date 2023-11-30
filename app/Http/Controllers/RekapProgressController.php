@@ -148,4 +148,25 @@ class RekapProgressController extends Controller
     {
         return view('doswal.rekListStatus');
     }
+
+    public function indexDepartemen()
+    {
+        return view('departemen.rekapStatus');
+    }
+
+    public function viewRekapStatusDepartemen() {
+        return view('departemen.rekapStatus');
+    }
+
+    public function viewRekapPKLDepartemen() {
+        return view('departemen.rekapPKL');
+    }
+
+    public function viewRekapSkripsiDepartemen() {
+        return view('departemen.rekapSkripsi');
+    }
+
+    public function viewListStatusDepartemen() {
+        return view('departemen.rekListStatus');
+    }
 }

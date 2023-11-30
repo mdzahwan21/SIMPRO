@@ -46,13 +46,11 @@ class PklController extends Controller
         return redirect()->route('pkl')->with('success', 'Data PKL berhasil disimpan.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(pkl $pkl)
+    public function rekap()
     {
-        //
+        $dataPkl = pkl::all();
+
+        return view('Mahasiswa.rekapPkl', compact('dataPkl'));
     }
 
     /**

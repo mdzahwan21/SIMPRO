@@ -17,6 +17,8 @@ use App\Http\Controllers\VerifIRSController;
 use App\Http\Controllers\VerifKHSController;
 use App\Http\Controllers\EditIRSController;
 use App\Http\Controllers\EditKHSController;
+use App\Http\Controllers\GenerateAkunController;
+use App\Http\Controllers\GeneratePDFController;
  
 
 Route::get('/', function () {
@@ -31,22 +33,27 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('aut
 
 Route::get('/irs', [IrsController::class, 'index'])->middleware('auth')->name('irs');
 Route::post('/irs/store', [IrsController::class, 'store'])->name('irs.store');
+Route::get('/irs/rekapIrs', [IrsController::class, 'rekap'])->name('irs.rekap');
+// Route::delete('/irs/{id}', [IrsController::class, 'hapus'])->name('irs.hapus');
+// Route::get('/irs/{id}/perbarui', [IrsController::class, 'update'])->name('irs.perbarui'); // Tambahkan ini jika Anda membutuhkan formulir pembaruan
+
+
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/irs', 'IrsController@index')->name('irs.index');
 // });
 
 Route::get('/khs', [KhsController::class, 'index'])->middleware('auth')->name('khs');
 Route::post('/khs/store', [KhsController::class, 'store'])->name('khs.store');
+Route::get('/khs/rekapKhs', [KhsController::class, 'rekap'])->name('khs.rekap');
 
 Route::get('/pkl', [PklController::class, 'index'])->middleware('auth')->name('pkl');
 Route::post('/pkl/store', [PklController::class, 'store'])->name('pkl.store');
+Route::get('/pkl/rekapPkl', [PklController::class, 'rekap'])->name('pkl.rekap');
 
 Route::get('/skripsi', [SkripsiController::class, 'viewSkripsi'])->middleware('auth')->name('skripsi');
 Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skripsi.store');
+Route::get('/skripsi/rekapSkripsi', [SkripsiController::class, 'rekap'])->name('skripsi.rekap');
 
-Route::get('/generateAkun', [GenerateAkunController::class, 'index'])->middleware('auth')->name('generateAkun');
-Route::get('generateMhs', [GenerateAkunController::class, 'generateMhs'])->middleware('auth')->name('generateMhs');
-Route::get('generateDosen', [GenerateAkunController::class, 'generateDosen'])->middleware('auth')->name('generateDosen');
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
@@ -78,7 +85,6 @@ Route::get('/mahasiswa/progres/{nim}/semester/{smt}', [RekapProgressController::
 
 
 Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
-
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
 Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
 
@@ -86,3 +92,10 @@ Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'view
 Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
 Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');
 
+Route::get('/rekap-progress/2', [RekapProgressController::class, 'indexDepartemen'])->middleware('auth')->name('rekap.departemen');
+Route::get('/rekap-progress/status', [RekapProgressController::class, 'viewRekapStatusDepartemen'])->middleware('auth')->name('rekap.statusDepartemen');
+Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'viewListStatusDepartemen'])->middleware('auth')->name('rekap.list.statusDepartemen');
+Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKLDepartemen'])->middleware('auth')->name('rekap.pklDepartemen');
+Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsiDepartemen'])->middleware('auth')->name('rekap.skripsiDepartemen');
+
+Route::get('/generatePDF', [GeneratePDFController::class, 'generatePDF'])->middleware('auth')->name('cetak.RekapStatus');

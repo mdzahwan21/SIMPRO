@@ -3,7 +3,7 @@
 @section('content')
 <div class="w-full">
     <div class="flex flex-col gap-8 p-4">
-        <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="mahasiswaForm" action="{{ route('generateAkun') }}" enctype="multipart/form-data">
+        <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="mahasiswaForm" action="{{ route('inputmahasiswa') }}" enctype="multipart/form-data">
             <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Input Data Mahasiswa</h1>
             @csrf
             <div class="flex justify-center items-center mb-6">
@@ -91,7 +91,7 @@
                     <select id="nama_doswal" name="nama_doswal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected disabled>Pilih Dosen wali</option>
                         @foreach ($dosenwali as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option value="{{ $item->nip }}">{{ $item->nama }}</option>
                         @endforeach
                     </select>
                 </div>

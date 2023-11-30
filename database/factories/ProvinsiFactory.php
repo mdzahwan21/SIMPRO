@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Provinsi;
+use App\Models\provinsi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProvinsiFactory extends Factory
