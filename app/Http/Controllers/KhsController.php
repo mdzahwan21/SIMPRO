@@ -50,27 +50,17 @@ class KhsController extends Controller
             'ip' => $request->input('ip'),
             'ipk' => $request->input('ipk'),
             'file' => $filePath,
-            //'nim' => $request->input('sks'),
             'nim' => $nim,
         ]);
 
         return redirect()->route('khs')->with('success', 'Data KHS berhasil disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(khs $khs)
+    public function rekap()
     {
-        //
-    }
+        $dataKhs = Khs::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(khs $khs)
-    {
-        //
+        return view('Mahasiswa.rekapKhs', compact('dataKhs'));
     }
 
     /**
@@ -84,7 +74,7 @@ class KhsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(khs $khs)
+    public function hapus(khs $khs)
     {
         //
     }

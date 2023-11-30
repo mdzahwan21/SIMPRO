@@ -43,6 +43,13 @@ class SkripsiController extends Controller
         return redirect()->route('skripsi')->with('success', 'Data Skripsi berhasil disimpan.');
     }
 
+    public function rekap()
+    {
+        $dataSkripsi = Skripsi::all();
+
+        return view('Mahasiswa.rekapSkripsi', compact('dataSkripsi'));
+    }
+
 
     // public function verifikasi(int $id)
     // {
