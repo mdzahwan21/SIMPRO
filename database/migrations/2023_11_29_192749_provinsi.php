@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosenwalis', function (Blueprint $table) {
-            $table->string('nip')->primary();
+        Schema::create('provinsis', function (Blueprint $table) {
+            $table->id();
             $table->string('nama');
-            $table->string('alamat');
-            $table->string('no_telepon');
-            // $table->string('foto');
+            $table->string('kode_provinsi');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosenwalis');
+        Schema::dropIfExists('provinsis');
     }
 };

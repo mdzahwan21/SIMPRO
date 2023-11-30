@@ -68,7 +68,7 @@
                     <div class="w-full max-w-md">
 
                         <label for="jalur_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalur Masuk:</label>
-                        <select id="jalur_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="jalur_masuk" name="jalur_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled>Pilih Jalur Masuk</option>
                             <option value="aktif">SNMPTN</option>
                             <option value="aktif">SBMPTN</option>
@@ -81,7 +81,7 @@
                     <div class="w-full max-w-md">
                         <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             No Telepon:</label>
-                        <input type="text" id="no_telp" pattern="[0-9]+" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan No Telepon" required>
+                        <input type="text" id="no_telp" name="no_telp" pattern="[0-9]+" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan No Telepon" required>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                     <div class="w-full max-w-md">
                         <label for="provinsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Provinsi:</label>
-                        <input type="text" id="provinsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Provinsi" required>
+                        <input type="text" id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Provinsi" required>
                     </div>
                 </div>
 
@@ -97,7 +97,7 @@
                     <div class="w-full max-w-md">
                         <label for="kota_kab" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Kota/Kabupaten:</label>
-                        <input type="text" id="kota_kab" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Kota/Kabupaten" required>
+                        <input type="text" id="kota_kab" name="kota_kab" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Kota/Kabupaten" required>
                     </div>
                 </div>
 

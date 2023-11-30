@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('ip');
             $table->float('ipk');
             $table->string('file');
-
+            $table->date('tgl_persetujuan')->nullable();
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });
     }

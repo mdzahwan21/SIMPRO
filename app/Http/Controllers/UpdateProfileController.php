@@ -33,20 +33,23 @@ class UpdateProfileController extends Controller
             'no_telp' => 'required|numeric',
             'provinsi' => 'required',
             'kota_kab' => 'required',
-            'alamat_detail' => 'required'
+            'alamat_detail' => 'required',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        // dd($request);
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
 
         // Simpan ke dalam tabel mahasiswa
-        $mahasiswa->update([
+        $mahasiswa->where('nim', $mahasiswa->nim)->update([
             'jalur_masuk' => $request->jalur_masuk,
             'no_telp' => $request->no_telp,
             'provinsi' => $request->provinsi,
             'kota_kab' => $request->kota_kab,
             'alamat_detail' => $request->alamat_detail,
+            'foto' => $request->foto,
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');

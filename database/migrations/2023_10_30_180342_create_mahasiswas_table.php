@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('foto')->nullable();
             
             $table->foreign('nim')->references('id')->on('users');
-            $table->foreign('nip_doswal')->references('nip')->on('dosen_wali');
+            $table->foreign('nip_doswal')->references('nip')->on('dosenwalis');
         });
     }
 
