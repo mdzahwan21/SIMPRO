@@ -14,15 +14,7 @@ return new class extends Migration
         Schema::create('skripsi', function (Blueprint $table) {
             $table->id();
             $table->string('nim');
-<<<<<<< HEAD
-            $table->integer('smt_aktif')->nullable();
-            $table->integer('nilai')->nullable();
-            $table->integer('smt_lulus')->nullable();
-            $table->date('tgl_lulus')->nullable();
-            $table->string('file')->nullable();
-=======
             $table->integer('smt_aktif');
->>>>>>> 5b8ad135e49dcacc57292049f529d9d59e328434
             
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             

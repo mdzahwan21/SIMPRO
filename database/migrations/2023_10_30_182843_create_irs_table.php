@@ -17,11 +17,7 @@ return new class extends Migration
             $table->integer('smt_aktif');
             $table->integer('jumlah_sks');
             $table->string('file');
-<<<<<<< HEAD
-=======
-            $table->string('nim');
             $table->timestamp('tgl_persetujuan')->nullable();
->>>>>>> 5b8ad135e49dcacc57292049f529d9d59e328434
             
             $table->foreign('nim')->references('nim')->on('mahasiswa');
         });
