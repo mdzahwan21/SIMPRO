@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\dosenwali;
 
 class InputDosenController extends Controller
@@ -26,7 +27,12 @@ class InputDosenController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'no_telepon' => 'required',
+            'foto' => 'required',
         ]);
+
+        $foto = $request->file('foto');
+        $newFileName = Str::slug($request->nama) . '.' . $foto->getClientOriginalExtension();
+        $fotoPath = $foto->storeAs('foto', $newFileName, 'public');
 
         // Create a new Dosenwali instance and save it to the database
         dosenwali::create([
@@ -34,6 +40,7 @@ class InputDosenController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telepon' => $request->no_telepon,
+            'foto' => $fotoPath,
         ]);
 
         // Redirect back with a success message

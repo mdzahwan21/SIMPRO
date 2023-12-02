@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\provinsi;
 use App\Models\mahasiswa;
+use App\Models\users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\dosenwali;
 use Illuminate\Support\Facades\Auth;
 
 class InputMahasiswaController extends Controller
 {
+
     public function index()
     {
         $user = Auth::user();
@@ -25,21 +28,22 @@ class InputMahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => 'required|integer|min:1|max:99999999999999',
-            'nama' => 'required|string|min:1|max:255',
-            'angkatan' => 'required|integer|min:1|max:9999',
-            'status' => 'required|in:Aktif,Non-Aktif',
-            'jalur_masuk' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:15',
-            'provinsi' => 'required|string|max:255',
-            'kota_kab' => 'required|string|max:255',
-            'alamat_detail' => 'required|string|max:255',
-            'nip_doswal' => 'required|string|max:20',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nim' => 'required',
+            'nama' => 'required',
+            'angkatan' => 'required',
+            'status' => 'required',
+            'jalur_masuk' => 'required',
+            'no_telp' => 'required',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'alamat_detail' => 'required',
+            'nip_doswal' => 'required',
+            'foto' => 'required',
         ]);
 
         $foto = $request->file('foto');
-        $filePath = $foto->store('foto', 'public');
+        $newFileName = Str::slug($request->nama) . '.' . $foto->getClientOriginalExtension();
+        $fotoPath = $foto->storeAs('foto', $newFileName, 'public');
 
         mahasiswa::create([
             'nim' => $request->nim,
@@ -52,9 +56,22 @@ class InputMahasiswaController extends Controller
             'kota_kab' => $request->kota_kab,
             'alamat_detail' => $request->alamat_detail,
             'nip_doswal' => $request->nip_doswal,
-            'foto' => $filePath,
+            'foto' => $fotoPath,
         ]);
 
-        return redirect()->route('operator.dashboard')->with('success', 'Mahasiswa berhasil ditambahkan.');
+        $name = $request->nama;
+        $email = strtolower(str_replace(' ', '', $name)) . '@mahasiswa.com';
+
+        users::create([
+            'id' => $request->nim,
+            'name' => $name,
+            'role' => $request->role,
+            'email' => $email,
+            'password' => "12345",
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ]);
+
+        return redirect()->route('inputmahasiswa')->with('success', 'Mahasiswa data added successfully');
     }
 }

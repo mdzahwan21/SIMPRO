@@ -17,7 +17,6 @@ use App\Http\Controllers\VerifIRSController;
 use App\Http\Controllers\VerifKHSController;
 use App\Http\Controllers\EditIRSController;
 use App\Http\Controllers\EditKHSController;
-use App\Http\Controllers\GenerateAkunController;
 use App\Http\Controllers\GeneratePDFController;
  
 
@@ -55,12 +54,16 @@ Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skrips
 Route::get('/skripsi/rekapSkripsi', [SkripsiController::class, 'rekap'])->name('skripsi.rekap');
 
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
-Route::post('/inputmahasiswa', [InputMahasiswaController::class, 'store'])->middleware('auth');
+Route::post('/inputmahasiswa/store', [InputMahasiswaController::class, 'store'])
+    ->middleware('auth')
+    ->name('inputmahasiswa.store');
+
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::post('/inputdosen/store', [InputDosenController::class, 'store'])
     ->middleware('auth')
     ->name('inputdosen.store');
-Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
+
+    Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
 Route::post('import/store', [ImportData::class, 'store'])
     ->middleware('auth')
     ->name('import.store');
