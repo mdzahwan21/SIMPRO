@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosenwalis', function (Blueprint $table) {
-            $table->string('nip')->primary();
-            $table->string('nama');
-            $table->string('alamat');
-            $table->string('no_telepon');
-            $table->string('foto');
+        Schema::create('imports', function (Blueprint $table) {
+            $table->id();
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosenwalis');
+        Schema::dropIfExists('imports');
     }
 };

@@ -187,7 +187,7 @@
                                 {{ auth()->user()->name }}
                             </h5>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
-                                {{ optional(auth()->user()->mahasiswa)->nim }}
+                                {{ auth()->user()->id}}
                             </span>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ auth()->user()->email }}

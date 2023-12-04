@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\dosen_wali;
+use App\Models\dosenwali;
 use App\Models\mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storedosen_waliRequest;
@@ -38,7 +38,7 @@ class DosenWaliController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(dosen_wali $dosen_wali)
+    public function show(dosenwali $dosen_wali)
     {
         //
     }
@@ -46,7 +46,7 @@ class DosenWaliController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(dosen_wali $dosen_wali)
+    public function edit(dosenwali $dosen_wali)
     {
         //
     }
@@ -54,7 +54,7 @@ class DosenWaliController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatedosen_waliRequest $request, dosen_wali $dosen_wali)
+    public function update(Updatedosen_waliRequest $request, dosenwali $dosen_wali)
     {
         //
     }
@@ -62,7 +62,7 @@ class DosenWaliController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(dosen_wali $dosen_wali)
+    public function destroy(dosenwali $dosen_wali)
     {
         //
     }

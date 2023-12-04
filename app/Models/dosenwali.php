@@ -16,6 +16,7 @@ class dosenwali extends Model
         'nama',
         'alamat',
         'no_telepon',
+        'foto',
     ];
 
     public function user()

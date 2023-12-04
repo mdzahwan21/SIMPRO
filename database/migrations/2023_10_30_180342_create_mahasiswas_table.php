@@ -16,16 +16,14 @@ return new class extends Migration
             $table->string('nama');
             $table->integer('angkatan');
             $table->string('status');
-            $table->string('jalur_masuk')->nullable();
-            $table->string('no_telp')->nullable();
-            $table->string('provinsi')->nullable();
-            $table->string('kota_kab')->nullable();
-            $table->string('alamat_detail')->nullable();
+            $table->string('jalur_masuk');
+            $table->string('no_telp');
+            $table->string('provinsi');
+            $table->string('kota_kab');
+            $table->string('alamat_detail');
             $table->string('nip_doswal');
-            $table->string('foto')->nullable();
-            
-            $table->foreign('nim')->references('id')->on('users');
-            $table->foreign('nip_doswal')->references('nip')->on('dosenwalis');
+            $table->string('foto');
+            $table->timestamps();
         });
     }
 

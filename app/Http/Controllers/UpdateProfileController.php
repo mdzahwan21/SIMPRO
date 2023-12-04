@@ -12,7 +12,7 @@ class UpdateProfileController extends Controller
     public function showProfile()
     {
         $user = Auth::user();
-        $mahasiswa = $user->mahasiswa;
+        $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
 
         // Menampilkan nilai variabel $user dan $mahasiswa
         // dd($user, $mahasiswa, 'After getting user and mahasiswa');
@@ -20,7 +20,7 @@ class UpdateProfileController extends Controller
         if ($mahasiswa) {
             return view('Mahasiswa.updateProfile', compact('user', 'mahasiswa'));
         } else {
-            return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
+            return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
         }
     }
 

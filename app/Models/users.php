@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class users extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -19,11 +19,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
         'remember_token',
     ];
+
+    
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,23 +50,19 @@ class User extends Authenticatable
 
     protected $attributes = [
         'name' => 'Default Name',
-        // Ganti 'Default Name' dengan nilai default yang diinginkan
     ];
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($user) {
-            // Mendapatkan nama pengguna dari bagian sebelum "@" dalam alamat email
             $username = Str::before($user->email, '@');
             $user->name = $username;
         });
 
         static::creating(function ($user) {
-            // Mendapatkan domain dari alamat email
             $domain = Str::after($user->email, '@');
 
-            // Menentukan role berdasarkan domain
             switch ($domain) {
                 case 'mahasiswa.com':
                     $user->role = 'mahasiswa';
@@ -82,5 +82,11 @@ class User extends Authenticatable
             }
         });
     }
+
+    // public function mahasiswa()
+    // {
+    //     return $this->hasOne(Mahasiswa::class, 'id_user', 'id');
+    // }
+
 
 }
