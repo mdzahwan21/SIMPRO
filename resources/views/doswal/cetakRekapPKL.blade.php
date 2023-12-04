@@ -5,37 +5,34 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-        }
-        h2 {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 14px; /* Mengurangi ukuran font secara keseluruhan */
         }
         table {
-            width: 100%;
+            width: 80%; /* Mengurangi lebar tabel */
             border-collapse: collapse;
             margin-bottom: 20px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 4px; /* Mengurangi padding */
             text-align: center;
         }
         th {
             background-color: #f2f2f2;
         }
+        h2 {
+            text-align: center;
+            font-size: 24px; /* Mengurangi ukuran font untuk judul */
+        }
         @media screen and (max-width: 600px) {
             table {
-                width: 100%;
+                width: 100%; /* Mengubah lebar tabel saat layar kecil */
             }
         }
     </style>
 </head>
 <body>
-    <h2><center>Rekap PKL Mahasiswa Informatika</center></h2>
+    <h2>Rekap PKL Mahasiswa Informatika</h2>
     <table>
         <thead>
             <tr>

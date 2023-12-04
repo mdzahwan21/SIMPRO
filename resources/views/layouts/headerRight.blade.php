@@ -7,7 +7,7 @@
             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             aria-expanded="false" data-dropdown-toggle="dropdown-user">
             <span class="sr-only">Open user menu</span>
-            <img class="w-8 h-8 rounded-full" src="http://127.0.0.1:8000/storage/profile2.jpg"
+            <img class="w-8 h-8 rounded-full" src="https://media.licdn.com/dms/image/C5603AQFg5fhHcCfs2g/profile-displayphoto-shrink_800_800/0/1658109361552?e=1706745600&v=beta&t=CeAb6STx8PaIMD9EgkbK-bEjywdv3c02BzU0hflACRA"
                 alt="user photo">
         </button>
     </div>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\dosen_wali;
+use App\Models\mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storedosen_waliRequest;
 use App\Http\Requests\Updatedosen_waliRequest;
+use Illuminate\Http\Request;
 
 class DosenWaliController extends Controller
 {
@@ -63,5 +65,43 @@ class DosenWaliController extends Controller
     public function destroy(dosen_wali $dosen_wali)
     {
         //
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $status = $request->input('status');
+        $angkatan = $request->input('angkatan');
+        
+        if ($request->has('search')) {
+            $mhsList = Mahasiswa::where(function($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nim', 'like', '%' . $search . '%');
+            })->get();
+        }
+        // else {
+        //     $mhsList = Mahasiswa::where('status', $status)
+        //     ->where('angkatan', $angkatan)
+        //     ->get();
+        // }
+
+        return view('doswal.resultListStatus', ['mhsList' => $mhsList]);
+    }
+
+    public function searchDaftarMhsPerwalian(Request $request){
+        $search = $request->input('search');
+        $status = $request->input('status');
+        $angkatan = $request->input('angkatan');
+        
+        if ($request->has('search')) {
+            $mhsPerwalian = Mahasiswa::where(function($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nim', 'like', '%' . $search . '%')
+                    ->orWhere('angkatan', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('jalur_masuk', 'like', '%' . $search . '%');
+            })->get();
+        }
+
+        return view('doswal.daftarMahasiswa', ['mhsPerwalian' => $mhsPerwalian]);
     }
 }

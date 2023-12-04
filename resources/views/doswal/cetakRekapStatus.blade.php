@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rekap Status Mahasiswa Informatika</title>
+    <title>Rekap Status Mahasiswa Perwalian</title>
     <!-- Include any required CSS -->
     <style>
         /* Define your styles for PDF here */
         /* For example */
         body {
             font-family: Arial, sans-serif;
-        }
-        h2 {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
         }
         table {
             width: 100%;
@@ -21,19 +16,16 @@
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px; /* Increased padding for better readability */
+            padding: 8px;
             text-align: center;
         }
         th {
             background-color: #f2f2f2;
         }
-        .center {
-            text-align: center;
-        }
     </style>
 </head>
 <body>
-    <h2 class="center">Rekap Status Mahasiswa Informatika</h2>
+    <h2><center>Rekap Status Mahasiswa Perwalian</center></h2>
     <table>
         <thead>
             <tr>
@@ -50,7 +42,7 @@
                     @foreach($latestYears as $year)
                         <td>
                             <?php
-                                $count = $allmahasiswa->where('status', $status)->where('angkatan', $year)->count();
+                                $count = $mhsPerwalian->where('status', $status)->where('angkatan', $year)->count();
                                 echo ($count > 0 ? $count : '0');
                             ?>
                         </td>

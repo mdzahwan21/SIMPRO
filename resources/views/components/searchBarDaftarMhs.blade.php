@@ -76,9 +76,9 @@
     <div class="pb-4 bg-white dark:bg-gray-900">
         <div class="flex items-center justify-center">
             <div class="search-container flex items-center border border-gray-300 rounded-md overflow-hidden">
-                <form action="/search/mahasiswa" method="GET" class="flex items-center">
+                <form action="/search/list-mahasiswa" method="GET" class="flex items-center">
                     <input type="search" id="table-search" name="search" class="search-input outline-none flex-1
-                    py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Search name or nim">
+                    py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Search name or others">
                     <svg class="search-icon w-4 h-4 text-gray-500 dark:text-gray-400 ml-2" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

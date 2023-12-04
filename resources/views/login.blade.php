@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('body')
-<section class="bg-gray-50 dark:bg-gray-900 h-screen flex items-center justify-center">
+<section class="h-screen flex items-center justify-center" style="background-image: url('https://if.fsm.undip.ac.id/id//assets/img/slider_home/slide1.png'); background-size: cover; background-position: center;">
     <div class="login-container p-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div class="mb-8 text-center">
-            <img class="w-16 h-16 mx-auto mb-2" src="https://seeklogo.com/images/U/universitas-diponegoro-logo-6B2C58478B-seeklogo.com.png" alt="logo">
+            <img class="w-16 h-16.1 mx-auto mb-2" src="https://seeklogo.com/images/U/universitas-diponegoro-logo-6B2C58478B-seeklogo.com.png" alt="logo">
             <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">SIMPRO UNDIP</h1>
             <p class="text-gray-600 dark:text-gray-300">Sistem Monitoring Progress Studi Informatika</p>
         </div>
