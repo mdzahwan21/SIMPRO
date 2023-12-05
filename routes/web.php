@@ -7,6 +7,7 @@ use App\Http\Controllers\KhsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PklController;
 use App\Http\Controllers\RekapProgressController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\InputMahasiswaController;
 use App\Http\Controllers\InputDosenController;
@@ -18,7 +19,9 @@ use App\Http\Controllers\VerifKHSController;
 use App\Http\Controllers\EditIRSController;
 use App\Http\Controllers\EditKHSController;
 use App\Http\Controllers\GeneratePDFController;
- 
+use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\DosenWaliController;
+use App\Http\Controllers\DaftarMahasiswaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -92,15 +95,36 @@ Route::get('/mahasiswa/progres/{nim}', [RekapProgressController::class, 'mahasis
 Route::get('/mahasiswa/progres/{nim}/semester/{smt}', [RekapProgressController::class, 'showSemester'])->name('mahasiswa.semester');
 // Route::get('/verifikasi-progress/verifyIRS/{nim}', [VerifIRSController::class, 'index'])->middleware('auth')->name('verify.IRS');
 
+Route::get('/mahasiswa/list/departemen', [RekapProgressController::class, 'mahasiswaListDepartemen'])->name('mahasiswa.list.departemen');
+// Route::get('/pkl/list/departemen', [RekapProgressController::class, 'pklListDepartemen'])->name('pkl.list.departemen');
+Route::get('/skripsi/list/departemen', [RekapProgressController::class, 'skripsiListDepartemen'])->name('skripsi.list.departemen');
+Route::get('/search', [SearchController::class, 'search'])->name('mahasiswa.search');
 
+// Route::get('/pkl/list/doswal', [RekapProgressController::class, 'pklListDoswal'])->name('pkl.list.doswal');
+// Route::get('/skripsi/list/doswal', [RekapProgressController::class, 'skripsiListDoswal'])->name('skripsi.list.doswal');
+Route::get('/sudah-pkl/list/departemen/{angkatan}', [RekapProgressController::class, 'listSudahPKLDepartemen'])->name('sudahpkl.list.departemen');
+Route::get('/belum-pkl/list/departemen/{angkatan}', [RekapProgressController::class, 'listBelumPKLDepartemen'])->name('belumpkl.list.departemen');
+
+Route::get('/sudah-skripsi/list/departemen/{angkatan}', [RekapProgressController::class, 'listSudahSkripsiDepartemen'])->name('sudahskripsi.list.departemen');
+Route::get('/belum-skripsi/list/departemen/{angkatan}', [RekapProgressController::class, 'listBelumSkripsiDepartemen'])->name('belumskripsi.list.departemen');
+
+Route::get('/sudah-pkl/list/doswal/{angkatan}', [RekapProgressController::class, 'listSudahPKLDoswal'])->name('sudahpkl.list.doswal');
+Route::get('/belum-pkl/list/doswal/{angkatan}', [RekapProgressController::class, 'listBelumPKLDoswal'])->name('belumpkl.list.doswal');
+
+Route::get('/sudah-skripsi/list/doswal/{angkatan}', [RekapProgressController::class, 'listSudahSkripsiDoswal'])->name('sudahskripsi.list.doswal');
+Route::get('/belum-skripsi/list/doswal/{angkatan}', [RekapProgressController::class, 'listBelumSkripsiDoswal'])->name('belumskripsi.list.doswal');
 
 Route::get('/verifikasi-progress/verifyKHS', [VerifKHSController::class, 'index'])->middleware('auth')->name('verifyKHS');
 Route::get('/verifikasi-progress/verifyIRS/editIRS', [EditIRSController::class, 'index'])->middleware('auth')->name('editIRS');
 Route::get('/verifikasi-progress/verifyKHS/editKHS', [EditKHSController::class, 'index'])->middleware('auth')->name('editKHS');
 
+Route::get('/rekap-progress/status-mhs', [RekapProgressController::class, 'rekapStatus'])->middleware('auth')->name('rekap.status.doswal');
+Route::get('/rekap-progress/pkl-mhs', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
+Route::get('/rekap-progress/skripsi-mhs', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');
+
 Route::get('/rekap-progress/status/list', [RekapProgressController::class, 'viewListStatus'])->middleware('auth')->name('rekap.list.status');
-Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL'])->middleware('auth')->name('rekap.pkl');
-Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsi'])->middleware('auth')->name('rekap.skripsi');
+
+
 
 Route::get('/rekap-progress/2', [RekapProgressController::class, 'indexDepartemen'])->middleware('auth')->name('rekap.departemen');
 Route::get('/rekap-progress/status', [RekapProgressController::class, 'viewRekapStatusDepartemen'])->middleware('auth')->name('rekap.statusDepartemen');
@@ -109,5 +133,35 @@ Route::get('/rekap-progress/pkl', [RekapProgressController::class, 'viewRekapPKL
 Route::get('/rekap-progress/skripsi', [RekapProgressController::class, 'viewRekapSkripsiDepartemen'])->middleware('auth')->name('rekap.skripsiDepartemen');
 
 Route::get('/generatePDF', [GeneratePDFController::class, 'generatePDF'])->middleware('auth')->name('cetak.RekapStatus');
+Route::get('/generatePDF/list-status', [GeneratePDFController::class, 'generatePDFListStatus'])->middleware('auth')->name('cetak.ListStatus');
 Route::get('/generatePDFPKL', [GeneratePDFController::class, 'generatePDFPKL'])->middleware('auth')->name('cetak.RekapPKL');
+// Route::get('/generatePDF/list-pkl', [GeneratePDFController::class, 'generatePDFListPKL'])->middleware('auth')->name('cetak.ListPKL');
 Route::get('/generatePDFSkripsi', [GeneratePDFController::class, 'generatePDFSkripsi'])->middleware('auth')->name('cetak.RekapSkripsi');
+Route::get('/generatePDFListMahasiswa', [GeneratePDFController::class, 'generatePDFDaftarMhs'])->middleware('auth')->name('cetak.DaftarMahasiswa');
+Route::get('/generatePDFMhsPerwalian', [GeneratePDFController::class, 'generatePDFDaftarPerwalian'])->middleware('auth')->name('cetak.DaftarPerwalian');
+
+Route::get('/generatePDF/sudah-pkl/departemen/{angkatan}', [GeneratePDFController::class, 'generatePDFSudahPKLDepartemen'])->middleware('auth')->name('cetak.SudahPKLDepartemen');
+Route::get('/generatePDF/belum-pkl/departemen/{angkatan}', [GeneratePDFController::class, 'generatePDFBelumPKLDepartemen'])->middleware('auth')->name('cetak.BelumPKLDepartemen');
+Route::get('/generatePDF/sudah-skripsi/departemen/{angkatan}', [GeneratePDFController::class, 'generatePDFSudahSkripsiDepartemen'])->middleware('auth')->name('cetak.SudahSkripsiDepartemen');
+Route::get('/generatePDF/belum-skripsi/departemen/{angkatan}', [GeneratePDFController::class, 'generatePDFBelumSkripsiDepartemen'])->middleware('auth')->name('cetak.BelumSkripsiDepartemen');
+
+Route::get('/generatePDF/sudah-pkl/doswal/{angkatan}', [GeneratePDFController::class, 'generatePDFSudahPKLDoswal'])->middleware('auth')->name('cetak.SudahPKLDoswal');
+Route::get('/generatePDF/belum-pkl/doswal/{angkatan}', [GeneratePDFController::class, 'generatePDFBelumPKLDoswal'])->middleware('auth')->name('cetak.BelumPKLDoswal');
+Route::get('/generatePDF/sudah-skripsi/doswal/{angkatan}', [GeneratePDFController::class, 'generatePDFSudahSkripsiDoswal'])->middleware('auth')->name('cetak.SudahSkripsiDoswal');
+Route::get('/generatePDF/belum-skripsi/doswal/{angkatan}', [GeneratePDFController::class, 'generatePDFBelumSkripsiDoswal'])->middleware('auth')->name('cetak.BelumSkripsiDoswal');
+
+
+Route::get('/generatePDF/status', [GeneratePDFController::class, 'generatePDFStatusDoswal'])->middleware('auth')->name('cetak.RekapStatusDoswal');
+Route::get('/generatePDFPKL/doswal', [GeneratePDFController::class, 'generatePDFPKLDoswal'])->middleware('auth')->name('cetak.RekapPKLDoswal');
+Route::get('/generatePDFSkripsi/doswal', [GeneratePDFController::class, 'generatePDFSkripsiDoswal'])->middleware('auth')->name('cetak.RekapSkripsiDoswal');
+
+Route::get('/generatePDF/list-statusDoswal', [GeneratePDFController::class, 'generatePDFListStatusDoswal'])->middleware('auth')->name('cetak.ListStatusDoswal');
+
+Route::get('/search/mahasiswa/departemen', [DepartemenController::class, 'search'])->name('search.mahasiswa');
+Route::get('/search/list-mahasiswa', [DepartemenController::class, 'searchDaftarMhs'])->name('search.list-mahasiswa');
+
+Route::get('/search/mahasiswa/doswal', [DosenWaliController::class, 'search'])->name('search.mahasiswa.doswal');
+Route::get('/search/list-perwalian', [DosenWaliController::class, 'searchDaftarMhsPerwalian'])->name('search.list-perwaliab');
+
+Route::get('/departemen/daftar-mahasiswa', [DaftarMahasiswaController::class, 'daftarMahasiswa'])->middleware('auth')->name('daftar.mahasiswa');
+Route::get('/daftar-mahasiswa-perwalian', [DaftarMahasiswaController::class, 'daftarMahasiswaDoswal'])->middleware('auth')->name('daftar.mahasiswa.doswal');

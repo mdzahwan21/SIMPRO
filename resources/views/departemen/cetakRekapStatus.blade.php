@@ -1,213 +1,63 @@
-<h3>
-    <center>Rekap Status Mahasiswa Informatika</center>
-</h3>
-<table border = "1" cellspacing="0" cellpadding="3">
-    <tr>
-        <th
-            class="px-4 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            status</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2017</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2018</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2019</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2020</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2021</th>
-        <th
-            class="px-6 py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2022</th>
-        <th
-            class="px- py-4 border border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-            2023</th>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            aktif
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            cuti
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            mangkir
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            meninggal dunia
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            1
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            2
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            0
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            1
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            1
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            3
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            0
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            drop out
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            3
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            0
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            10
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            2
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            1
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            5
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            2
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            lulus
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-    </tr>
-    <tr>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            undur diri
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            10
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            200
-        </td>
-        <td class="px-6 py-3 whitespace-no-wrap border border-gray-200 text-center text-sm leading-5 text-gray-500">
-            100
-        </td>
-    </tr>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rekap Status Mahasiswa Informatika</title>
+    <!-- Include any required CSS -->
+    <style>
+        /* Define your styles for PDF here */
+        /* For example */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px; /* Increased padding for better readability */
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="center">Rekap Status Mahasiswa Informatika</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                @foreach($latestYears as $year)
+                    <th>{{ $year }}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(['Aktif', 'Cuti', 'Mangkir', 'Undur Diri', 'Meninggal Dunia', 'Drop Out', 'Lulus'] as $status)
+                <tr>
+                    <td>{{ $status }}</td>
+                    @foreach($latestYears as $year)
+                        <td>
+                            <?php
+                                $count = $allmahasiswa->where('status', $status)->where('angkatan', $year)->count();
+                                echo ($count > 0 ? $count : '0');
+                            ?>
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>

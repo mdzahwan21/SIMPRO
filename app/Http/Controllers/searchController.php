@@ -1,27 +1,26 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
 // SearchController.php
 
 namespace App\Http\Controllers;
 
+use App\Models\mahasiswa;
 use App\Models\YourModel; // Gantilah YourModel dengan model yang sesuai
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = $request->input('query');
+    // public function searchMahasiswa(Request $request)
+    // {
+    //     $search = $request->input('search');
 
-        $results = YourModel::where('name', 'LIKE', '%' . $query . '%')
-                            ->orWhere('nim', 'LIKE', '%' . $query . '%')
-                            ->get();
+    //     if (!empty($search)) {
+    //         $mhsList = Mahasiswa::where(function($query) use ($search) {
+    //             $query->where('nama', 'like', '%' . $search . '%')
+    //                 ->orWhere('nim', 'like', '%' . $search . '%');
+    //         })->get();
+    //     } 
 
-        return response()->json($results);
-    }
+    //     return view('departemen.resultListStatus', ['mhsList' => $mhsList]);
+    // }
 }
 

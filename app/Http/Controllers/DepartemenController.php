@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\departemen;
+use App\Models\mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoredepartemenRequest;
 use App\Http\Requests\UpdatedepartemenRequest;
+use Illuminate\Http\Request;
 
 class DepartemenController extends Controller
 {
@@ -63,5 +65,43 @@ class DepartemenController extends Controller
     public function destroy(departemen $departemen)
     {
         //
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+        $status = $request->input('status');
+        $angkatan = $request->input('angkatan');
+        
+        if ($request->has('search')) {
+            $mhsList = Mahasiswa::where(function($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nim', 'like', '%' . $search . '%');
+            })->get();
+        }
+        // else {
+        //     $mhsList = Mahasiswa::where('status', $status)
+        //     ->where('angkatan', $angkatan)
+        //     ->get();
+        // }
+
+        return view('departemen.resultListStatus', ['mhsList' => $mhsList]);
+    }
+
+    public function searchDaftarMhs(Request $request){
+        $search = $request->input('search');
+        $status = $request->input('status');
+        $angkatan = $request->input('angkatan');
+        
+        if ($request->has('search')) {
+            $daftarMhs = Mahasiswa::where(function($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nim', 'like', '%' . $search . '%')
+                    ->orWhere('angkatan', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('jalur_masuk', 'like', '%' . $search . '%');
+            })->get();
+        }
+
+        return view('departemen.daftarMahasiswa', ['daftarMhs' => $daftarMhs]);
     }
 }
