@@ -12,6 +12,7 @@ class LoginController extends Controller
     public function index()
     {
         $loginError = session('loginError');
+        
 
         return view('login', compact('loginError'));
     }
