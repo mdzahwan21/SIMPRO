@@ -76,7 +76,7 @@
     <div class="pb-4 bg-white dark:bg-gray-900">
         <div class="flex items-center justify-center">
             <div class="search-container flex items-center border border-gray-300 rounded-md overflow-hidden">
-                <form action="/search/mahasiswa/departemen" method="GET" class="flex items-center">
+                <form action="/search/mahasiswa/doswal" method="GET" class="flex items-center">
                     <input type="search" id="table-search" name="search" class="search-input outline-none flex-1
                     py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Search name or nim">
                     <svg class="search-icon w-4 h-4 text-gray-500 dark:text-gray-400 ml-2" aria-hidden="true"

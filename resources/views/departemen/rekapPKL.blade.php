@@ -35,12 +35,12 @@
                     @foreach ($latestYears as $year)
                         <td
                             class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
-                            <a href="{{ route('pkl.list.departemen', ['status_pkl' => 'belum', 'year' => $year]) }}"
+                            <a href="{{ route('belumpkl.list.departemen', ['angkatan' => $year]) }}"
                                 class="text-indigo-600 hover:underline">{{ $jumlahBelumLulusPKL[$year] ?? '0' }}</a>
                         </td>
                         <td
                             class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
-                            <a href="{{ route('pkl.list.departemen', ['status_pkl' => 'sudah', 'year' => $year]) }}"
+                            <a href="{{ route('sudahpkl.list.departemen', ['angkatan' => $year]) }}"
                                 class="text-indigo-600 hover:underline">{{ $jumlahSudahLulusPKL[$year] ?? '0' }}</a>
                         </td>
                     @endforeach

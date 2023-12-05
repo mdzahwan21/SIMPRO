@@ -78,64 +78,42 @@ class GeneratePDFController extends Controller
         return $pdf->download('rekap-pkl-mahasiswa.pdf');
     }
 
-
-    public function generatePDFListPKL(Request $request)
+    public function generatePDFSudahPKLDepartemen(int $angkatan)
     {
-        $year = $request->input('year'); // Get the year from the request
-
-        // Daftar mahasiswa yang sudah lulus PKL pada tahun tertentu
-        $mahasiswaSudahLulus = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
-            ->whereYear('mahasiswa.angkatan', $year)
-            ->whereNotNull('pkl.nilai')
-            ->select('mahasiswa.nama', 'mahasiswa.nim')
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
             ->get();
 
-        // Daftar mahasiswa yang belum lulus PKL pada tahun tertentu
-        $mahasiswaBelumLulus = Mahasiswa::whereNotExists(function ($query) use ($year) {
-            $query->select(DB::raw(1))
-                ->from('pkl')
-                ->whereRaw('pkl.nim = mahasiswa.nim')
-                ->whereYear('pkl.tgl_persetujuan', $year);
-        })
-            ->where('angkatan', $year) // I assume 'angkatan' here refers to the year of intake
-            ->select('nama', 'nim')
-            ->get();
-
-        // Render view cetakListPKL.blade.php ke dalam PDF
-        $pdf = PDF::loadView('departemen.cetakListPKL', [
-            'mahasiswaSudahLulus' => $mahasiswaSudahLulus,
-            'mahasiswaBelumLulus' => $mahasiswaBelumLulus,
-            'year' => $year,
+        $pdf = PDF::loadView('departemen.cetakSudahPKL', [
+            'pklData' => $pklData,
+            'angkatan' => $angkatan,
         ]);
 
-        // Download file PDF dengan nama 'daftar_PKL_mahasiswa.pdf'
-        return $pdf->download('daftar_PKL_mahasiswa.pdf');
+        return $pdf->download('list-mahasiswa-sudah-pkl.pdf');
     }
-    // public function generatePDFListPKL($tahun)
-    // {
-    //     // Ambil data mahasiswa yang sudah dan belum lulus PKL berdasarkan tahun
-    //     $mahasiswaSudahLulus = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
-    //         ->where('mahasiswa.angkatan', $tahun)
-    //         ->whereNotNull('pkl.nilai')
-    //         ->get();
 
-    //     $mahasiswaBelumLulus = Mahasiswa::whereNotExists(function ($query) use ($tahun) {
-    //         $query->select(DB::raw(1))
-    //             ->from('pkl')
-    //             ->whereRaw('pkl.nim = mahasiswa.nim')
-    //             ->where('mahasiswa.angkatan', $tahun);
-    //     })->where('angkatan', $tahun)
-    //         ->get();
+    public function generatePDFBelumPKLDepartemen(int $angkatan)
+    {
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+                        ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+                        ->whereNotNull('tgl_persetujuan')
+                        ->where('mahasiswa.angkatan', $angkatan)
+                        ->get();
 
-    //     // Render view cetakListPKL.blade.php ke dalam PDF
-    //     $pdf = PDF::loadView('departemen.cetakListPKL', [
-    //         'mahasiswaSudahLulus' => $mahasiswaSudahLulus,
-    //         'mahasiswaBelumLulus' => $mahasiswaBelumLulus,
-    //     ]);
+        $pklNIM = $pklData->pluck('nim')->toArray();
 
-    //     // Download file PDF dengan nama 'daftar_PKL_mahasiswa.pdf'
-    //     return $pdf->download('daftar_PKL_mahasiswa_' . $tahun . '.pdf');
-    // }
+        $belumPKL = Mahasiswa::where('angkatan', $angkatan)
+                    ->whereNotIn('nim', $pklNIM)
+                    ->get();
+        $pdf = PDF::loadView('departemen.cetakBelumPKL', [
+            'belumPKL' => $belumPKL,
+            'angkatan' => $angkatan,
+        ]);
+
+        return $pdf->download('list-mahasiswa-belum-pkl.pdf');
+    }
 
 
     function generatePDFSkripsi()
@@ -170,6 +148,40 @@ class GeneratePDFController extends Controller
         return $pdf->download('rekap-skripsi-mahasiswa.pdf');
     }
 
+    public function generatePDFSudahSkripsiDepartemen(int $angkatan)
+    {
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $pdf = PDF::loadView('departemen.cetakSudahSkripsi', [
+            'skripsiData' => $skripsiData,
+        ]);
+
+        return $pdf->download('list-mahasiswa-sudah-skripsi.pdf');
+    }
+
+    public function generatePDFBelumSkripsiDepartemen(int $angkatan)
+    {
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $skripsiNIM = $skripsiData->pluck('nim')->toArray();
+
+        $belumSkripsi = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotIn('nim', $skripsiNIM)
+            ->get();
+        $pdf = PDF::loadView('departemen.cetakBelumSkripsi', [
+            'belumSkripsi' => $belumSkripsi,
+        ]);
+
+        return $pdf->download('list-mahasiswa-belum-skripsi.pdf');
+    }
     function generatePDFDaftarMhs(Request $request)
     {
         $daftarMhs = Mahasiswa::all();
@@ -235,7 +247,43 @@ class GeneratePDFController extends Controller
         return $pdf->download('rekapPKL-Mahasiswa.pdf');
     }
 
-    function generatePDFSkripsiDoswal(){
+    public function generatePDFSudahPKLDoswal(int $angkatan)
+    {
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $pdf = PDF::loadView('doswal.cetakSudahPKL', [
+            'pklData' => $pklData,
+        ]);
+
+        return $pdf->download('list-mhs-perwalian-sudah-pkl.pdf');
+    }
+
+    public function generatePDFBelumPKLDoswal(int $angkatan)
+    {
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+                        ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+                        ->whereNotNull('tgl_persetujuan')
+                        ->where('mahasiswa.angkatan', $angkatan)
+                        ->get();
+
+        $pklNIM = $pklData->pluck('nim')->toArray();
+
+        $belumPKL = Mahasiswa::where('angkatan', $angkatan)
+                    ->whereNotIn('nim', $pklNIM)
+                    ->get();
+        $pdf = PDF::loadView('doswal.cetakBelumPKL', [
+            'belumPKL' => $belumPKL,
+        ]);
+
+        return $pdf->download('list-mhs-perwalian-belum-pkl.pdf');
+    }
+
+    function generatePDFSkripsiDoswal()
+    {
         $user = Auth::user();
         $latestYears = range(date('Y'), date('Y') - 6);
 
@@ -250,7 +298,7 @@ class GeneratePDFController extends Controller
                 ->count();
 
             $belumLulusCount = Mahasiswa::where('angkatan', $year)
-                ->where('nip_doswal', $user->id) 
+                ->where('nip_doswal', $user->id)
                 ->whereNotExists(function ($query) {
                     $query->select(DB::raw(1))
                         ->from('skripsi')
@@ -273,7 +321,43 @@ class GeneratePDFController extends Controller
         return $pdf->download('rekapSkripsi-Mahasiswa.pdf');
     }
 
-    function generatePDFListStatusDoswal(Request $request){
+    public function generatePDFSudahSkripsiDoswal(int $angkatan)
+    {
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $pdf = PDF::loadView('doswal.cetakSudahSkripsi', [
+            'skripsiData' => $skripsiData,
+        ]);
+
+        return $pdf->download('list-mhs-perwalian-sudah-skripsi.pdf');
+    }
+
+    public function generatePDFBelumSkripsiDoswal(int $angkatan)
+    {
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+                        ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+                        ->whereNotNull('tgl_persetujuan')
+                        ->where('mahasiswa.angkatan', $angkatan)
+                        ->get();
+
+        $skripsiNIM = $skripsiData->pluck('nim')->toArray();
+
+        $belumSkripsi = Mahasiswa::where('angkatan', $angkatan)
+                    ->whereNotIn('nim', $skripsiNIM)
+                    ->get();
+        $pdf = PDF::loadView('doswal.cetakBelumSkripsi', [
+            'belumSkripsi' => $belumSkripsi,
+        ]);
+
+        return $pdf->download('list-mhs-perwalian-belum-skripsi.pdf');
+    }
+
+    function generatePDFListStatusDoswal(Request $request)
+    {
         $status = $request->input('status');
         $angkatan = $request->input('angkatan');
 
@@ -289,6 +373,12 @@ class GeneratePDFController extends Controller
         ]);
 
         return $pdf->download('listStatus-Mahasiswa.pdf');
+
+    }
+
+    function generatePDFListPKLDoswal(Request $request)
+    {
+
 
     }
 

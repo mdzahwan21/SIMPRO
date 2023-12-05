@@ -138,8 +138,8 @@ class RekapProgressController extends Controller
         // Ambil data PKL yang diperlukan untuk rekap
         $latestYears = range(date('Y'), date('Y') - 6);
 
-        $jumlahSudahLulusPKL = [];
-        $jumlahBelumLulusPKL = [];
+        $jumlahSudahLulusPKLDoswal = [];
+        $jumlahBelumLulusPKLDoswal = [];
 
         foreach ($latestYears as $year) {
             $sudahLulusCount = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
@@ -159,14 +159,52 @@ class RekapProgressController extends Controller
                 ->count();
 
 
-            $jumlahSudahLulusPKL[$year] = $sudahLulusCount;
-            $jumlahBelumLulusPKL[$year] = $belumLulusCount;
+            $jumlahSudahLulusPKLDoswal[$year] = $sudahLulusCount;
+            $jumlahBelumLulusPKLDoswal[$year] = $belumLulusCount;
         }
 
         return view('doswal.rekapPKL', [
             'latestYears' => $latestYears,
-            'jumlahSudahLulusPKL' => $jumlahSudahLulusPKL,
-            'jumlahBelumLulusPKL' => $jumlahBelumLulusPKL,
+            'jumlahSudahLulusPKLDoswal' => $jumlahSudahLulusPKLDoswal,
+            'jumlahBelumLulusPKLDoswal' => $jumlahBelumLulusPKLDoswal,
+        ]);
+    }
+
+    public function listSudahPKLDoswal(int $angkatan)
+    {
+        $user = Auth::user();
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.nip_doswal', $user->id)
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        return view('doswal.daftarSudahPKL', [
+            'pklData' => $pklData,
+            'angkatan' => $angkatan,
+        ]);
+    }
+
+    public function listBelumPKLDoswal(int $angkatan)
+    {
+        $user = Auth::user();
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.nip_doswal', $user->id)
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $pklNIM = $pklData->pluck('nim')->toArray();
+
+        $belumPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotIn('nim', $pklNIM)
+            ->get();
+
+        return view('doswal.daftarBelumPKL', [
+            'belumPKL' => $belumPKL,
+            'angkatan' => $angkatan,
         ]);
     }
 
@@ -209,6 +247,45 @@ class RekapProgressController extends Controller
             'jumlahBelumLulusSkripsi' => $jumlahBelumLulusSkripsi,
         ]);
     }
+
+    public function listSudahSkripsiDoswal(int $angkatan)
+    {
+        $user = Auth::user();
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.nip_doswal', $user->id)
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        return view('doswal.daftarSudahSkripsi', [
+            'skripsiData' => $skripsiData,
+            'angkatan' => $angkatan,
+        ]);
+    }
+
+    public function listBelumSkripsiDoswal(int $angkatan)
+    {
+        $user = Auth::user();
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.nip_doswal', $user->id)
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $skripsiNIM = $skripsiData->pluck('nim')->toArray();
+
+        $belumSkripsi = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotIn('nim', $skripsiNIM)
+            ->get();
+
+        return view('doswal.daftarBelumSkripsi', [
+            'belumSkripsi' => $belumSkripsi,
+            'angkatan' => $angkatan,
+        ]);
+    }
+
 
     public function viewListStatus()
     {
@@ -294,55 +371,39 @@ class RekapProgressController extends Controller
         ]);
     }
 
-    // public function listSudahLulusPKLDepartemen($angkatan)
-    // {
-    //     $mahasiswaLulusPKL = Mahasiswa::whereHas('pkl', function ($query) {
-    //         $query->whereNotNull('tgl_persetujuan');
-    //     })->where('angkatan', $angkatan)->get();
-    
-    //     return view('departemen.ListSudahLulusPKL', compact('mahasiswaLulusPKL'));
-    // }
-
-    // public function listBelumLulusPKLDepartemen($angkatan)
-    // {
-    //     $mahasiswaBelumLulusPKL = Mahasiswa::whereDoesntHave('pkl', function ($query) {
-    //         $query->whereNotNull('tgl_persetujuan');
-    //     })->where('angkatan', $angkatan)->get();
-    
-    //     return view('departemen.ListBelumLulusPKL', compact('mahasiswaBelumLulusPKL'));
-    // }
-
-    public function pklListDepartemen(Request $request)
+    public function listSudahPKLDepartemen(int $angkatan)
     {
-        $year = $request->input('year'); // Get the year from the request
-        $statusPKL = $request->input('statusPKL');
-
-        // Daftar mahasiswa yang sudah lulus PKL pada tahun tertentu
-        $mahasiswaSudahLulus = pkl::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
-            ->whereYear('mahasiswa.angkatan', $year)
-            ->whereNotNull('pkl.nilai')
-            ->select('mahasiswa.nama', 'mahasiswa.nim')
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
             ->get();
 
-        // Daftar mahasiswa yang belum lulus PKL pada tahun tertentu
-        $mahasiswaBelumLulus = Mahasiswa::whereNotExists(function ($query) use ($year) {
-            $query->select(DB::raw(1))
-                ->from('pkl')
-                ->whereRaw('pkl.nim = mahasiswa.nim')
-                ->whereYear('pkl.tgl_persetujuan', $year);
-        })
-            ->where('angkatan', $year) // I assume 'angkatan' here refers to the year of intake
-            ->select('nama', 'nim')
-            ->get();
-
-        return view('departemen.resultListPkl', [
-            'mahasiswaSudahLulus' => $mahasiswaSudahLulus,
-            'mahasiswaBelumLulus' => $mahasiswaBelumLulus,
-            'year' => $year,
+        return view('departemen.daftarSudahPKL', [
+            'pklData' => $pklData,
+            'angkatan' => $angkatan,
         ]);
     }
 
+    public function listBelumPKLDepartemen(int $angkatan)
+    {
+        $pklData = PKL::join('mahasiswa', 'pkl.nim', '=', 'mahasiswa.nim')
+            ->select('pkl.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
 
+        $pklNIM = $pklData->pluck('nim')->toArray();
+
+        $belumPKL = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotIn('nim', $pklNIM)
+            ->get();
+
+        return view('departemen.daftarBelumPKL', [
+            'belumPKL' => $belumPKL,
+            'angkatan' => $angkatan,
+        ]);
+    }
 
     public function viewRekapSkripsiDepartemen()
     {
@@ -381,37 +442,39 @@ class RekapProgressController extends Controller
         ]);
     }
 
-    public function skripsiListDepartemen(Request $request)
+    public function listSudahSkripsiDepartemen(int $angkatan)
     {
-        $year = $request->input('year'); // Get the year from the request
-
-        // Daftar mahasiswa yang sudah lulus PKL pada tahun tertentu
-        $mahasiswaSudahLulus = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
-            ->whereYear('mahasiswa.angkatan', $year)
-            ->whereNotNull('skripsi.nilai')
-            ->select('mahasiswa.nama', 'mahasiswa.nim')
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
             ->get();
 
-        // Daftar mahasiswa yang belum lulus PKL pada tahun tertentu
-        $mahasiswaBelumLulus = Mahasiswa::whereNotExists(function ($query) use ($year) {
-            $query->select(DB::raw(1))
-                ->from('skripsi')
-                ->whereRaw('skripsi.nim = mahasiswa.nim')
-                ->whereYear('skripsi.tgl_persetujuan', $year);
-        })
-            ->where('angkatan', $year) // I assume 'angkatan' here refers to the year of intake
-            ->select('nama', 'nim')
-            ->get();
-
-        return view('departemen.resultListSkripsi', [
-            'mahasiswaSudahLulus' => $mahasiswaSudahLulus,
-            'mahasiswaBelumLulus' => $mahasiswaBelumLulus,
-            'year' => $year,
+        return view('departemen.daftarSudahSkripsi', [
+            'skripsiData' => $skripsiData,
+            'angkatan' => $angkatan,
         ]);
     }
 
-    public function viewListStatusDepartemen()
+    public function listBelumSkripsiDepartemen(int $angkatan)
     {
-        return view('departemen.rekListStatus');
+        $skripsiData = Skripsi::join('mahasiswa', 'skripsi.nim', '=', 'mahasiswa.nim')
+            ->select('skripsi.*', 'mahasiswa.angkatan', 'mahasiswa.nama')
+            ->whereNotNull('tgl_persetujuan')
+            ->where('mahasiswa.angkatan', $angkatan)
+            ->get();
+
+        $skripsiNIM = $skripsiData->pluck('nim')->toArray();
+
+        $belumSkripsi = Mahasiswa::where('angkatan', $angkatan)
+            ->whereNotIn('nim', $skripsiNIM)
+            ->get();
+
+        return view('departemen.daftarBelumSkripsi', [
+            'belumSkripsi' => $belumSkripsi,
+            'angkatan' => $angkatan,
+        ]);
     }
+
+
 }
