@@ -45,11 +45,11 @@
         <form class="space-y-4 md:space-y-6" action="/login" method="POST">
             @csrf
             <div>
-                <label for="email" class="form-label">
-                    Email
+                <label for="id" class="form-label">
+                    ID
                 </label>
-                <input type="email" name="email" id="email" class="form-input" placeholder="name@company.com" autofocus value="{{ old('email') }}">
-                @error('email')
+                <input type="id" name="id" id="id" class="form-input" placeholder="NIP/NIM" autofocus aria-placeholder="NIP/NIM" value="{{ old('id') }}">
+                @error('id')
                 <div class="red-alert" role="alert">
                     <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
@@ -63,7 +63,7 @@
             </div>
             <div>
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" placeholder="password" class="form-input">
+                <input type="password" name="password" id="password" placeholder="Password" class="form-input">
                 @error('password')
                 <div class="red-alert" role="alert">
                     <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
