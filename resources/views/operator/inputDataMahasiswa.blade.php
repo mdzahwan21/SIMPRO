@@ -21,7 +21,6 @@
                     <input type="text" id="nim" name="nim" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan NIM" required>
                 </div>
             </div>
-
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
                     <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -40,11 +39,9 @@
 
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
-                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status:</label>
-                    <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected disabled>Pilih Status</option>
-                        <option value="aktif">Aktif</option>
-                    </select>
+                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Status:</label>
+                    <input type="text" id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Aktif" disabled required>
                 </div>
             </div>
 
@@ -113,21 +110,15 @@
             </div>
 
             <div class="flex justify-center items-center mb-6">
-                <div class="w-full max-w-md">
-                    <label for="rolemahasiswa" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role:</label>
-                    <input type="rolemahasiswa" id="rolemahasiswa" name="rolemahasiswa" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="mahasiswa" disabled required>
-                </div>
-            </div>
-
-            <div class="flex justify-center items-center mb-6">
                 <button type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Generate</button>
             </div>
         </form>
-        <script>
-            function closeOverlay() {
-                var overlay = document.querySelector('.overlay');
-                overlay.style.display = 'none';
-            }
-        </script>
     </div>
+</div>
+<script>
+    function closeOverlay() {
+        var overlay = document.querySelector('.overlay');
+        overlay.style.display = 'none';
+    }
+</script>
 @endsection

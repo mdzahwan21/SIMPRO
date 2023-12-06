@@ -65,7 +65,7 @@ class InputMahasiswaController extends Controller
         users::create([
             'id' => $request->nim,
             'name' => $name,
-            'role' => $request->role,
+            'role' => "mahasiswa",
             'email' => $email,
             'password' => "12345",
             'email_verified_at' => now(),

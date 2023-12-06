@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\dosenwali;
+use App\Models\users;
 
 class InputDosenController extends Controller
 {
@@ -23,7 +24,7 @@ class InputDosenController extends Controller
     public function store(Request $request){
         // Validate the incoming request data
         $request->validate([
-            'nip' => 'required|unique:dosenwalis,nip',
+            'nip' => 'required|unique:dosenwali,nip',
             'nama' => 'required',
             'alamat' => 'required',
             'no_telepon' => 'required',
@@ -41,6 +42,19 @@ class InputDosenController extends Controller
             'alamat' => $request->alamat,
             'no_telepon' => $request->no_telepon,
             'foto' => $fotoPath,
+        ]);
+
+        $name = $request->nama;
+        $email = strtolower(str_replace(' ', '', $name)) . '@dosenwali.com';
+
+        users::create([
+            'id' => $request->nip,
+            'name' => $name,
+            'role' => "dosenwali",
+            'email' => $email,
+            'password' => "12345",
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ]);
 
         // Redirect back with a success message

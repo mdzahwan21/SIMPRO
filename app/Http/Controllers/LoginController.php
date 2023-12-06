@@ -19,7 +19,7 @@ class LoginController extends Controller
 
     public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('id', 'password');
 
 
         if (Auth::attempt($credentials)) {
@@ -28,7 +28,7 @@ class LoginController extends Controller
         }
 
         return back()
-            ->withInput($request->only('email'))
+            ->withInput($request->only('id'))
             ->with('loginError', 'Login gagal!');
     }
 
