@@ -1,4 +1,3 @@
-@extends('layouts.main')
 
 @section('content')
     <div class=" w-full p-4 space-y-2">
@@ -113,13 +112,10 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-
                         <label for="nama_doswal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Wali:</label>
-                        <select id="nama_doswal" name="nama_doswal"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
-                            <option selected disabled>Pilih Dosen wali</option>
-                            <option value="{{ $mahasiswa->nama_doswal }}" selected>{{ $mahasiswa->nama_doswal }}</option>
-                        </select>
+                        <input type="text" id="nama_doswal" name="nama_doswal"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value="{{ $mahasiswa->nama_doswal }}" readonly>
                     </div>
                 </div>
 

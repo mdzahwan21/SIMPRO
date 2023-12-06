@@ -10,30 +10,38 @@ use App\Models\departemen;
 use App\Models\dosenwali;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateProfileController extends Controller
-{
-    public function showProfile()
-    {
+class UpdateProfileController extends Controller {
+    public function completeProfile() {
+        $user = Auth::user();
+
+        if($user->role === 'mahasiswa' && $user->mahasiswa) {
+            if(empty($user->mahasiswa->no_telp)) {
+                return view('mahasiswa.completeProfile');
+            } else {
+                return redirect()->route('dashboard');
+            }
+        }
+    }
+
+    public function showProfile() {
         // Mengambil user yang sedang login
         $user = Auth::user();
-        $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
 
         // Mengambil data mahasiswa terkait dengan user yang sedang login
         $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
 
         // Memeriksa apakah data mahasiswa ditemukan
-        if ($mahasiswa) {
+        if($mahasiswa) {
             // Jika ditemukan, tampilkan view untuk mengupdate profil
             return view('mahasiswa.updateProfile', compact('user', 'mahasiswa'));
         } else {
             // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
             return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
-            return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
+            // return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
         }
     }
 
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         // Validasi data yang masuk dari formulir
         $request->validate([
             'jalur_masuk' => 'required',
@@ -41,174 +49,187 @@ class UpdateProfileController extends Controller
             'provinsi' => 'required',
             'kota_kab' => 'required',
             'alamat_detail' => 'required',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'required|image|mimes:jpg,png',
         ]);
-        // dd($request);
+
+        $foto = $request->file('foto');
+        $filePath = $foto->store('foto', 'public');
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $mahasiswa = $user->mahasiswa;
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
 
-        // Simpan ke dalam tabel mahasiswa
-        $mahasiswa->where('nim', $mahasiswa->nim)->update([
-            'jalur_masuk' => $request->jalur_masuk,
-            'no_telp' => $request->no_telp,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
-            'alamat_detail' => $request->alamat_detail,
-            'foto' => $request->foto,
-        ]);
+        if($mahasiswa) {
+            $nim = $mahasiswa->nim;
 
-        return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
+            $mahasiswa->update([
+                'jalur_masuk' => $request->input('jalur_masuk'),
+                'no_telp' => $request->input('no_telp'),
+                'provinsi' => $request->input('provinsi'),
+                'kota_kab' => $request->input('kota_kab'),
+                'alamat_detail' => $request->input('alamat_detail'),
+                'foto' => $filePath,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
+
+        } else {
+            // Handle jika mahasiswa null 
+            return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
+        }
     }
 
-    public function showProfileDoswal()
-    {
+    public function showProfileDoswal() {
         $user = Auth::user();
-        $dosenwali = Dosenwali::where('nip', $user->id)->first();;
+        $dosenwali = Dosenwali::where('nip', $user->id)->first();
+        ;
 
         // Menampilkan nilai variabel $user dan $mahasiswa
         // dd($user, $mahasiswa, 'After getting user and mahasiswa');
-    
-        if ($dosenwali) {
+
+        if($dosenwali) {
             return view('Doswal.updateProfile', compact('user', 'dosenwali'));
-        }
-        else {
+        } else {
             // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
             return redirect()->route('dashboard')->with('error', 'Data doswal tidak ditemukan.');
         }
     }
 
-    public function updateDoswal(Request $request)
-    {
+    public function updateDoswal(Request $request) {
         // Validasi data yang masuk dari formulir
         $request->validate([
-            'no_telp' => 'required|numeric',
-            'provinsi' => 'required',
-            'kota_kab' => 'required',
-            'alamat_detail' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'no_telepon' => 'required|numeric',
+            'alamat' => 'required',
+            'foto' => 'required|image|mimes:jpg,png',
         ]);
 
         $foto = $request->file('foto');
-        $fotoPath = $foto->store('foto', 'public');
-
-        dd($fotoPath);
+        $filePath = $foto->store('foto', 'public');
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $dosenwali = $user->dosenwalis;
+        $id = $user->id;
+        $dosenwali = Dosenwali::join('users', 'dosenwali.nip', '=', 'users.id')
+            ->where('nip', $id)
+            ->first();
 
-        // Simpan ke dalam tabel mahasiswa
-        // Simpan ke dalam tabel mahasiswa
-        $dosenwali->update([
-            'no_telp' => $request->no_telp,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
-            'alamat_detail' => $request->alamat_detail,
-            'foto' => $fotoPath
-        ]);
+        if($dosenwali) {
+            $nip = $dosenwali->nip;
 
-        return redirect()->route('dashboard')->with('success', 'Profil dosen wali berhasil diperbarui.');
+            $dosenwali->update([
+                'no_telepon' => $request->input('no_telepon'),
+                'alamat' => $request->input('alamat'),
+                'foto' => $filePath,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Profil dosenwali berhasil diperbarui.');
+
+        } else {
+            // Handle jika mahasiswa null 
+            return redirect()->route('dashboard')->with('error', 'Data dosenwali tidak ditemukan.');
+        }
     }
 
-    public function showProfileOperator()
-    {
+    public function showProfileOperator() {
         $user = Auth::user();
-        $operator = operator::where('nip', $user->id)->first();;
+        $operator = operator::where('nip', $user->id)->first();
 
         // Menampilkan nilai variabel $user dan $mahasiswa
         // dd($user, $mahasiswa, 'After getting user and mahasiswa');
-    
-        if ($operator) {
+
+        if($operator) {
             return view('operator.updateProfile', compact('user', 'operator'));
-        }
-        else {
+        } else {
             // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
             return redirect()->route('dashboard')->with('error', 'Data operator tidak ditemukan.');
         }
     }
 
-    public function updateOperator(Request $request)
-    {
-        // Validasi data yang masuk dari formulir
+    public function updateOperator(Request $request) {
         $request->validate([
-            'no_telp' => 'required|numeric',
-            'provinsi' => 'required',
-            'kota_kab' => 'required',
-            'alamat_detail' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'no_telepon' => 'required|numeric',
+            'alamat' => 'required',
+            'foto' => 'required|image|mimes:jpg,png',
         ]);
 
         $foto = $request->file('foto');
-        $fotoPath = $foto->store('foto', 'public');
-
-        dd($fotoPath);
+        $filePath = $foto->store('foto', 'public');
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $operator = $user->operator;
+        $id = $user->id;
+        $operator = Operator::join('users', 'operator.nip', '=', 'users.id')
+            ->where('nip', $id)
+            ->first();
 
-        // Simpan ke dalam tabel mahasiswa
-        // Simpan ke dalam tabel mahasiswa
-        $operator->update([
-            'no_telp' => $request->no_telp,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
-            'alamat_detail' => $request->alamat_detail,
-            'foto' => $fotoPath
-        ]);
+        if($operator) {
+            $nip = $operator->nip;
 
-        return redirect()->route('dashboard')->with('success', 'Profil operator berhasil diperbarui.');
+            $operator->update([
+                'no_telepon' => $request->input('no_telepon'),
+                'alamat' => $request->input('alamat'),
+                'foto' => $filePath,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Profil operator berhasil diperbarui.');
+
+        } else {
+            // Handle jika mahasiswa null 
+            return redirect()->route('dashboard')->with('error', 'Data operator tidak ditemukan.');
+        }
     }
 
-    public function showProfileDepartemen()
-    {
+    public function showProfileDepartemen() {
         $user = Auth::user();
-        $departemen = departemen::where('nip', $user->id)->first();;
+        $departemen = departemen::where('nip', $user->id)->first();
+        ;
 
         // Menampilkan nilai variabel $user dan $mahasiswa
         // dd($user, $mahasiswa, 'After getting user and mahasiswa');
-    
-        if ($departemen) {
+
+        if($departemen) {
             return view('departemen.updateProfile', compact('user', 'departemen'));
-        }
-        else {
+        } else {
             // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
             return redirect()->route('dashboard')->with('error', 'Data departemen tidak ditemukan.');
         }
     }
 
-    public function updateDepartemen(Request $request)
-    {
+    public function updateDepartemen(Request $request) {
         // Validasi data yang masuk dari formulir
         $request->validate([
-            'no_telp' => 'required|numeric',
-            'provinsi' => 'required',
-            'kota_kab' => 'required',
-            'alamat_detail' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'no_telepon' => 'required|numeric',
+            'alamat' => 'required',
+            'foto' => 'required|image|mimes:jpg,png',
         ]);
 
         $foto = $request->file('foto');
-        $fotoPath = $foto->store('foto', 'public');
-
-        dd($fotoPath);
+        $filePath = $foto->store('foto', 'public');
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $departemen = $user->departemen;
+        $id = $user->id;
+        $departemen = Departemen::join('users', 'departemen.nip', '=', 'users.id')
+            ->where('nip', $id)
+            ->first();
 
-        // Simpan ke dalam tabel mahasiswa
-        // Simpan ke dalam tabel mahasiswa
-        $departemen->update([
-            'no_telp' => $request->no_telp,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
-            'alamat_detail' => $request->alamat_detail,
-            'foto' => $fotoPath
-        ]);
+        if($departemen) {
+            $nip = $departemen->nip;
 
-        return redirect()->route('dashboard')->with('success', 'Profil departemen berhasil diperbarui.');
+            $departemen->update([
+                'no_telepon' => $request->input('no_telepon'),
+                'alamat' => $request->input('alamat'),
+                'foto' => $filePath,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Profil departemen berhasil diperbarui.');
+
+        } else {
+            // Handle jika mahasiswa null 
+            return redirect()->route('dashboard')->with('error', 'Data departemen tidak ditemukan.');
+        }
     }
 }

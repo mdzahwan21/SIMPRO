@@ -18,19 +18,28 @@ class LoginController extends Controller
     }
 
     public function authenticate(LoginRequest $request)
-    {
-        $credentials = $request->only('id', 'password');
+{
+    $credentials = $request->only('id', 'password');
 
+    
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
+        // $user = Auth::user();
 
-        return back()
-            ->withInput($request->only('id'))
-            ->with('loginError', 'Login gagal!');
+        // if ($user->role === 'mahasiswa' && $user->no_telp === null) {
+        //     return redirect()->route('completeProfile');
+        // }
+
+        return redirect()->intended('/dashboard');
     }
+
+    return back()
+        ->withInput($request->only('id'))
+        ->with('loginError', 'Login gagal!');
+}
+
+
 
     public function logout(Request $request)
     {

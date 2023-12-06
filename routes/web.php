@@ -32,6 +32,7 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('authentic
 Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/completeProfile', [UpdateProfileController::class, 'completeProfile'])->middleware(['auth'])->name('completeProfile');
 
 Route::get('/irs', [IrsController::class, 'index'])->middleware('auth')->name('irs');
 Route::post('/irs/store', [IrsController::class, 'store'])->name('irs.store');
@@ -78,24 +79,6 @@ Route::get('/departemen/updateProfile', [UpdateProfileController::class, 'showPr
 Route::post('/departemen/updateProfile', [UpdateProfileController::class, 'updateDepartemen'])->name('updateProfileDepartemen');
 
 
-// Route::get('/updateProfile', function () {
-//     $role = localStorage.getItem("role");
-  
-//     if ($role === "mahasiswa") {
-//       $href = "/mahasiswa/updateProfile";
-//     } else if ($role === "doswal") {
-//       $href = "/doswal/updateProfile";
-//     } else if ($role === "operator") {
-//       $href = "/operator/updateProfile";
-//     } else if ($role === "departemen") {
-//       $href = "/departemen/updateProfile";
-//     }
-  
-//     $updateProfileLink = "<a href='$href' class='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white' role='menuitem'>Update Profile</a>";
-  
-//     return Blade::render('headerRight', ['updateProfileLink' => $updateProfileLink]);
-//   });
-
 Route::get('/updateProfileDoswal', [UpdateProfileController::class, 'showProfileDoswal'])->middleware('auth')->name('updateProfileDoswal');
 Route::post('/updateProfileDoswal', [UpdateProfileController::class, 'updateDoswal'])->name('updateProfileDoswal');
 
@@ -105,8 +88,11 @@ Route::post('/updateProfileOperator', [UpdateProfileController::class, 'updateOp
 Route::get('/updateProfileDepartemen', [UpdateProfileController::class, 'showProfileDepartemen'])->middleware('auth')->name('updateProfileDepartemen');
 Route::post('/updateProfileDepartemen', [UpdateProfileController::class, 'updateDepartemen'])->name('updateProfileDepartemen');
 
-Route::get('/completeProfile', [UpdateProfileController::class, 'completeProfile'])->middleware('auth')->name('completeProfile');
-Route::post('/dashboard', [UpdateProfileController::class, 'complete'])->name('completeProfile');
+
+
+
+// Route::get('/completeProfileFirst', [UpdateProfileController::class, 'completeProfile'])->middleware('auth')->name('completeProfileFirst');
+// Route::post('/dashboard', [UpdateProfileController::class, 'complete'])->name('completeProfile');
 
 
 

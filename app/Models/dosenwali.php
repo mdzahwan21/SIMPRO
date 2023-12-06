@@ -9,7 +9,9 @@ class dosenwali extends Model
 {
     use HasFactory;
 
-    protected $table = 'dosen_wali';
+    protected $table = 'dosenwali';
+
+    protected $primaryKey = 'nip';
 
     protected $fillable = [
         'nip',
