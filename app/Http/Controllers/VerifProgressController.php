@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Irs;
+use App\Models\khs;
 use App\Models\mahasiswa;
+use App\Models\pkl;
+use App\Models\skripsi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -39,17 +42,41 @@ class VerifProgressController extends Controller
 
     public function viewListKHS()
     {
-        return view('doswal.verListKHS');
+        // Mendapatkan dosen wali yang sedang login
+        $user = Auth::user();
+
+        // Ambil semua KHS yang terkait dengan dosen wali yang sedang login
+        $khsAll = khs::whereHas('mahasiswa', function ($query) use ($user) {
+            $query->where('nip_doswal', $user->id);
+        })->get();
+
+        return view('doswal.verListKHS', ['khsAll' => $khsAll]);
     }
 
     public function viewListPKL()
     {
-        return view('doswal.verListPKL');
+        // Mendapatkan dosen wali yang sedang login
+        $user = Auth::user();
+
+        // Ambil semua PKL yang terkait dengan dosen wali yang sedang login
+        $pklAll = pkl::whereHas('mahasiswa', function ($query) use ($user) {
+            $query->where('nip_doswal', $user->id);
+        })->get();
+
+        return view('doswal.verListPKL', ['pklAll' => $pklAll]);
     }
 
     public function viewListSkripsi()
     {
-        return view('doswal.verListSkripsi');
+        // Mendapatkan dosen wali yang sedang login
+        $user = Auth::user();
+
+        // Ambil semua PKL yang terkait dengan dosen wali yang sedang login
+        $skripsiAll = skripsi::whereHas('mahasiswa', function ($query) use ($user) {
+            $query->where('nip_doswal', $user->id);
+        })->get();
+
+        return view('doswal.verListSkripsi', ['skripsiAll' => $skripsiAll]);
     }
 
     // public function index()

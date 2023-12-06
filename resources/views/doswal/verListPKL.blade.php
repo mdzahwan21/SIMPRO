@@ -1,24 +1,88 @@
 @extends('doswal.verifikasiProgress')
 
 @section('progress')
-    <tr>
-        <td class="border text-center p-2">M Amin</td>
-        <td class="border text-center p-2">2406012111277</td>
-        <td class="border text-center p-2">2022</td>
-        <td class="flex border justify-center p-2">
-            <a href="/verifikasi-progress/verifyKHS"
-                class="text-white bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Cek
-                PKL</a>
-        </td>
-    </tr>
-    <tr>
-        <td class="border text-center p-2">Mochammad Dzahwan Fadhloly</td>
-        <td class="border text-center p-2">24060121140168</td>
-        <td class="border text-center p-2">2021</td>
-        <td class="flex border p-2">
-            <div
-                class="text-gray-900 bg-green-300 focus:ring-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:focus:ring-gray-700 dark:border-gray-700">
-                DISETUJUI </div>
-        </td>
-    </tr>
+    @foreach ($pklAll as $data)
+        <tr>
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                @if ($data->mahasiswa)
+                    {{ $data->mahasiswa->nama }}
+                @else
+                    Mahasiswa tidak ditemukan
+                @endif
+            </td>
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                @if ($data->mahasiswa)
+                    {{ $data->mahasiswa->nim }}
+                @else
+                    -
+                @endif
+            </td>
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                @if ($data->mahasiswa)
+                    {{ $data->mahasiswa->angkatan }}
+                @else
+                    -
+                @endif
+            </td>
+            <td class="filter-status px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                @if ($data->mahasiswa && $data->tgl_persetujuan !== null)
+                    <span 
+                        class="bg-green-300 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">DISETUJUI</span>
+                @elseif ($data->mahasiswa && $data->tgl_persetujuan === null)
+                    <span
+                        class="bg-yellow-300 text-yellow-700 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-700 dark:text-yellow-300">MENUNGGU</span>
+                @else
+                    -
+                @endif
+            </td>
+            <td class="flex items-center justify-center px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                @if ($data->mahasiswa && $data->tgl_persetujuan === null)
+                    <button data-modal-target="verifikasi-PKL" data-modal-toggle="verifikasi-PKL" data="{{ $data }}"
+                        class="text-white
+                                  bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4
+                                  focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
+                                  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700
+                                  dark:border-gray-700">Verifikasi
+                    </button>
+                    @include('doswal.verifikasiPKL')
+                @else
+                    -
+                @endif
+            </td>
+        </tr>
+    @endforeach
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Ambil elemen select dan tabel
+            var statusFilter = document.getElementById("filter-verifikasi-status");
+            var verifikasiTable = document.getElementById("tabel-verifikasi");
+
+            // Event listener untuk perubahan pada elemen select
+            statusFilter.addEventListener("change", function() {
+                // Ambil nilai status terpilih
+                var selectedStatus = statusFilter.value;
+
+                // Ambil semua baris (tr) dalam tabel kecuali baris pertama (thead)
+                var rows = verifikasiTable.querySelectorAll("tbody tr");
+
+                // Iterasi melalui baris dan sembunyikan/munculkan sesuai status terpilih
+                rows.forEach(function(row) {
+
+                    var statusCell = row.querySelector(
+                        ".filter-status"
+                    ); // Sesuaikan dengan kelas yang sesuai dengan status
+                    console.log(statusCell)
+                    var rowStatus = statusCell.textContent.toLowerCase().trim();
+                    // console.log(rowStatus)
+
+                    if (rowStatus === selectedStatus) {
+                        row.style.display = ""; // Munculkan baris
+                    } else {
+                        row.style.display = "none"; // Sembunyikan baris
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -3,30 +3,30 @@
 @section('progress')
     @foreach ($irsSemua as $data)
         <tr>
-            <td class="border text-center p-2">
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium ">
                 @if ($data->mahasiswa)
                     {{ $data->mahasiswa->nama }}
                 @else
                     Mahasiswa tidak ditemukan
                 @endif
             </td>
-            <td class="border text-center p-2">
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
                 @if ($data->mahasiswa)
                     {{ $data->mahasiswa->nim }}
                 @else
                     -
                 @endif
             </td>
-            <td class="border text-center p-2">
+            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
                 @if ($data->mahasiswa)
                     {{ $data->mahasiswa->angkatan }}
                 @else
                     -
                 @endif
             </td>
-            <td class="filter-status border text-center p-2">
+            <td class="filter-status px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
                 @if ($data->mahasiswa && $data->tgl_persetujuan !== null)
-                    <span 
+                    <span
                         class="bg-green-300 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">DISETUJUI</span>
                 @elseif ($data->mahasiswa && $data->tgl_persetujuan === null)
                     <span
@@ -35,20 +35,21 @@
                     -
                 @endif
             </td>
-            <td class="flex border justify-center p-2">
+            <td
+                class="flex items-center justify-center px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium2">
                 @if ($data->mahasiswa && $data->tgl_persetujuan === null)
                     <button data-modal-target="verifikasi-IRS" data-modal-toggle="verifikasi-IRS" data="{{ $data }}"
-                        class="text-white
-                                  bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4
-                                  focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
-                                  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700
-                                  dark:border-gray-700">Verifikasi
+                        class="text-white bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4
+                                focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
+                                dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                        Verifikasi
                     </button>
                     @include('doswal.verifikasiIRS')
                 @else
                     -
                 @endif
             </td>
+
         </tr>
     @endforeach
 

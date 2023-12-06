@@ -32,6 +32,7 @@
                         </section>
                         <section x-show="filterOpen" class="filter flex space-x-4">
                             @include('components.statusVerifikasiFilter')
+                            @include('components.dateFilter')
                         </section>
                     </div>
                     <section class="tabel-verifikasi m-4">
