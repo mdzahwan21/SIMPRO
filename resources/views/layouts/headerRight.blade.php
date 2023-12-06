@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Auth;
+@endphp
+
 <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
     {{ auth()->user()->email }}
 </p>
@@ -7,7 +11,7 @@
             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             aria-expanded="false" data-dropdown-toggle="dropdown-user">
             <span class="sr-only">Open user menu</span>
-            <img class="w-8 h-8 rounded-full" src='https://i.pinimg.com/564x/e8/83/df/e883df041b51d3a21990a60dc1a5c845.jpg'
+            <img class="w-8 h-8 rounded-full" src="http://127.0.0.1:8000/storage/profile2.jpg"
                 alt="user photo">
         </button>
     </div>
@@ -23,14 +27,29 @@
         </div>
         <ul class="py-1" role="none">
             <li>
-                <a href="/updateProfile"
+                @if (auth::user()->role === 'mahasiswa')
+                    <a href="{{ route('updateProfile') }}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem">Update Profile</a>
+                @elseif (auth::user()->role === 'dosenwali')
+                    <a href="{{ route('updateProfileDoswal') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    role="menuitem">Update Profile</a>
+                @elseif (auth::user()->role === 'operator')
+                    <a href="{{ route('updateProfileOperator') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    role="menuitem">Update Profile</a>
+                @elseif (auth::user()->role === 'departemen')
+                    <a href="{{ route('updateProfileDepartemen') }}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                    role="menuitem">Update Profile</a>
+                @endif
             </li>
+
+
             <li>
                 <form action="/logout" method="post"
-                    class="block h-full px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-gray-300
-dark:hover:bg-gray-600 dark:hover:text-red"
+                    class="block h-full px-4 py-2 text-sm text-red-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-red"
                     role="menuitem">
                     @csrf
                     <button type="submit" class="h-full w-full text-left">Log out</button>

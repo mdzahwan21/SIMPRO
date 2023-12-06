@@ -1,4 +1,4 @@
-@extends('Doswal.navbar')
+@extends('Operator.navbar')
 
 @section('content')
     <div class=" w-full p-4 space-y-2">
@@ -9,7 +9,7 @@
         </div>
 
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-            <form class="flex flex-col w-full" method="POST" action="{{ route('updateProfileDoswal') }}" enctype="multipart/form-data">
+            <form class="flex flex-col w-full" method="POST" action="{{ route('updateProfileOperator') }}" enctype="multipart/form-data">
                 @csrf
                 @if (session('success'))
                     <div class="p-4 bg-green-100 text-green-800 rounded-lg mb-4 text-center">
@@ -36,7 +36,7 @@
                     <div class="w-full max-w-md">
                         <label for="nip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             NIP:</label>
-                        <input type="text" id="nip" pattern="[0-9]+ value=" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan NIP" required readonly value="{{ $dosenwali->nip }}">
+                        <input type="text" id="nip" pattern="[0-9]+ value=" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan NIP" required readonly value="{{ $operator->nip }}">
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                     <div class="w-full max-w-md">
                         <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Nama:</label>
-                        <input type="text" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama" required readonly value="{{ $dosenwali->nama }}">
+                        <input type="text" id="nama" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama" required readonly value="{{ $operator->nama }}">
                     </div>
                 </div>
 
