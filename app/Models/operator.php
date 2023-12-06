@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class operator extends Model
 {
+    protected $table = 'operator';
     use HasFactory;
 
     protected $fillable = [

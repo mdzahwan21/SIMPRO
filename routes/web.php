@@ -57,22 +57,30 @@ Route::post('/skripsi/store', [SkripsiController::class, 'store'])->name('skrips
 Route::get('/skripsi/rekapSkripsi', [SkripsiController::class, 'rekap'])->name('skripsi.rekap');
 
 Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middleware('auth')->name('inputmahasiswa');
-Route::post('/inputmahasiswa/store', [InputMahasiswaController::class, 'store'])
-    ->middleware('auth')
-    ->name('inputmahasiswa.store');
+Route::post('/inputmahasiswa/store', [InputMahasiswaController::class, 'store'])->middleware('auth')->name('inputmahasiswa.store');
 
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
-Route::post('/inputdosen/store', [InputDosenController::class, 'store'])
-    ->middleware('auth')
-    ->name('inputdosen.store');
+Route::post('/inputdosen/store', [InputDosenController::class, 'store'])->middleware('auth')->name('inputdosen.store');
 
-    Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
-Route::post('import/store', [ImportData::class, 'store'])
-    ->middleware('auth')
-    ->name('import.store');
+Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
+Route::post('import/store', [ImportData::class, 'store'])->middleware('auth')->name('import.store');
 
 Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
 Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
+
+Route::get('/updateProfileDoswal', [UpdateProfileController::class, 'showProfileDoswal'])->middleware('auth')->name('updateProfileDoswal');
+Route::post('/updateProfileDoswal', [UpdateProfileController::class, 'updateDoswal'])->name('updateProfileDoswal');
+
+Route::get('/updateProfileOperator', [UpdateProfileController::class, 'showProfileOperator'])->middleware('auth')->name('updateProfileOperator');
+Route::post('/updateProfileOperator', [UpdateProfileController::class, 'updateOperator'])->name('updateProfileOperator');
+
+Route::get('/updateProfileDepartemen', [UpdateProfileController::class, 'showProfileDepartemen'])->middleware('auth')->name('updateProfileDepartemen');
+Route::post('/updateProfileDepartemen', [UpdateProfileController::class, 'updateDepartemen'])->name('updateProfileDepartemen');
+
+Route::get('/completeProfile', [UpdateProfileController::class, 'completeProfile'])->middleware('auth')->name('completeProfile');
+Route::post('/dashboard', [UpdateProfileController::class, 'complete'])->name('completeProfile');
+
+
 
 Route::get('/verifikasi-progress/list-KHS', [VerifProgressController::class, 'viewListKHS'])->middleware('auth')->name('list.KHS');
 Route::get('/verifikasi-progress/list-PKL', [VerifProgressController::class, 'viewListPKL'])->middleware('auth')->name('list.PKL');

@@ -22,10 +22,6 @@
                         class="px-4 py-2 bg-gray-200 border-2 border-gray-300 text-center text-xs font-medium text-gray-500 uppercase">
                         Angkatan
                     </th>
-                    <th
-                        class="px-4 py-2 bg-gray-200 border-2 border-gray-300 text-center text-xs font-medium text-gray-500 uppercase">
-                        Nilai
-                    </th>
                 </tr>
             </thead>
             <tbody class="bg-white">
@@ -39,9 +35,6 @@
                         </td>
                         <td class="px-4 py-2 border border-gray-300 text-center text-sm text-gray-500">
                             {{ $data->angkatan }}
-                        </td>
-                        <td class="px-4 py-2 border border-gray-300 text-center text-sm text-gray-500">
-                            {{ $data->nilai }}
                         </td>
                     </tr>
                 @endforeach

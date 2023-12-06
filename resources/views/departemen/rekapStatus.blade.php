@@ -20,7 +20,7 @@
             </thead>
 
             <tbody class="bg-white">
-                @foreach(['Aktif', 'Cuti', 'Mangkir', 'Undur Diri', 'Meninggal Dunia', 'Drop Out', 'Lulus'] as $status)
+                @foreach(['aktif', 'cuti', 'mangkir', 'undur diri', 'meninggal dunia', 'drop out', 'lulus'] as $status)
                     <tr>
                         <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
                             {{ $status }}
