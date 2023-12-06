@@ -9,6 +9,8 @@ class operator extends Model
 {
     use HasFactory;
 
+    protected $table = 'operator';
+
     protected $fillable = [
         'nama',
         'nip',

@@ -14,12 +14,20 @@ class DashboardController extends Controller
 
         // Memeriksa peran pengguna
         if ($user->role === 'mahasiswa') {
-            return view('mahasiswa.dashboard');
-        } if ($user->role === 'operator') {
+            if ($user->mahasiswa && $user->mahasiswa->no_telp == null) {
+                // return redirect()->route('updateProfile')->with('success', 'Login berhasil');
+                return view('mahasiswa.dashboard');
+            } else {
+                // return redirect()->route('dashboard')->with('success', 'Login berhasil');
+                return view('mahasiswa.dashboard');
+            }
+        }
+        // Check for other user roles and redirect accordingly
+        else if ($user->role === 'operator') {
             return view('operator.dashboard');
-        } if ($user->role === 'dosenwali') {
+        } else if ($user->role === 'dosenwali') {
             return view('doswal.dashboard');
-        } if ($user->role === 'departemen') {
+        } else if ($user->role === 'departemen') {
             return view('departemen.dashboard');
         }
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreirsRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class IrsController extends Controller
 {
@@ -27,31 +28,48 @@ class IrsController extends Controller
 
         $fileIrs = $request->file('file_input');
         $filePath = $fileIrs->store('irs', 'public');
+        
+        $user = Auth::user();
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
 
-        $nim = Auth::user()->mahasiswa->nim;
+        // Periksa apakah mahasiswa tidak null sebelum mengakses nim
+        if ($mahasiswa) {
+            $nim = $mahasiswa->nim;
 
-        Irs::create([
-            'smt_aktif' => $request->input('smt_aktif'),
-            'jumlah_sks' => $request->input('sks'),
-            'file' => $filePath, 
-            'nim' => $nim,
-        ]);
+            Irs::create([
+                'smt_aktif' => $request->input('smt_aktif'),
+                'jumlah_sks' => $request->input('sks'),
+                'file' => $filePath, 
+                'nim' => $nim,
+            ]);
 
-        return redirect()->route('irs')->with('success', 'Data IRS berhasil disimpan.');
+            return redirect()->route('irs')->with('success', 'Data IRS berhasil disimpan.');
+        }
+        else {
+            // Handle jika mahasiswa null 
+            return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
+        }
     }
 
-    public function rekap()
+
+    public function rekap(Request $request)
     {
-        $dataIrs = Irs::all();
+        $user = $request->user();
+        $id = $request->user()->id;
 
-        return view('Mahasiswa.rekapIrs', compact('dataIrs'));
+        $dataIrs = IRS::where('nim', $id)->get();
+
+        return view('Mahasiswa.rekapIrs', compact('user', 'dataIrs'));
     }
 
-    public function hapus($id)
-    {
-        // Irs::destroy($id);
-        // return redirect()->route('Mahasiswa.rekapIrs')->with('success', 'Data IRS berhasil dihapus.');
-    }
+    // public function hapus($id)
+    // {
+    //     // Irs::destroy($id);
+    //     // return redirect()->route('Mahasiswa.rekapIrs')->with('success', 'Data IRS berhasil dihapus.');
+    // }
 
     public function update($id)
     {

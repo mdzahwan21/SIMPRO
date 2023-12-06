@@ -20,36 +20,45 @@ class SkripsiController extends Controller
     {
         $request->validate([
             'smt_aktif' => 'required|numeric|min:1|max:14',
-            'smt_lulus' => 'numeric|min:1|max:14',
-            'nilai' => 'numeric|between:1,4',
-            'tgl_lulus' => 'date|date_format:Y-m-d', 
-            'file_input' => 'file|mimes:pdf',
+            'smt_lulus' => 'required|numeric|min:1|max:14',
+            'nilai' => 'required|regex:/^[A-E]$/',
+            'tgl_lulus' => 'required|date|date_format:Y-m-d', 
+            'file_input' => 'required|mimes:pdf',
         ]);
 
         $fileSkripsi = $request->file('file_input');
         $filePath = $fileSkripsi->store('skripsi', 'public');
-
-        $nim = Auth::user()->mahasiswa->nim;
-
-        Skripsi::create([
-            'smt_aktif' => $request->input('smt_aktif'),
-            'smt_lulus' => $request->input('smt_lulus'),
-            'nilai' => $request->input('nilai'),
-            'tgl_lulus' => $request->input('tgl_lulus'),
-            'file' => $filePath, 
-            'nim' => $nim,
-        ]);
+        $user = Auth::user();
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
         
-        return redirect()->route('skripsi')->with('success', 'Data Skripsi berhasil disimpan.');
+        if ($mahasiswa) {
+            $nim = $mahasiswa->nim;
+
+            Skripsi::create([
+                'smt_aktif' => $request->input('smt_aktif'),
+                'smt_lulus' => $request->input('smt_lulus'),
+                'nilai' => $request->input('nilai'),
+                'tgl_lulus' => $request->input('tgl_lulus'),
+                'file' => $filePath, 
+                'nim' => $nim,
+            ]);
+        
+            return redirect()->route('skripsi')->with('success', 'Data Skripsi berhasil disimpan.');
+        }
     }
 
-    public function rekap()
+    public function rekap(Request $request)
     {
-        $dataSkripsi = Skripsi::all();
+        $user = $request->user();
+        $id = $request->user()->id;
 
-        return view('Mahasiswa.rekapSkripsi', compact('dataSkripsi'));
+        $dataSkripsi = Skripsi::where('nim', $id)->get();
+
+        return view('Mahasiswa.rekapSkripsi', compact('user', 'dataSkripsi'));
     }
-
 
     // public function verifikasi(int $id)
     // {

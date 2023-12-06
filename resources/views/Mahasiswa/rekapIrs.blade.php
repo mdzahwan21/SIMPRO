@@ -1,17 +1,21 @@
+@php
+    use Illuminate\Support\Facades\Request;
+@endphp
+
 @extends('Mahasiswa.navbar')
 
 @section('content')
     <div class="w-full p-4 space-y-2">
         <div class="position-fixed flex w-full p-1 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
-                <a href="/irs" class="inputIrs">
+                <a href="/irs" class="inputIrs {{ Request::is('irs') ? 'active' : '' }}">
                     <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <strong>ENTRY IRS</strong>
+                        <span>ENTRY IRS</span>
                     </button>
                 </a>
-                <a href="/irs/rekapIrs" class="rekapIrs">
+                <a href="/irs/rekapIrs" class="rekapIrs {{ Request::is('irs/rekapIrs') ? 'active' : '' }}">
                     <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <strong>REKAP IRS</strong>
+                        <span>REKAP IRS</span>
                     </button>
                 </a>
             </div>
@@ -22,11 +26,16 @@
                 REKAP DATA IRS
             </p>
         </div>
+        @if (session('error'))
+            <div class="p-4 bg-red-100 text-red-800 rounded-lg mb-4 text-center">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
             <div class="w-full">
 
-                @if(count($dataIrs) > 0)
+                @if(!is_null($dataIrs) && count($dataIrs) > 0)
                     <table class="w-full border border-gray-300">
                         <thead>
                             <tr>
@@ -57,7 +66,7 @@
                         </tbody>
                     </table>
                 @else
-                    <p class="text-center">Tidak ada data IRS yang tersedia.</p>
+                    <p class="text-center">Tidak ada data KHS yang tersedia.</p>
                 @endif
             </div>
         </div>

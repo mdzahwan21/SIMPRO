@@ -1,17 +1,21 @@
+@php
+    use Illuminate\Support\Facades\Request;
+@endphp
+
 @extends('Mahasiswa.navbar')
 
 @section('content')
     <div class="w-full p-4 space-y-2">
         <div class="position-fixed flex w-full p-1 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
-                <a href="/irs" class="inputIrs">
+                <a href="/irs" class="inputIrs {{ Request::is('irs') ? 'active' : '' }}">
                     <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <strong>Entry IRS</strong>
+                        <span>ENTRY IRS</span>
                     </button>
                 </a>
-                <a href="/irs/rekapIrs" class="rekapIrs">
+                <a href="/irs/rekapIrs" class="rekapIrs {{ Request::is('irs/rekapIrs') ? 'active' : '' }}">
                     <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <strong>Rekap IRS</strong>
+                        <span>REKAP IRS</span>
                     </button>
                 </a>
             </div>

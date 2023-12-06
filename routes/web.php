@@ -58,8 +58,36 @@ Route::get('/inputmahasiswa', [InputMahasiswaController::class, 'index'])->middl
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
 
-Route::get('/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
-Route::post('/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
+Route::get('/mahasiswa/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
+Route::post('/mahasiswa/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
+
+Route::get('/doswal/updateProfile', [UpdateProfileController::class, 'showProfileDoswal'])->middleware('auth')->name('updateProfileDoswal');
+Route::post('/doswal/updateProfile', [UpdateProfileController::class, 'updateDoswal'])->name('updateProfileDoswal');
+
+Route::get('/operator/updateProfile', [UpdateProfileController::class, 'showProfileOperator'])->middleware('auth')->name('updateProfileOperator');
+Route::post('/operator/updateProfile', [UpdateProfileController::class, 'updateOperator'])->name('updateProfileOperator');
+
+Route::get('/departemen/updateProfile', [UpdateProfileController::class, 'showProfileDepartemen'])->middleware('auth')->name('updateProfileDepartemen');
+Route::post('/departemen/updateProfile', [UpdateProfileController::class, 'updateDepartemen'])->name('updateProfileDepartemen');
+
+
+// Route::get('/updateProfile', function () {
+//     $role = localStorage.getItem("role");
+  
+//     if ($role === "mahasiswa") {
+//       $href = "/mahasiswa/updateProfile";
+//     } else if ($role === "doswal") {
+//       $href = "/doswal/updateProfile";
+//     } else if ($role === "operator") {
+//       $href = "/operator/updateProfile";
+//     } else if ($role === "departemen") {
+//       $href = "/departemen/updateProfile";
+//     }
+  
+//     $updateProfileLink = "<a href='$href' class='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white' role='menuitem'>Update Profile</a>";
+  
+//     return Blade::render('headerRight', ['updateProfileLink' => $updateProfileLink]);
+//   });
 
 Route::get('/verifikasi-progress/list-KHS', [VerifProgressController::class, 'viewListKHS'])->middleware('auth')->name('list.KHS');
 Route::get('/verifikasi-progress/list-PKL', [VerifProgressController::class, 'viewListPKL'])->middleware('auth')->name('list.PKL');
