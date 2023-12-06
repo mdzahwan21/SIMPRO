@@ -11,7 +11,7 @@
             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
             aria-expanded="false" data-dropdown-toggle="dropdown-user">
             <span class="sr-only">Open user menu</span>
-            <img class="w-8 h-8 rounded-full" src="http://127.0.0.1:8000/storage/profile2.jpg"
+            <img class="w-8 h-8 rounded-full" src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Foto Profil"
                 alt="user photo">
         </button>
     </div>

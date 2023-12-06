@@ -2,6 +2,14 @@
 
 @section('tabel')
     <div class="rekap-list m-4">
+        @if(isset($status))
+        <a 
+        href="{{ route('cetak.ListStatusDoswal', ['status' => $status, 'angkatan' => $angkatan]) }}" 
+            class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            Cetak PDF
+        </a>
+        <br><br>
+        @endif
         <table class="min-w-full">
             <thead>
                 <tr>

@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\mahasiswa;
-use App\Models\dosenwali;
 use App\Models\operator;
 use App\Models\departemen;
+use App\Models\dosenwali;
 use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileController extends Controller
@@ -16,6 +16,7 @@ class UpdateProfileController extends Controller
     {
         // Mengambil user yang sedang login
         $user = Auth::user();
+        $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
 
         // Mengambil data mahasiswa terkait dengan user yang sedang login
         $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
@@ -27,6 +28,7 @@ class UpdateProfileController extends Controller
         } else {
             // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
             return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
+            return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
         }
     }
 
@@ -95,7 +97,7 @@ class UpdateProfileController extends Controller
 
         // Dapatkan mahasiswa yang sedang login
         $user = Auth::user();
-        $dosenwali = $user->dosen_wali;
+        $dosenwali = $user->dosenwalis;
 
         // Simpan ke dalam tabel mahasiswa
         // Simpan ke dalam tabel mahasiswa

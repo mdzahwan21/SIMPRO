@@ -181,13 +181,12 @@
                         </div>
 
                         <div class="flex flex-col items-center pb-10">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image" />
+                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Foto Profil" alt="Profile" />
                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                                 {{ auth()->user()->name }}
                             </h5>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
-                                {{ auth()->user()->id }}
+                                {{ optional(auth()->user()->mahasiswa)->nim }}
                             </span>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ auth()->user()->email }}

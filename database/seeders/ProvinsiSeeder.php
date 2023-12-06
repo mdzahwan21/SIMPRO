@@ -13,7 +13,7 @@ class ProvinsiSeeder extends Seeder
      */
     public function run(): void
     {
-        $count = 10;
+        $count = 5;
 
         provinsi::factory()->count($count)->create();
     }

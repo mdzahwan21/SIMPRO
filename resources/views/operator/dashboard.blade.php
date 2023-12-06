@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center pb-10">
-                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src='http://127.0.0.1:8000/storage/profile2.jpg' alt="Profile Pic" />
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src='https://i.pinimg.com/564x/e8/83/df/e883df041b51d3a21990a60dc1a5c845.jpg' alt="Profile Pic" />
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ auth()->user()->name }}</h5>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->id }}</span>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->email }}</span>

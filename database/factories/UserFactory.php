@@ -30,8 +30,8 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'role' => $role,
             'email' => strtolower($this->faker->firstName) . "@$role.com",
-            'email_verified_at' => now(),
             'password' => '12345',
+            'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
 

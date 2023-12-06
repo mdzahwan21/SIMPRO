@@ -1,41 +1,41 @@
 @extends('departemen.rekap')
 
 @section('tabel')
-<div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-    <a href="/generatePDF" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cetak PDF</a>
-    <table class="min-w-full">
-        <thead>
-            <tr>
-                @php
-                $currentYear = date('Y');
-                @endphp
-                @for ($year = $currentYear - 6; $year <= $currentYear; $year++)
-                    <th colspan="7">{{ $year }}</th>
-                @endfor
-            </tr>
-            <tr>
-                @for ($year = $currentYear - 6; $year <= $currentYear; $year++)
-                    <th>Aktif</th>
-                    <th>Cuti</th>
-                    <th>Mangkir</th>
-                    <th>DO</th>
-                    <th>Undur Diri</th>
-                    <th>Lulus</th>
-                    <th>Meninggal Dunia</th>
-                @endfor
-            </tr>
-        </thead>
-        {{-- <tbody>
-            <td>
-                @if($jumlahAktif[$year] >= 0)
-                    <div class="btn btn-primary">
-                        {{ $jumlahAktif[$year] }}
-                    </div>
-                @endif
-            </td>
-        </tbody> --}}
-    </table>
-</div>
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <a href="/generatePDF" class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            Cetak PDF
+        </a>
+        <table class="min-w-full mt-4 border-collapse border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="px-4 py-3 border border-gray-200 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                    </th>
+                    @foreach($latestYears as $year)
+                        <th class="px-4 py-3 border border-gray-200 bg-gray-50 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ $year }}
+                        </th>
+                    @endforeach
+                </tr>
+            </thead>
+
+            <tbody class="bg-white">
+                @foreach(['aktif', 'cuti', 'mangkir', 'undur diri', 'meninggal dunia', 'drop out', 'lulus'] as $status)
+                    <tr>
+                        <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500 font-medium">
+                            {{ $status }}
+                        </td>
+                        @foreach($latestYears as $year)
+                            <td class="px-4 py-3 border border-gray-200 text-center text-sm text-gray-500">
+                                <?php
+                                    $count = $allmahasiswa->where('status', $status)->where('angkatan', $year)->count();
+                                    echo '<a href="' . route('mahasiswa.list.departemen', ['status' => $status, 'angkatan' => $year]) . '" class="text-indigo-600 hover:underline">' . ($count > 0 ? $count : '0') . '</a>';
+                                ?>
+                            </td>
+                        @endforeach
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
-{{-- <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 overflow-y-auto sm:-my-6 sm:py-6 lg:-my-8 lg:py-8">
-</div> --}}
