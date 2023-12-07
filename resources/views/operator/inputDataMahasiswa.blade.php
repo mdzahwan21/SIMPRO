@@ -7,10 +7,12 @@
             <h1 class="bg-blue-500 text-white text-center p-2 m-5 rounded">Form Input Data Mahasiswa</h1>
             @csrf
             @if(session('success'))
-            <div class="p-2 rounded m-4 bg-green-400 text-center text-white">
-                <div>
-                    <h1>Data Terekam</h1>
-                    <button class="close-btn bg-red-700 p-2 m-2 rounded" onclick="closeOverlay()">Close</button>
+            <div class="overlay">
+                <div class="p-2 rounded m-4 bg-green-400 text-center text-white">
+                    <div>
+                        <h1>Sukses Menyimpan Data</h1>
+                        <button class="close-btn bg-red-700 p-2 m-2 rounded" onclick="closeOverlay()">Close</button>
+                    </div>
                 </div>
             </div>
             @endif
@@ -39,7 +41,7 @@
 
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
-                <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Status:</label>
                     <input type="text" id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="Aktif" disabled required>
                 </div>
@@ -110,7 +112,7 @@
             </div>
 
             <div class="flex justify-center items-center mb-6">
-                <button type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Generate</button>
+                <button type="submit" class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </div>
         </form>
     </div>
@@ -121,4 +123,5 @@
         overlay.style.display = 'none';
     }
 </script>
+
 @endsection

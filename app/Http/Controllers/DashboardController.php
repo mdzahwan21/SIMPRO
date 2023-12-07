@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\provinsi;
+use App\Models\dosenwali;
 use App\Models\mahasiswa;
 use App\Models\irs;
 use App\Models\khs;
 use App\Models\pkl;
 use App\Models\skripsi;
+use App\Models\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
-{
-    $user = Auth::user();
+    {
+        $user = Auth::user();
 
     if ($user->role === 'mahasiswa') {
         // return view('mahasiswa.dashboard');
@@ -23,6 +24,9 @@ class DashboardController extends Controller
             return redirect()->route('progres.mahasiswa', ['nim' => $nim]);
     }
      elseif ($user->role === 'operator') {
+        $totalUsers = users::count();
+        $totalMahasiswa = mahasiswa::count();
+        $totalDosen = dosenwali::count();
         return view('operator.dashboard');
     } elseif ($user->role === 'dosenwali') {
         return view('doswal.dashboard');

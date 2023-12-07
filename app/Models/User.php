@@ -67,7 +67,7 @@ class User extends Authenticatable
                 case 'mahasiswa.com':
                     $user->role = 'mahasiswa';
                     break;
-                case 'dosen.com':
+                case 'dosenwali.com':
                     $user->role = 'dosenwali';
                     break;
                 case 'operator.com':

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ImportData;
 use App\Http\Controllers\IrsController;
 use App\Http\Controllers\KhsController;
 use App\Http\Controllers\LoginController;
@@ -24,6 +23,7 @@ use App\Http\Controllers\GeneratePDFController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\DosenWaliController;
 use App\Http\Controllers\DaftarMahasiswaController;
+use App\Http\Controllers\UsersController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -58,8 +58,8 @@ Route::post('/inputmahasiswa/store', [InputMahasiswaController::class, 'store'])
 Route::get('/inputdosen', [InputDosenController::class, 'index'])->middleware('auth')->name('inputdosen');
 Route::post('/inputdosen/store', [InputDosenController::class, 'store'])->middleware('auth')->name('inputdosen.store');
 
-Route::get('/import', [ImportData::class, 'index'])->middleware('auth')->name('import');
-Route::post('import/store', [ImportData::class, 'store'])->middleware('auth')->name('import.store');
+Route::get('/UsersController', [UsersController::class, 'index'])->middleware('auth')->name('UsersController');
+Route::post('UsersController/store', [UsersController::class, 'store'])->middleware('auth')->name('UsersController.store');
 
 Route::get('/mahasiswa/updateProfile', [UpdateProfileController::class, 'showProfile'])->middleware('auth')->name('updateProfile');
 Route::post('/mahasiswa/updateProfile', [UpdateProfileController::class, 'update'])->name('updateProfile');
