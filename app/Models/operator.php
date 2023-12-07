@@ -10,9 +10,13 @@ class operator extends Model
     protected $table = 'operator';
     use HasFactory;
 
+    protected $primaryKey = 'nip';
+
     protected $fillable = [
-        'nama',
         'nip',
+        'nama',
+        'alamat',
+        'no_telepon',
         'foto',
     ];
     

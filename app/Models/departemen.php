@@ -10,9 +10,12 @@ class departemen extends Model
     use HasFactory;
     protected $table = 'departemen';
 
+    protected $primaryKey = 'nip';
     protected $fillable = [
-        'nama',
         'nip',
+        'nama',
+        'alamat',
+        'no_telepon',
         'foto',
     ];
     

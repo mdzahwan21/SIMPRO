@@ -47,50 +47,44 @@
                           </div>
                       @endif
 
-                      <div class="mb-2">
-                          <div class="w-full max-w-md">
-                              <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                  Semester Aktif: {{ $data->smt_aktif }}</div>
+                      <div>
+                          <div class="mb-2 text-left">
+                              <div class="w-full max-w-md">
+                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
+                                      Semester Aktif: {{ $data->smt_aktif }}</div>
+                              </div>
                           </div>
+
+                          <div class="mb-2 text-left">
+                              <div class="w-full max-w-md">
+                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
+                                      Jumlah SKS:{{ $data->jumlah_sks }}</div>
+                              </div>
+                          </div>
+
+                          <div class="mb-2 text-left">
+                              <div class="w-full max-w-md">
+                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
+                                      File IRS: {{ $data->file }}</div>
+                              </div>
+                          </div>
+
+                          <input type="hidden" name="id" value="{{ $data->id }}">
                       </div>
 
-                      <div class="mb-2">
-                          <div class="w-full max-w-md">
-                              <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                  Jumlah SKS:{{ $data->jumlah_sks }}</div>
-                          </div>
-                      </div>
-
-                      <div class="mb-2">
-                          <div class="w-full max-w-md">
-                              <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                  File IRS: {{ $data->file }}</div>
-                          </div>
-                      </div>
-
-                      <input type="hidden" name="id" value="{{ $data->id }}">
-
-                      <div class="flex justify-center items-center mb-6">
+                      <div class="mt-4 flex justify-center items-center space-x-2 mb-6">
                           <button data-modal-target="edit-IRS" data-modal-toggle="edit-IRS" data="{{ $data }}"
-                              class="text-white
-                                  bg-gray-800 hover:bg-gray-200 hover:text-gray-900 focus:outline-none focus:ring-4
-                                  focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2
-                                  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700
-                                  dark:border-gray-700">Reject
-                          </button>
+                              class="button-reject">Reject</button>
 
                           @include('doswal.editIRS')
-                          <form class="w-full" method="POST"
-                              action="{{ route('approve.IRS', ['id' => $data->id]) }}"
+
+                          <form class="w-full" method="POST" action="{{ route('approve.IRS', ['id' => $data->id]) }}"
                               enctype="multipart/form-data">
                               @csrf
 
-                              <button
-                                  type="submit"class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Approve</button>
+                              <button type="submit" class="button-approve">Approve</button>
                           </form>
-
                       </div>
-
                   </div>
               </div>
           </div>

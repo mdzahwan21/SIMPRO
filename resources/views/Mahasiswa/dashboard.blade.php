@@ -186,7 +186,7 @@
                                 {{ auth()->user()->name }}
                             </h5>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
-                                {{ auth()->user()->id}}
+                                {{ optional(auth()->user()->mahasiswa)->nim }}
                             </span>
                             <span class="text-sm text-gray-500 dark:text-gray-400">
                                 {{ auth()->user()->email }}
@@ -200,107 +200,106 @@
 
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-10 p-4 gap-2">
-            <div 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-2 border-b-2 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>1</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>2</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>3</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>4</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>5</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>6</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>7</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>8</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>9</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>10</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>11</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>12</p>
                 </div>
-            </div>
+            </button>
 
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
-
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>13</p>
                 </div>
-            </div>
+            </button>
             
-            <div
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20">
-                <div class="text-right">
+            <button 
+                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
+                <div>
                     <p>14</p>
                 </div>
-            </div>
+            </button>
         </div>
     </div>
-    </div>
+</div>
 
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class mahasiswa extends Model
 {
+    protected $table = 'mahasiswa';
+    protected $primaryKey = 'nim';
     protected $fillable = [
         'nim',
         'nama',
@@ -21,7 +23,6 @@ class mahasiswa extends Model
         'foto',
     ];
 
-    protected $table = 'mahasiswa';
     use HasFactory;
 
     public function user()

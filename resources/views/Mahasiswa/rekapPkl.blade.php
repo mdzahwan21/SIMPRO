@@ -1,7 +1,26 @@
 @extends('Mahasiswa.navbar')
+@php
+    use Illuminate\Support\Facades\Request;
+@endphp
 
 @section('content')
     <div class="w-full p-4 space-y-2">
+
+        <div class="position-fixed flex w-full p-1 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
+                <a href="/pkl" class="inputPkl {{ Request::is('pkl') ? 'active' : '' }}">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <span class="{{ Request::is('pkl') ? 'font-bold' : '' }}">ENTRY PKL</span>
+                    </button>
+                </a>
+                <a href="/pkl/rekapPkl" class="rekapPkl {{ Request::is('pkl/rekapPkl') ? 'active' : '' }}">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <span class="{{ Request::is('pkl/rekapPkl') ? 'font-bold' : '' }}">REKAP PKL</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+
         <div class="flex items-center justify-center p-4 bg-blue-800 rounded-lg">
             <p class="text-sm font-large text-white truncate dark:text-gray-300" role="none">
                 REKAP DATA PKL
@@ -11,7 +30,7 @@
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
             <div class="w-full">
 
-                @if(count($dataPkl) > 0)
+                @if(!is_null($dataPkl) && count($dataPkl) > 0)
                     <table class="w-full border border-gray-300">
                         <thead>
                             <tr>

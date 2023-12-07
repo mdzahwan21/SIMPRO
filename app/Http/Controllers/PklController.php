@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\pkl;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorepklRequest;
 use App\Http\Requests\UpdatepklRequest;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Log;
 
 class PklController extends Controller
 {
@@ -18,39 +19,48 @@ class PklController extends Controller
         return view("Mahasiswa.pkl");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validasi data jika diperlukan
         $request->validate([
-            'smt_aktif' => 'required|numeric|min:1|max:14',
-            'nilai' => 'numeric|between:1,4',
-            'file_input' => 'file|mimes:pdf,doc,docx',
+            'smt_aktif' => 'required|numeric|min:6|max:14',
+            'nilai' => 'required|regex:/^[A-E]$/',
+            'file_input' => 'required|mimes:pdf',
         ]);
 
         $filePkl = $request->file('file_input');
         $filePath = $filePkl->store('pkl', 'public');
 
-        $nim = Auth::user()->mahasiswa->nim;
+        $user = Auth::user();
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
 
-        pkl::create([
-            'smt_aktif' => $request->input('smt_aktif'),
-            'nilai' => $request->input('nilai'),
-            'file' => $filePath,
-            'nim' => $nim,
-        ]);
+        // Periksa apakah mahasiswa tidak null sebelum mengakses nim
+        if ($mahasiswa) {
+            $nim = $mahasiswa->nim;
 
-        // Redirect atau kembali ke halaman yang sesuai
-        return redirect()->route('pkl')->with('success', 'Data PKL berhasil disimpan.');
+            pkl::create([
+                'smt_aktif' => $request->input('smt_aktif'),
+                'nilai' => $request->input('nilai'),
+                'file' => $filePath,
+                'nim' => $nim,
+            ]);
+
+            // Redirect atau kembali ke halaman yang sesuai
+            return redirect()->route('pkl')->with('success', 'Data PKL berhasil disimpan.');
+        }
     }
 
-    public function rekap()
+    public function rekap(Request $request)
     {
-        $dataPkl = pkl::all();
+        $user = $request->user();
+        $id = $request->user()->id;
 
-        return view('Mahasiswa.rekapPkl', compact('dataPkl'));
+        $dataPkl = pkl::where('nim', $id)->get();
+
+        return view('Mahasiswa.rekapPkl', compact('user', 'dataPkl'));
     }
 
     /**

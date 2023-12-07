@@ -1,12 +1,12 @@
   <!-- Main modal -->
-  <div id="verifikasi-KHS" tabindex="-1" aria-hidden="true"
+  <div id="verifikasi-PKL" tabindex="-1" aria-hidden="true"
       class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative w-full max-w-md max-h-full">
           <!-- Modal content -->
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <button type="button"
                   class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  data-modal-hide="verifikasi-KHS">
+                  data-modal-hide="verifikasi-PKL">
                   <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                       viewBox="0 0 14 14">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -16,7 +16,7 @@
               </button>
               <div class="flex items-center justify-center p-4 rounded-lg">
                   <p class="text-lg font-bold text-gray-900 truncate dark:text-gray-300" role="none">
-                      VERIFIKASI DATA KHS
+                      VERIFIKASI DATA PKL
                   </p>
               </div>
               <div class="w-full p-4 rounded-lg">
@@ -51,42 +51,24 @@
                           <div class="mb-2 text-left">
                               <div class="w-full max-w-md">
                                   <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      Semester Aktif: {{ $data->smt_aktif }}</div>
+                                      Semester Aktif: {{ $data->smt_aktif }}
+                                  </div>
                               </div>
                           </div>
 
                           <div class="mb-2 text-left">
                               <div class="w-full max-w-md">
                                   <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      Jumlah SKS: {{ $data->sks }}</div>
+                                      Nilai: {{ $data->nilai }}
+                                  </div>
                               </div>
                           </div>
 
                           <div class="mb-2 text-left">
                               <div class="w-full max-w-md">
                                   <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      SKS Kumulatif: {{ $data->sks_kum }}</div>
-                              </div>
-                          </div>
-
-                          <div class="mb-2 text-left">
-                              <div class="w-full max-w-md">
-                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      IP: {{ $data->ip }}</div>
-                              </div>
-                          </div>
-
-                          <div class="mb-2 text-left">
-                              <div class="w-full max-w-md">
-                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      IPK: {{ $data->ipk }}</div>
-                              </div>
-                          </div>
-
-                          <div class="mb-2 text-left">
-                              <div class="w-full max-w-md">
-                                  <div class="block mb-2 text-sm font-normal text-gray-900 dark:text-white">
-                                      File KHS: {{ $data->file }}</div>
+                                      File PKL: {{ $data->file }}
+                                  </div>
                               </div>
                           </div>
 
@@ -94,19 +76,18 @@
                       </div>
 
                       <div class="mt-4 flex justify-center items-center space-x-2 mb-6">
-                          <button data-modal-target="edit-KHS" data-modal-toggle="edit-KHS" data="{{ $data }}"
+                          <button data-modal-target="edit-PKL" data-modal-toggle="edit-PKL" data="{{ $data }}"
                               class="button-reject">Reject</button>
 
-                          @include('doswal.editKHS')
+                          @include('doswal.editPKL')
 
-                          <form class="w-full" method="POST" action="{{ route('approve.KHS', ['id' => $data->id]) }}"
+                          <form class="w-full" method="POST" action="{{ route('approve.PKL', ['id' => $data->id]) }}"
                               enctype="multipart/form-data">
                               @csrf
 
                               <button type="submit" class="button-approve">Approve</button>
                           </form>
                       </div>
-
                   </div>
               </div>
           </div>

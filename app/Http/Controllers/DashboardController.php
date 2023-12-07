@@ -14,7 +14,11 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'mahasiswa') {
-            return view('mahasiswa.dashboard');
+            if ($user->mahasiswa && $user->mahasiswa->no_telp == null) {
+                return view('mahasiswa.dashboard');
+            } else {
+                return view('mahasiswa.dashboard');
+            }
         } elseif ($user->role === 'operator') {
             $totalUsers = users::count();
             $totalMahasiswa = mahasiswa::count();

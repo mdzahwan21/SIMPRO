@@ -11,6 +11,8 @@ class dosenwali extends Model
 
     protected $table = 'dosenwali';
 
+    protected $primaryKey = 'nip';
+
     protected $fillable = [
         'nip',
         'nama',

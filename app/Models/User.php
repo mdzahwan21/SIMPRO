@@ -82,5 +82,9 @@ class User extends Authenticatable
             }
         });
     }
-
+    
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'id', 'nim');
+    }
 }

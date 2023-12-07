@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\khs;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -41,26 +42,37 @@ class KhsController extends Controller
         $fileKhs = $request->file('file_input');
         $filePath = $fileKhs->store('khs', 'public');
 
-        $nim = Auth::user()->mahasiswa->nim;
+        $user = Auth::user();
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
 
-        Khs::create([
-            'smt_aktif' => $request->input('smt_aktif'),
-            'sks' => $request->input('sks'),
-            'sks_kum' => $request->input('sksk'),
-            'ip' => $request->input('ip'),
-            'ipk' => $request->input('ipk'),
-            'file' => $filePath,
-            'nim' => $nim,
-        ]);
+        if ($mahasiswa) {
+            $nim = $mahasiswa->nim;
 
-        return redirect()->route('khs')->with('success', 'Data KHS berhasil disimpan.');
+            Khs::create([
+                'smt_aktif' => $request->input('smt_aktif'),
+                'sks' => $request->input('sks'),
+                'sks_kum' => $request->input('sksk'),
+                'ip' => $request->input('ip'),
+                'ipk' => $request->input('ipk'),
+                'file' => $filePath,
+                'nim' => $nim,
+            ]);
+
+            return redirect()->route('khs')->with('success', 'Data KHS berhasil disimpan.');
+        }
     }
 
-    public function rekap()
+    public function rekap(Request $request)
     {
-        $dataKhs = Khs::all();
+        $user = $request->user();
+        $id = $request->user()->id;
 
-        return view('Mahasiswa.rekapKhs', compact('dataKhs'));
+        $dataKhs = Khs::where('nim', $id)->get();
+
+        return view('Mahasiswa.rekapKhs', compact('user', 'dataKhs'));
     }
 
     /**

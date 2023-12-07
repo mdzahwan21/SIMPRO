@@ -1,7 +1,27 @@
+@php
+    use Illuminate\Support\Facades\Request;
+@endphp
+
 @extends('Mahasiswa.navbar')
 
 @section('content')
     <div class=" w-full p-4 space-y-2">
+
+        <div class="position-fixed flex w-full p-1 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
+                <a href="/skripsi" class="inputSkripsi {{ Request::is('skripsi') ? 'active' : '' }}">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <span class="{{ Request::is('skripsi') ? 'font-bold' : '' }}">ENTRY SKRIPSI</span>
+                    </button>
+                </a>
+                <a href="/skripsi/rekapSkripsi" class="rekapSkripsi {{ Request::is('skripsi/rekapSkripsi') ? 'active' : '' }}">
+                    <button class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <span class="{{ Request::is('skripsi/rekapSkripsi') ? 'font-bold' : '' }}">REKAP SKRIPSI</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+
         <div class="flex items-center justify-center p-4 bg-blue-800 rounded-lg">
             <p class="text-sm font-large text-white truncate dark:text-gray-300" role="none">
                 ENTRY DATA SKRIPSI
@@ -44,10 +64,17 @@
 
                 <div class="flex justify-center items-center mb-6">
                     <div class="w-full max-w-md">
-                        <label for="nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Nilai Skripsi:</label>
-                        <input type="number" id="nilai" name="nilai"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Masukkan jumlah sks" step="0.01" min="1" max="4">
+
+                        <label for="nilai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nilai:</label>
+                        <select id="nilai" name="nilai"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected disabled>Pilih nilai</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                        </select>
                     </div>
                 </div>
 
