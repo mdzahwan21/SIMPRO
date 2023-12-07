@@ -185,13 +185,29 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center pb-10">
-                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src='https://i.pinimg.com/564x/e8/83/df/e883df041b51d3a21990a60dc1a5c845.jpg' alt="Profile Pic" />
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Profile Pic" />
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ auth()->user()->name }}</h5>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->id }}</span>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->email }}</span>
                 </div>
             </div>
-            <h1>Ampunlah</h1>
+
+            <div class="flex flex-col md:flex-row gap-8 w-full p-4">
+            <!-- Total Users -->
+            <div class="w-full md:w-1/3 bg-blue-500 p-4 text-center rounded-lg">
+                <p class="text-sm text-white">Total Users: {{ $totalUsers }}</p>
+            </div>
+
+            <!-- Total Mahasiswa -->
+            <div class="w-full md:w-1/3 bg-green-500 p-4 text-center rounded-lg">
+                <p class="text-sm text-white">Total Mahasiswa: {{ $totalMahasiswa }}</p>
+            </div>
+
+            <!-- Total Dosen -->
+            <div class="w-full md:w-1/3 bg-red-500 p-4 text-center rounded-lg">
+                <p class="text-sm text-white">Total Dosen: {{ $totalDosen }}</p>
+            </div>
+        </div>
         </div>
     </div>
 </div>

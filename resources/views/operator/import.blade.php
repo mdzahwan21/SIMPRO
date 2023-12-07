@@ -2,7 +2,7 @@
 @section('content')
 <div class="w-full">
     <div class="flex flex-col gap-8 p-4">
-        <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="importform" action="{{ route('import.store') }}" method="post" enctype="multipart/form-data">
+        <form class="flex flex-col w-full p-4 border-2 border-black border-dashed rounded-lg" id="importform" action="{{ route('UsersController.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             @if(session('success'))
             <div class="p-2 rounded m-4 bg-green-400 text-center text-white">
@@ -17,7 +17,7 @@
                 <label for="file" class="text-lg font-semibold">Choose File:</label>
                 <input type="file" id="file" name="file" accept=".csv, .xlsx" class="p-2">
             </div>
-            <button type="submit" class="w-fit bg-gray-800 text-white p-2 m-5 rounded-md hover:bg-gray-600 hover:text-white transition duration-300">Commit</button>
+            <button type="submit" class="w-fit bg-gray-800 text-white p-2 m-5 rounded-md hover:bg-gray-600 hover:text-white transition duration-300">Import</button>
         </form>
     </div>
 

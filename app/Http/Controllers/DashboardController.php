@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\provinsi;
-use Illuminate\Http\Request;
+use App\Models\dosenwali;
+use App\Models\mahasiswa;
+use App\Models\users;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Mengambil objek pengguna saat ini
         $user = Auth::user();
 
-
-
-        // Memeriksa peran pengguna
         if ($user->role === 'mahasiswa') {
             return view('mahasiswa.dashboard');
-        } if ($user->role === 'operator') {
-            return view('operator.dashboard');
-        } if ($user->role === 'dosenwali') {
+        } elseif ($user->role === 'operator') {
+            $totalUsers = users::count();
+            $totalMahasiswa = mahasiswa::count();
+            $totalDosen = dosenwali::count();
+            return view('operator.dashboard', compact('totalUsers', 'totalMahasiswa', 'totalDosen'));
+        } elseif ($user->role === 'dosenwali') {
             return view('doswal.dashboard');
-        } if ($user->role === 'departemen') {
+        } elseif ($user->role === 'departemen') {
             return view('departemen.dashboard');
         }
     }
