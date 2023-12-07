@@ -21,16 +21,16 @@ class LoginController extends Controller
 {
     $credentials = $request->only('id', 'password');
 
-    
     if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
 
-        // $user = Auth::user();
+        // Periksa apakah pengguna adalah mahasiswa
+        if (Auth::user()->role === 'mahasiswa' && Auth::user()->no_telp === null) {
+            // Jika mahasiswa dan no_telp kosong, arahkan ke halaman completeProfile
+            return redirect()->route('completeProfile');
+        }
 
-        // if ($user->role === 'mahasiswa' && $user->no_telp === null) {
-        //     return redirect()->route('completeProfile');
-        // }
-
+        // Jika bukan kasus di atas, arahkan ke dashboard
         return redirect()->intended('/dashboard');
     }
 
@@ -38,6 +38,7 @@ class LoginController extends Controller
         ->withInput($request->only('id'))
         ->with('loginError', 'Login gagal!');
 }
+
 
 
 

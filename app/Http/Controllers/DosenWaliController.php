@@ -104,4 +104,20 @@ class DosenWaliController extends Controller
 
         return view('doswal.daftarMahasiswa', ['mhsPerwalian' => $mhsPerwalian]);
     }
+
+    public function searchVerifikasi(Request $request){
+        $search = $request->input('search');
+        $status = $request->input('status');
+        $angkatan = $request->input('angkatan');
+        
+        if ($request->has('search')) {
+            $irsSemua = Mahasiswa::where(function($query) use ($search) {
+                $query->where('nama', 'like', '%' . $search . '%')
+                    ->orWhere('nim', 'like', '%' . $search . '%')
+                    ->orWhere('angkatan', 'like', '%' . $search . '%');
+            })->get();
+        }
+
+        return view('doswal.verListIRS', ['irsSemua' => $irsSemua]);
+    }
 }

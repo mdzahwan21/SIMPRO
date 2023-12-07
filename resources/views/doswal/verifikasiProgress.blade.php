@@ -28,7 +28,7 @@
                 <div class="flex flex-col">
                     <div class="flex justify-between m-4">
                         <section class="search-bar translate-y-1/4">
-                            @include('components.searchBar')
+                            @include('components.searchBarVerif')
                         </section>
                         <section x-show="filterOpen" class="filter flex space-x-4">
                             @include('components.statusVerifikasiFilter')

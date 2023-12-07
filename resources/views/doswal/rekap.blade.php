@@ -32,8 +32,7 @@
                         @include('components.searchBarDoswal')
                     </section>
                     <section x-show="filterOpen" class="filter flex space-x-4">
-                        @include('components.statusFilter')
-                        @include('components.dateFilter')
+                        {{-- @include('components.statusFilter') --}}
                     </section>
                 </div>
                 <section class="rekap-list m-4">

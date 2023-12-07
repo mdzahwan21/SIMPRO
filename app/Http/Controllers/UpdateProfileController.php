@@ -12,16 +12,61 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileController extends Controller {
     public function completeProfile() {
+        // Mengambil user yang sedang login
         $user = Auth::user();
 
-        if($user->role === 'mahasiswa' && $user->mahasiswa) {
-            if(empty($user->mahasiswa->no_telp)) {
-                return view('mahasiswa.completeProfile');
-            } else {
-                return redirect()->route('dashboard');
-            }
+        // Mengambil data mahasiswa terkait dengan user yang sedang login
+        $mahasiswa = Mahasiswa::where('nim', $user->id)->first();
+
+        // Memeriksa apakah data mahasiswa ditemukan
+        if($mahasiswa && $mahasiswa->no_telp === null) {
+            // Jika ditemukan, tampilkan view untuk mengupdate profil
+            return view('mahasiswa.completeProfile', compact('user', 'mahasiswa'));
+        } else {
+            // Jika tidak ditemukan, kembalikan pengguna ke dashboard dengan pesan kesalahan
+            return redirect()->route('dashboard')->with('error', 'Data mahasiswa tidak ditemukan.');
+            // return redirect()->route('irs')->with('error', 'Data mahasiswa tidak ditemukan.');
         }
     }
+
+    public function completedDataProfile(Request $request) {
+        // Validasi data yang masuk dari formulir
+        $request->validate([
+            'jalur_masuk' => 'required',
+            'no_telp' => 'required|numeric',
+            'provinsi' => 'required',
+            'kota_kab' => 'required',
+            'alamat_detail' => 'required',
+            'foto' => 'required|image|mimes:jpg,png',
+        ]);
+
+        $foto = $request->file('foto');
+        $filePath = $foto->store('foto', 'public');
+
+        // Dapatkan mahasiswa yang sedang login
+        $user = Auth::user();
+        $id = $user->id;
+        $mahasiswa = Mahasiswa::join('users', 'mahasiswa.nim', '=', 'users.id')
+            ->where('nim', $id)
+            ->first();
+
+            
+        if($mahasiswa) {
+            $nim = $mahasiswa->nim;
+            $mahasiswa->update([
+                'jalur_masuk' => $request->input('jalur_masuk'),
+                'no_telp' => $request->input('no_telp'),
+                'provinsi' => $request->input('provinsi'),
+                'kota_kab' => $request->input('kota_kab'),
+                'alamat_detail' => $request->input('alamat_detail'),
+                'foto' => $filePath,
+            ]);
+
+            return redirect()->route('dashboard')->with('success', 'Profil mahasiswa berhasil diperbarui.');
+
+        } 
+    }
+    
 
     public function showProfile() {
         // Mengambil user yang sedang login

@@ -30,10 +30,10 @@ class mahasiswa extends Model
         return $this->belongsTo(user::class, 'nim', 'id');
     }
 
-    // public function doswen_wali()
-    // {
-    //     return $this->belongsTo(dosenwali::class, 'nip_doswal', 'nip');
-    // }
+    public function dosen_wali()
+    {
+        return $this->belongsTo(dosenwali::class, 'nip_doswal', 'nip');
+    }
 
     public function irs()
     {

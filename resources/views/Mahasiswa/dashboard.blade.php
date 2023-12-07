@@ -164,139 +164,85 @@
                 }
             }
         </style>
+
         {{-- <div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white"> --}}
 
         {{-- <div class="h-full ml-14 mt-14 mb-10 md:ml-64"> --}}
-        <!-- Contact Form -->
-        <div class="mt-8 mx-4">
-            <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
-                    <div
-                        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex justify-end px-4 pt-4">
-                            <button id="dropdownButton" data-dropdown-toggle="dropdown"
-                                class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
-                                type="button"> 
-                            </button>
-                        </div>
+        <!-- Contact Form and Statistics Cards -->
+        <div class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2">
+            <!-- Contact Form -->
+            <div class="p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
+                <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
 
-                        <div class="flex flex-col items-center pb-10">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Foto Profil" alt="Profile" />
-                            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                                {{ auth()->user()->name }}
-                            </h5>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                {{ optional(auth()->user()->mahasiswa)->nim }}
-                            </span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                {{ auth()->user()->email }}
-                            </span>
+                    <div class="flex flex-col items-center pb-10">
+                        <img class="w-24 h-24 mb-3 mt-8 rounded-full shadow-lg" src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Foto Profil" alt="Profile" />
+                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+                            {{ auth()->user()->name }}
+                        </h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            {{ auth()->user()->id }}
+                        </span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                            {{ auth()->user()->email }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Contact Form -->
+
+            <!-- Statistics Cards -->
+            <div class="grid-rows-2">
+                <div class="tombol-semester">
+                    @foreach ($semesters as $semester)
+                        @php
+                            $approvalClass = '';
+
+                            // Check the condition for each approval type
+                            if ($semester['hasApproval'] == 'irskhs') {
+                                $approvalClass = 'approved-irskhs';
+                            } elseif ($semester['hasApproval'] == 'luluspkl') {
+                                $approvalClass = 'approved-luluspkl';
+                            } elseif ($semester['hasApproval'] == 'lulusskripsi') {
+                                $approvalClass = 'approved-lulusskripsi';
+                            } else {
+                                $approvalClass = 'not-approved';
+                            }
+                        @endphp
+
+                        <a href="" class="semester-button {{ $approvalClass }} hover:underline">
+                            {{ $semester['smt'] }}
+                        </a>
+                    @endforeach
+                </div>
+                <div class="mt-4 mr-10 p-4 border-dashed border-2 rounded-lg">
+                    <div class="position-fixed flex w-full border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex justify-center w-full gap-2 border-dashed border-gray-500">
+                            <a href="#" class="nav-link-verifikasi" data-name="irs" data-smt="{{ $semester['smt'] }}">
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">IRS</button>
+                            </a>
+                            <a href="#" class="nav-link-verifikasi" data-name="khs" data-smt="{{ $semester['smt'] }}">
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">KHS</button>
+                            </a>
+                            <a href="#" class="nav-link-verifikasi" data-name="pkl" data-smt="{{ $semester['smt'] }}">
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">PKL</button>
+                            </a>
+                            <a href="#" class="nav-link-verifikasi" data-name="skripsi" data-smt="{{ $semester['smt'] }}">
+                                <button
+                                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Skripsi</button>
+                            </a>
+
+                        </div>
+                        <div class="isi-konten">
+                            @yield('view-progress')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ./Contact Form -->
-
-        <!-- Statistics Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-10 p-4 gap-2">
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>1</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>2</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>3</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>4</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>5</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>6</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>7</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>8</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>9</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>10</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>11</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>12</p>
-                </div>
-            </button>
-
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>13</p>
-                </div>
-            </button>
-            
-            <button 
-                class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-center p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group w-20 focus:outline-none focus:ring focus:border-blue-300">
-                <div>
-                    <p>14</p>
-                </div>
-            </button>
+    </div>
         </div>
     </div>
 </div>

@@ -8,16 +8,29 @@
         margin: 5px;
         text-decoration: none;
         color: white;
-        border-radius: 5px;
+        border-radius: 50%;
         display: inline-block;
+        width: 50px;
+        height: 50px;
+        font-size: medium;
+        text-align: center;
+        line-height: 30px;
     }
 
-    .approved {
-        background-color: green;
+    .approved-lulusskripsi {
+        background-color: rgb(108, 193, 108);
+    }
+
+    .approved-luluspkl {
+        background-color: rgb(193, 183, 108);
     }
 
     .not-approved {
-        background-color: red;
+        background-color: rgb(198, 98, 98);
+    }
+
+    .approved-irskhs {
+        background-color: rgb(98, 176, 198);
     }
 
     .active {

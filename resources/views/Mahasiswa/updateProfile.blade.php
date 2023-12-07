@@ -70,9 +70,9 @@
                         <label for="jalur_masuk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jalur Masuk:</label>
                         <select id="jalur_masuk" name="jalur_masuk" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option selected disabled>Pilih Jalur Masuk</option>
-                            <option value="aktif">SNMPTN</option>
-                            <option value="aktif">SBMPTN</option>
-                            <option value="aktif">Mandiri</option>
+                            <option value="SNMPTN">SNMPTN</option>
+                            <option value="SBMPTN">SBMPTN</option>
+                            <option value="Mandiri">Mandiri</option>
                         </select>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         <label for="nama_doswal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen Wali:</label>
                         <input type="text" id="nama_doswal" name="nama_doswal"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $mahasiswa->nama_doswal }}" readonly>
+                            value="{{ $mahasiswa->dosen_wali->nama }}" readonly placeholder="Nama Dosen Wali">
                     </div>
                 </div>
 

@@ -1,14 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/script.js', 'resources/js/modal.js'])
+    {{-- @stack('scripts') --}}
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
+    <title>SIMPRO</title>
+</head>
+<body>
     <div class=" w-full p-4 space-y-2">
         <div class="flex items-center justify-center p-4 bg-blue-800 rounded-lg">
             <p class="text-sm font-large text-white truncate dark:text-gray-300" role="none">
-                UPDATE PROFILE
+                COMPLETE PROFILE
             </p>
         </div>
 
         <div class="flex p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <form class="flex flex-col w-full" method="POST" action="{{ route('completeProfile') }}" enctype="multipart/form-data">
+        <form class="flex flex-col w-full" method="POST" action="{{ route('completeDataProfile') }}" enctype="multipart/form-data">
                 @csrf
                 @if (session('success'))
                     <div class="p-4 bg-green-100 text-green-800 rounded-lg mb-4 text-center">
@@ -126,4 +137,8 @@
         </div>
 
     </div>
-@endsection
+</body>
+</html>
+
+
+
