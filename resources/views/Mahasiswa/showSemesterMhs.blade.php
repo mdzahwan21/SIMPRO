@@ -1,4 +1,4 @@
-@extends('doswal.navbarShow')
+@extends('mahasiswa.navbarShow')
 
 @section('progres-show')
     <div class="rekap-list m-4"> 

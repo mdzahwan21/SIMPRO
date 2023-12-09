@@ -15,24 +15,36 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     public function index()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
     if ($user->role === 'mahasiswa') {
-        // return view('mahasiswa.dashboard');
         $nim = $user->id;
-            return redirect()->route('progres.mahasiswa', ['nim' => $nim]);
-    }
-     elseif ($user->role === 'operator') {
+        return redirect()->route('progres.mahasiswa', ['nim' => $nim]);
+    } elseif ($user->role === 'operator') {
         $totalUsers = users::count();
         $totalMahasiswa = mahasiswa::count();
         $totalDosen = dosenwali::count();
-        return view('operator.dashboard');
+        return view('operator.dashboard', compact('totalUsers', 'totalMahasiswa', 'totalDosen'));
     } elseif ($user->role === 'dosenwali') {
-        return view('doswal.dashboard');
+        $totalAktif = mahasiswa::where('status', 'aktif')->count();
+        $totalCuti = mahasiswa::where('status', 'cuti')->count();
+        $totalMangkir = mahasiswa::where('status', 'mangkir')->count();
+        $totalUndurDiri = mahasiswa::where('status', 'undurdiri')->count();
+        $totalMeninggalDunia = mahasiswa::where('status', 'meninggaldunia')->count();
+        $totalDropOut = mahasiswa::where('status', 'dropout')->count();
+        $totalLulus = mahasiswa::where('status', 'lulus')->count();
+        return view('doswal.dashboard', compact('totalAktif', 'totalCuti', 'totalMangkir', 'totalUndurDiri', 'totalMeninggalDunia', 'totalDropOut', 'totalLulus'));
     } elseif ($user->role === 'departemen') {
-        return view('departemen.dashboard');
-    }
+        $totalAktif = mahasiswa::where('status', 'aktif')->count();
+        $totalCuti = mahasiswa::where('status', 'cuti')->count();
+        $totalMangkir = mahasiswa::where('status', 'mangkir')->count();
+        $totalUndurDiri = mahasiswa::where('status', 'undurdiri')->count();
+        $totalMeninggalDunia = mahasiswa::where('status', 'meninggaldunia')->count();
+        $totalDropOut = mahasiswa::where('status', 'dropout')->count();
+        $totalLulus = mahasiswa::where('status', 'lulus')->count();
+        return view('departemen.dashboard', compact('totalAktif', 'totalCuti', 'totalMangkir', 'totalUndurDiri', 'totalMeninggalDunia', 'totalDropOut', 'totalLulus'));
+    }    
 }
 
 public function mahasiswaProgres(Request $request)

@@ -160,13 +160,13 @@
             }
         </style>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md">
+            <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md flex flex-col justify-center items-center">
                 <!-- Profile Departemen -->
                 <h2 class="text-xl font-semibold text-gray-900 mb-4">Profile Departemen</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6">
                         <img class="w-24 h-24 mb-3 rounded-full shadow-lg mx-auto"
-                            src='https://media.licdn.com/dms/image/C5603AQFg5fhHcCfs2g/profile-displayphoto-shrink_800_800/0/1658109361552?e=1706745600&v=beta&t=CeAb6STx8PaIMD9EgkbK-bEjywdv3c02BzU0hflACRA'
+                            src='https://media.licdn.com/dms/image/D5603AQFAtfWWrv3VfA/profile-displayphoto-shrink_400_400/0/1678606906821?e=1707350400&v=beta&t=69dTq7TsDoTExt9Z-lzbko2YwDuYO3fN3IFsMuAKNuE'
                             alt="Bonnie image" />
 
                         <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center">
@@ -184,13 +184,16 @@
             </div>
 
             <!-- Card baru di bawah Profile Departemen -->
-            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <h2 class="text-xl font-semibold text-gray-900 mb-4"><center>Monitoring Progres Studi Mahasiswa Informatika</center></h2>
-                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-0">
-                    <p>Lulus PKL : 940 </p>
-                </div>
-                <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-10">
-                    <p>Lulus Skripsi : 565 </p>
+            <div class="flex justify-center items-center">
+                <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 text-center">Monitoring Progres Studi Mahasiswa
+                        Informatika</h2>
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-0">
+                        <p>Lulus PKL : 43 </p>
+                    </div>
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-10">
+                        <p>Lulus Skripsi : 25 </p>
+                    </div>
                 </div>
             </div>
 
@@ -200,32 +203,32 @@
             <!-- Buat kartu untuk setiap statistik -->
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Aktif : 1250</p>
+                <p class="text-center">Aktif : {{ $totalAktif }}</p>
                 <!-- ... (jumlah mahasiswa aktif) ... -->
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Cuti : 56</p>
+                <p class="text-center">Cuti : {{ $totalCuti }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Mangkir : 25</p>
+                <p class="text-center">Mangkir : {{ $totalMangkir }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Undur Diri : 64</p>
+                <p class="text-center">Undur Diri : {{ $totalUndurDiri }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Meninggal Dunia : 12</p>
+                <p class="text-center">Meninggal Dunia : {{ $totalMeninggalDunia }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Drop Out : 21</p>
+                <p class="text-center">Drop Out : {{ $totalDropOut }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Lulus : 999</p>
+                <p class="text-center">Lulus : {{ $totalLulus }}</p>
             </div>
         </div>
 

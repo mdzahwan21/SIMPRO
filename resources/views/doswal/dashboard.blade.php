@@ -187,10 +187,10 @@
             <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6">
                 <h2 class="text-xl font-semibold text-gray-900 mb-4"><center>Monitoring Progres Studi Mahasiswa Perwalian</center></h2>
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-0">
-                    <p>Lulus PKL : 940 </p>
+                    <p>Lulus PKL : 005 </p>
                 </div>
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md mt-6 md:mt-10">
-                    <p>Lulus Skripsi : 565 </p>
+                    <p>Lulus Skripsi : 002 </p>
                 </div>
             </div>
 
@@ -200,32 +200,32 @@
             <!-- Buat kartu untuk setiap statistik -->
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Aktif : 1250</p>
+                <p class="text-center">Aktif : {{ $totalAktif }}</p>
                 <!-- ... (jumlah mahasiswa aktif) ... -->
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Cuti : 56</p>
+                <p class="text-center">Cuti : {{ $totalCuti }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Mangkir : 25</p>
+                <p class="text-center">Mangkir : {{ $totalMangkir }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Undur Diri : 64</p>
+                <p class="text-center">Undur Diri : {{ $totalUndurDiri }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Meninggal Dunia : 12</p>
+                <p class="text-center">Meninggal Dunia : {{ $totalMeninggalDunia }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Drop Out : 21</p>
+                <p class="text-center">Drop Out : {{ $totalDropOut }}</p>
             </div>
             <div
                 class="bg-blue-500 dark:bg-gray-800 shadow-lg rounded-md p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium">
-                <p class="text-center">Lulus : 999</p>
+                <p class="text-center">Lulus : {{ $totalLulus }}</p>
             </div>
         </div>
 

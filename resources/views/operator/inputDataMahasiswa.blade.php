@@ -59,12 +59,12 @@
                 </div>
             </div>
 
-            <div class="flex justify-center items-center mb-6">
+            {{-- <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
                     <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Telepon:</label>
-                    <input type="no_telp" id="no_telp" name="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nomor Telepon" required>
+                    <input type="no_telp" id="no_telp" name="no_telp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="" disabled required>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">

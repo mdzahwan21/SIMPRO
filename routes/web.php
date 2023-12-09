@@ -139,6 +139,7 @@ Route::get('/rekap-progress/status', [RekapProgressController::class, 'rekapStat
 Route::get('/mahasiswa/list', [RekapProgressController::class, 'mahasiswaList'])->name('mahasiswa.list');
 Route::get('/mahasiswa/progres/{nim}', [RekapProgressController::class, 'mahasiswaProgres'])->name('mahasiswa.progres');
 Route::get('/mahasiswa/progres/{nim}/semester/{smt}', [RekapProgressController::class, 'showSemester'])->name('mahasiswa.semester');
+Route::get('/progres/{nim}/semester/{smt}', [RekapProgressController::class, 'showSemesterMhs'])->name('progres.semester');
 
 Route::get('/mahasiswa/list/departemen', [RekapProgressController::class, 'mahasiswaListDepartemen'])->name('mahasiswa.list.departemen');
 
@@ -205,3 +206,4 @@ Route::get('/daftar-mahasiswa-perwalian', [DaftarMahasiswaController::class, 'da
 
 Route::get('/dashboard/progres', [DashboardController::class, 'mahasiswaProgres'])->middleware('auth')->name('progres.mahasiswa');
 
+Route::get('/mahasiswa/progres', [RekapProgressController::class, 'mahasiswaProgres'])->name('mahasiswa.progres');

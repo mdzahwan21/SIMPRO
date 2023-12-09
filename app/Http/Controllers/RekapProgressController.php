@@ -51,8 +51,10 @@ class RekapProgressController extends Controller
         ]);
     }
 
-    public function mahasiswaProgres($nim)
+    public function mahasiswaProgres(Request $request)
     {
+        $nim = $request->input('nim');
+
         // Fetch mahasiswa data
         $mahasiswa = Mahasiswa::where('nim', $nim)->first();
 
@@ -89,22 +91,78 @@ class RekapProgressController extends Controller
         ]);
     }
 
+    public function showSemesterMhs($nim, $smt)
+    {
+        // Fetch data for the selected semester
+        // For simplicity, I'm assuming you have separate tables for IRS, KHS, PKL, and Skripsi
+        $irs = IRS::where('nim', $nim)->where('smt_aktif', $smt)->first();
+        $khs = KHS::where('nim', $nim)->where('smt_aktif', $smt)->first();
+        $pkl = PKL::where('nim', $nim)->where('smt_aktif', $smt)->first();
+        $skripsi = Skripsi::where('nim', $nim)->where('smt_aktif', $smt)->first();
+
+        return view('mahasiswa.showSemesterMhs', [
+            'nim' => $nim,
+            'smt' => $smt,
+            'irs' => $irs,
+            'khs' => $khs,
+            'pkl' => $pkl,
+            'skripsi' => $skripsi,
+        ]);
+    }
+
+
     // Helper method to determine the state of semester buttons
-    private function getSemesterButtons($nim)
+    public function getSemesterButtons($nim)
     {
         $semesters = range(1, 14);
         $buttons = [];
 
         foreach ($semesters as $smt) {
-            // Check if any progres data exists for the given semester
-            $hasApproval = IRS::where('nim', $nim)->where('smt_aktif', $smt)->whereNotNull('tgl_persetujuan')->exists()
-                || KHS::where('nim', $nim)->where('smt_aktif', $smt)->exists()
-                || PKL::where('nim', $nim)->where('smt_aktif', $smt)->exists()
-                || Skripsi::where('nim', $nim)->where('smt_aktif', $smt)->exists();
+            $irs = IRS::where('nim', $nim)->where('smt_aktif', $smt)->whereNotNull('tgl_persetujuan')->first();
+            $khs = KHS::where('nim', $nim)->where('smt_aktif', $smt)->whereNotNull('tgl_persetujuan')->first();
+            $pkl = PKL::where('nim', $nim)->where('smt_aktif', $smt)->whereNotNull('tgl_persetujuan')->first();
+            $skripsi = Skripsi::where('nim', $nim)->where('smt_aktif', $smt)->whereNotNull('tgl_persetujuan')->first();
+
+            $irsApproved = $irs ? true : false;
+            $khsApproved = $khs ? true : false;
+            $pklApproved = $pkl ? true : false;
+            $skripsiApproved = $skripsi ? true : false;
+
+            if ($irs === NULL) {
+                $irs = 'tidak ada progress';
+            }
+            if ($khs === NULL) {
+                $khs = 'tidak ada progress';
+            }
+            if ($pkl === NULL) {
+                $pkl = 'tidak ada progress';
+            }
+            if ($skripsi === NULL) {
+                $skripsi = 'tidak ada progress';
+            }
+
+            if ($irsApproved && $khsApproved && $skripsiApproved) {
+                $hasApproval = 'lulusskripsi';
+            } elseif ($irsApproved && $khsApproved && $pklApproved) {
+                $hasApproval = 'luluspkl';
+            } elseif ($irsApproved || $khsApproved) {
+                $hasApproval = 'irskhs';
+            } else {
+                $hasApproval = 'notprogress';
+            }
+
+            $data = [
+                'irs' => $irs,
+                'khs' => $khs,
+                'pkl' => $pkl,
+                'skripsi' => $skripsi,
+            ];
 
             $buttons[] = [
+                'nim' => $nim,
                 'smt' => $smt,
                 'hasApproval' => $hasApproval,
+                'data' => $data,
             ];
         }
 
