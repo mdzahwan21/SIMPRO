@@ -164,7 +164,10 @@
             <br>
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex flex-col items-center p-4 m-8">
-                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src='https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1707350400&v=beta&t=QoxHL_mXvVb_gjZLGQMQd42fHn5ObdPsg_LztlFndC8' alt ="Pofile-Picture"/>
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" 
+                    src='https://media.licdn.com/dms/image/C5603AQFg5fhHcCfs2g/profile-displayphoto-shrink_800_800/0/1658109361552?e=1706745600&v=beta&t=CeAb6STx8PaIMD9EgkbK-bEjywdv3c02BzU0hflACRA'
+                    {{-- src='https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1707350400&v=beta&t=QoxHL_mXvVb_gjZLGQMQd42fHn5ObdPsg_LztlFndC8'  --}}
+                    alt ="Pofile-Picture"/>
                     {{-- src="{{ url('storage/foto/' . auth()->user()->name . '.jpg') }}" alt="Profile Pic" /> --}}
                     <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ auth()->user()->name }}</h5>
                     <span class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->id }}</span>

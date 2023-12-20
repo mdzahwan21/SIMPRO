@@ -161,19 +161,19 @@
         </style>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-md flex flex-col justify-center items-center">
-                <!-- Profile Departemen -->
                 <h2 class="text-xl font-semibold text-gray-900 mb-4">Profile Departemen</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6">
+                    <div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-6" style="width: 500px; height: 230px;">
                         <img class="w-24 h-24 mb-3 rounded-full shadow-lg mx-auto"
-                            src='https://media.licdn.com/dms/image/D5603AQFAtfWWrv3VfA/profile-displayphoto-shrink_400_400/0/1678606906821?e=1707350400&v=beta&t=69dTq7TsDoTExt9Z-lzbko2YwDuYO3fN3IFsMuAKNuE'
+                            src='https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1707350400&v=beta&t=QoxHL_mXvVb_gjZLGQMQd42fHn5ObdPsg_LztlFndC8'
+                        {{-- src='https://media.licdn.com/dms/image/D5603AQFAtfWWrv3VfA/profile-displayphoto-shrink_400_400/0/1678606906821?e=1707350400&v=beta&t=69dTq7TsDoTExt9Z-lzbko2YwDuYO3fN3IFsMuAKNuE' --}}
                             alt="Bonnie image" />
 
                         <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center">
                             {{ auth()->user()->name }}
                         </h5>
                         <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
-                            {{ optional(auth()->user()->mahasiswa)->nim }}
+                            {{ auth()->user()->id }}
                         </p>
                         <p class="text-sm text-gray-500 dark:text-gray-400 text-center">
                             {{ auth()->user()->email }}

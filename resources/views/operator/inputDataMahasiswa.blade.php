@@ -66,7 +66,7 @@
                 </div>
             </div> --}}
 
-            <div class="flex justify-center items-center mb-6">
+            {{-- <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
                     <label for="provinsi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provinsi</label>
                     <select type="provinsi" id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama Provinsi Asal" required>
@@ -76,9 +76,9 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="flex justify-center items-center mb-6">
+            {{-- <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">
                     <label for="kota_kab" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kota/Kabupaten:</label>
                     <input type="kota_kab" id="kota_kab" name="kota_kab" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Nama Kota/Kabupaten Asal" required>
@@ -90,7 +90,7 @@
                     <label for="alamat_detail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Detail:</label>
                     <textarea id="alamat_detail" name="alamat_detail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-800 focus:border-blue-800 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukkan Alamat Detail" required></textarea>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="flex justify-center items-center mb-6">
                 <div class="w-full max-w-md">

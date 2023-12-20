@@ -172,11 +172,12 @@
             <div class="mt-8 mx-4 grid grid-cols-1 md:grid-cols-2">
                 <!-- Contact Form -->
                 <div class="p-6 mr-2 bg-gray-100 dark:bg-gray-800 sm:rounded-lg">
-                    <div
-                        class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex flex-col justify-center items-center">Profile Mahasiswa</h2>
+                    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
                         <div class="flex flex-col items-center pb-10">
                             <img class="w-24 h-24 mb-3 mt-8 rounded-full shadow-lg"
-                                src="https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1707350400&v=beta&t=QoxHL_mXvVb_gjZLGQMQd42fHn5ObdPsg_LztlFndC8"
+                                src='https://media-sin6-2.cdn.whatsapp.net/v/t61.24694-24/408547088_723104809761384_7218053295329157033_n.jpg?ccb=11-4&amp;oh=01_AdTQfdEJFVsjvKaR4bw2K9iGWoWWaqta9LSePs2ku8pXEw&amp;oe=658E46ED&amp;_nc_sid=e6ed6c&amp;_nc_cat=108'
+                            {{-- src="https://media.licdn.com/dms/image/D5603AQFtLDSHnI82vw/profile-displayphoto-shrink_400_400/0/1664614490501?e=1707350400&v=beta&t=QoxHL_mXvVb_gjZLGQMQd42fHn5ObdPsg_LztlFndC8" --}}
                                 alt="Foto Profil" alt="Profile" />
                             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                                 {{ auth()->user()->name }}
